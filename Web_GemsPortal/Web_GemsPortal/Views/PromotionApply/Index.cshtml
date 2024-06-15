@@ -1,0 +1,103 @@
+﻿
+@section MetaHead{
+    <meta name="robots" content="noindex, nofollow">
+}
+@section Styles{
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-select-fix/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/lib/pretty-checkbox/pretty-checkbox.min.css" rel="stylesheet" />
+    <link href="~/css/loading_small.css" rel="stylesheet" />
+    <link href="~/css/checkbox_custom_1.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/bootstrap-select-fix/bootstrap-select.min.js"></script>
+    <script src="~/lib/bootstrap-select-fix/i18n/defaults-vi_VN.min.js"></script>
+    <script src="~/controllers/promotion_apply.js" asp-append-version="true"></script>
+}
+<!-- content section start-->
+<section class="dashboard-section section-b-space bg_custom_1" style="padding-top:0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                @await Html.PartialAsync("_P_MenuAccount", 4)
+            </div>
+            <div class="col-lg-9 bg-white" id="div_zone_order_list">
+                <div class="faq-content tab-content" id="top-tabContent">
+                    <div class="tab-pane fade show active" id="products">
+                        <section class="tab-product pt-0 mt-4">
+                            <div class="top-sec">
+                                <h3 class="text-uppercase">Ví Voucher/Coupon</h3>
+                                <a href="/uu-dai" class="btn btn-sm btn-solid" style="padding: 10px 14px;">
+                                    <i class="fa fa-plus d-block d-md-none"></i>
+                                    <span class="d-none d-md-block"><i class="fa fa-ticket"></i> Thu thập thêm</span>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-12">
+                                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                        <li class="nav-item li_tab" data-id="-2">
+                                            <a class="nav-link active"
+                                               data-bs-toggle="tab" href="#" role="tab" aria-selected="true">
+                                                <i class="icofont icofont-ui-home"></i>Tất cả
+                                            </a>
+                                            <div class="material-border"></div>
+                                        </li>
+                                        <li class="nav-item li_tab" data-id="@((int)EN_PromotionIsManage.Admin)">
+                                            <a class="nav-link "
+                                               data-bs-toggle="tab" href="#" role="tab" aria-selected="true">
+                                                <i class="icofont icofont-ui-home"></i>GEMS GROUP
+                                            </a>
+                                            <div class="material-border"></div>
+                                        </li>
+                                        <li class="nav-item li_tab" data-id="@((int)EN_PromotionIsManage.Seller)">
+                                            <a class="nav-link"
+                                               data-bs-toggle="tab" href="#" role="tab"
+                                               aria-selected="false">
+                                                <i class="icofont icofont-man-in-glasses"></i>Shop
+                                            </a>
+                                            <div class="material-border"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content nav-material">
+                                        <div class="tab-pane fade show active" role="tabpanel"
+                                             aria-labelledby="top-home-tab">
+                                            <div class="mt-0">
+
+                                                <div class="pretty p-default p-curve">
+                                                    <input type="radio" name="typeSearch" value="0" checked />
+                                                    <div class="state p-success-o">
+                                                        <label>Mới nhất</label>
+                                                    </div>
+                                                </div>
+                                                <div class="pretty p-default p-curve">
+                                                    <input type="radio" name="typeSearch" value="1" />
+                                                    <div class="state p-success-o">
+                                                        <label>Sắp hết hạn</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row voucher-member mt-3" id="div_list_data">
+
+                                                </div>
+
+                                                <div class="w-100 text-center">
+                                                    <button onclick="LoadListData()" id="btn_load_more" class="btn-effect offset" data-style="zoom-in" dir="ltr">XEM THÊM</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content section end-->

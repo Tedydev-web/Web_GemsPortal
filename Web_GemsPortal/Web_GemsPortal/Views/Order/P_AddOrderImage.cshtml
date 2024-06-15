@@ -1,0 +1,67 @@
+﻿@using Web_GemsPortal.EditModels.Order
+@model EM_OrderImage
+
+<div class="modal fade bd-example-modal-lg theme-modal" id="modal_add_order_image" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <b class="text-uppercase">Viết đánh đánh về đơn hàng</b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top:-8px;padding-bottom:0;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-2" style="overflow-x:hidden;">
+
+                <form id="form_data" action="/Order/P_AddOrderImage" method="post" asp-antiforgery="true">
+                    <input type="hidden" asp-for="OrderId" />
+                    <input type="hidden" asp-for="ImageId" />
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label class="fw-bold">Ảnh mô tả</label>
+                            <input type="file" asp-for="ImageFile" data-plugins="dropify"
+                                   accept="image/jpeg, image/png" data-allowed-file-extensions="png jpg jpeg"
+                                   data-height="150" data-max-file-size="5M" />
+                        </div>
+
+                   <div class="col-md-6 mb-3">
+                            <label class="fw-bold">Chất lượng sản phẩm</label>
+                            <div id="full-stars-example-two">
+                                <div class="rating-group">
+                                    <label aria-label="1 star" data-rate="1" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-1" value="1" type="radio">
+                                    <label aria-label="2 stars" data-rate="2" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-2" value="2" type="radio">
+                                    <label aria-label="3 stars" data-rate="3" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-3" value="3" type="radio">
+                                    <label aria-label="4 stars" data-rate="4" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-4" value="4" type="radio" checked>
+                                    <label aria-label="5 stars" data-rate="5" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-5" value="5" type="radio">
+                                </div>
+                                <p class="desc mb-0" id="divStartDescrip" style="font-family: sans-serif; font-size:0.9rem">
+                                    <img src="/img/rate_face/5.png" />
+                                    <span></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="fw-bold">Mô tả <span class="text-danger">(*)</span></label>
+                            <textarea asp-for="Remark" class="form-control mb-0" placeholder="Hãy viết đánh giá của bạn về sản phẩm này..." maxlength="150" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-solid ladda-button" dir="ltr" data-style="expand-left" id="btn_submit_form">Gửi</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    var listCustomerTestimonial = ViewBag.ListCustomerTestimonial as List<M_CustomerTestimonial>;
+}
+
+@if (listCustomerTestimonial != null)
+{
+    <section class="wrapper bg-light section_customer" style="background-image: url(&quot;/assets-sanbox/img/map.png&quot;);">
+        <div class="container py-5">
+            <div class="row mb-3">
+                <div class="col-md-10 col-xl-9 col-xxl-7 mx-auto text-center">
+                    <img src="/img/customer-water-icon.webp" class="icon-svg icon-svg-md mb-4" alt="">
+                    <h2 class="display-5 mb-3 px-lg-10">SỨ GIẢ LAN TRUYỀN THÔNG ĐIỆP <span style="color:var(--theme-color-first)">NƯỚC</span></h2>
+                </div>
+            </div>
+            <div class="position-relative">
+                <div class="shape rounded-circle bg-soft-yellow rellax w-16 h-16" data-rellax-speed="1" style="bottom: 0.5rem; right: -1.7rem; transform: translate3d(0px, 18px, 0px);"></div>
+                <div class="shape rounded-circle bg-line red rellax w-16 h-16" data-rellax-speed="1" style="top: 0.5rem; left: -1.7rem; transform: translate3d(0px, -3px, 0px);"></div>
+                <div class="swiper-container dots-closer mb-6 swiper-container-1" data-margin="0" data-dots="true" data-items-xxl="3" data-items-xl="3" data-items-lg="3" data-items-md="2" data-items-xs="1">
+                    <div class="swiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                        <div class="swiper-wrapper" id="swiper-wrapper-b6e871a4155d5cad" aria-live="off" style="cursor: grab; transform: translate3d(0px, 0px, 0px);">
+                            @foreach (var item in listCustomerTestimonial)
+                            {
+                                <div class="swiper-slide" style="cursor:default" role="group" aria-label="6 / 6" style="width: 322.5px;">
+                                    <div class="item-inner py-1">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <img style="object-fit: contain;" class="rounded-circle h-18 mb-4" src="@(!string.IsNullOrEmpty(item.imageUrl) ? item.imageUrl : "/assets/images/error/home_bannertop.png")" srcset="/assets-sanbox/img/avatars/te6@2x.jpg 2x" alt="">
+                                                <h4 class="mb-1">@item.name</h4>
+                                                <nav class="nav social mb-0 d-flex justify-content-center">
+                                                    @if (item.star > 0)
+                                                    {
+                                                        for (int i = 0; i < item.star; i++)
+                                                        {
+                                                            <h3 class="mx-1"><i class="uil uil-star text-warning"></i></h3>
+                                                        }
+                                                    }
+                                                </nav>
+                                                <p style="text-align: justify;" class="mb-2 sp-line-5" data-toggle="tooltip" data-placement="right" title="@(item.comment ?? "")">@item.comment</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <div class="swiper-controls"><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,75 @@
+﻿@{
+    var data5 = ViewBag.BannerLocation5 as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+    var data6 = ViewBag.BannerLocation6 as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+}
+@if (data5 != null || data6 != null)
+{
+    <div class="category-bg">
+        <div class="container-fluid p-0">
+            <div class="row order-section">
+                <div class="col-sm-4 p-0 responsive_sale_1 image-block">
+                    @if (data5 != null && data5.Any())
+                    {
+                        @for (int i = 0; i < data5.Count(); i++)
+                        {
+
+                            <a target="_blank" href="@data5[i].url">
+                                <div class="collection-banner p-right">
+                                    <div class="img-part">
+                                        <img src="@data5[i].imageUrl" class="img-fluid bg-img" alt="@data5[i].title"
+                                             onerror="this.onerror=null;this.src='/assets/images/error/home_bannermiddle.png';">
+                                    </div>
+                                    @* @if (!string.IsNullOrEmpty(item.title))
+                        {
+                        <div class="contain-banner banner-3">
+                        <div>
+                        <h2 class="sp-line-1" style="color:@item.titleColor;">@item.title</h2>
+                        <h5 class="sp-line-1" style="color:@item.descShortColor;">@item.descShort</h5>
+                        </div>
+                        </div>
+                        }*@
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+                <div class="col-sm-4">
+                    <div class="contain-block div_center_slider_banner_location_5_6 py-5">
+                        <div>
+                            <h2 class="mt-2 fw-bolder"><a target="_blank" href="https://ecotech2a.com">MÁY LỌC NƯỚC <br /> HYDROGEN ION KIỀM</a></h2>
+                            <a href="/san-pham">
+                                <h3 class="my-3 text-purple" style="line-height:normal">TRUNG TÂM PHÂN PHỐI MÁY LỌC NƯỚC TỐT NHẤT THỊ TRƯỜNG TRONG VÀ NGOÀI NƯỚC</h3>
+                            </a>
+                            <a href="/san-pham" class="btn btn-solid category-btn">Đặt hàng ngay</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 p-0 responsive_sale_2 image-block">
+                    @if (data6 != null && data6.Any())
+                    {
+                        @for (int i = 0; i < data6.Count(); i++)
+                        {
+                            <a class="" target="_blank" href="@data6[i].url">
+                                    <div class="collection-banner p-right">
+                                        <div class="img-part">
+                                        <img src="@data6[i].imageUrl" class="img-fluid bg-img" alt="@data6[i].title"
+                                                 onerror="this.onerror=null;this.src='/assets/images/error/home_bannermiddle.png';">
+                                        </div>
+                                        @*  @if (!string.IsNullOrEmpty(item.title))
+                        {
+                        <div class="contain-banner banner-3">
+                        <div>
+                        <h2 class="sp-line-1" style="color:@item.titleColor;">@item.title</h2>
+                        <h5 class="sp-line-1" style="color:@item.descShortColor;">@item.descShort</h5>
+                        </div>
+                        </div>
+                        }*@
+                                    </div>
+                                </a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

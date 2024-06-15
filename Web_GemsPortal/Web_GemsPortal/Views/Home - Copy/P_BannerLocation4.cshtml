@@ -1,0 +1,24 @@
+﻿@{
+    var dataMain = ViewBag.BannerLocation4 as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+}
+
+<div class="px-1">
+    <div class="swiper banner_slide_top_right1">
+        <div class="swiper-wrapper" data-aos="zoom-in-down" data-aos-duration="1200">
+            @if (dataMain != null && dataMain.Any())
+            {
+                foreach (var item in dataMain)
+                {
+                    <div class="swiper-slide">
+                        <a target="_blank" href="@item.url" class="w-100 h-100 spotlight">
+                            <img loading="lazy" src="@item.imageUrl" alt="@item.title"
+                                 onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';" />
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="swiper-button-prev"><i class="fa fs-2 text-white fa-chevron-circle-left" aria-hidden="true"></i></div>
+        <div class="swiper-button-next"><i class="fa fs-2 text-white fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </div>
+</div>

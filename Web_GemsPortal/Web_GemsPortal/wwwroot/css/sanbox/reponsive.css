@@ -1,0 +1,94 @@
+
+/*--------Mobile----------*/
+@media (max-width:480px) {
+    .section_water_and_live .div_img_title_water_and_live img {
+        display: none;
+    }
+
+    .section_water_and_live img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    #ctn-preloader span {
+        font-size: 40px !important;
+    }
+
+    .section_water_and_live h1 {
+        margin-top: 0px !important;
+    }
+
+    .section_water_and_live .container {
+        padding: 20px !important;
+    }
+
+    .section_water_and_live .fs-30, .section_water_and_live .fs-40, .section_water_and_live .fs-28 {
+        font-size: 1.3rem !important;
+    }
+
+    .section_water_and_live .sp-line-3, .section_water_and_live .sp-line-4 {
+        -webkit-line-clamp: 6;
+    }
+
+    .section_quantity h4 {
+        font-size: 0.6rem;
+    }
+
+    .section_quantity span {
+        font-size: 1.05rem;
+    }
+    .div_video .caption-wrapper {
+        display: block !important;
+    }
+    .div_video{
+        display:flex;
+        justify-content:center;
+    }
+    .div_info_solution .avatar {
+        display: none !important;
+    }
+    .div_config_home_location_3 a.col-6 {
+        padding: 0px 3px;
+    }
+    .div_config_home_location_3 img{
+        height:70px;
+    }
+    .div_config_home_location_3 p {
+        font-size: 12px !important;
+        line-height: normal;
+        background: #f5f5f5;
+        color: black;
+        padding: 5px;
+        border-radius: 10px;
+    }
+    .section_customer .position-relative img {
+        height: 100px !important;
+    }
+}
+/*--------Tablet - air ----------*/
+@media (min-width:481px) and (max-width:768px) {
+}
+/*--------Large Tablet - pro----------*/
+@media (min-width:769px) and (max-width:1079px) {
+}
+/*--------Small Laptop - 14inch----------*/
+@media (min-width:1080px) and (max-width:1499px) {
+    .section_water_and_live .container {
+        max-width: unset;
+    }
+
+    .section_water_and_live .fs-30 {
+        font-size: 1.2rem !important;
+    }
+
+    .section_water_and_live .icon-svg.icon-svg-sm {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+/*--------------------Large Desktop - My Laptop 15.6inch --------------------*/
+@media (min-width:1500px) {
+    .section_water_and_live .container {
+        max-width: unset;
+    }
+}

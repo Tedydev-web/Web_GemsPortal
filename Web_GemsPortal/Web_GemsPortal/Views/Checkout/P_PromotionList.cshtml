@@ -1,0 +1,45 @@
+﻿<!-- Modal addressList -->
+<div class="modal fade" id="modal_promotion_list" tabindex="-1" role="dialog" aria-labelledby="addressListModal" aria-hidden="true">
+    <input type="hidden" id="input_supplier_id" value="0"/>
+    <input type="hidden" id="input_shop_code" value="0" />
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document" style="padding:50px 0;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <b class="text-uppercase"><img src="/img/icon/ticket.png" height="32" alt="ticket"> Mã giảm giá</b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top: -10px;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-2" style="overflow-x:hidden;">
+                
+                <div class="form-group">
+                    <div class="title2">
+                        <h4 class="title-inner2 mb-1"><img src="/img/icon/ticket.png" height="32" alt="promotion"> KHUYẾN MÃI <b class="color-default">GEMS GROUP</b></h4>
+                    </div>
+                    <div class="row voucher-member mt-3" id="div_promotion_admin"></div>
+                    <div class="w-100 text-center">
+                        <button onclick="LoadListPromotionAdmin()" id="btn_promotion_admin_load_more" class="btn-effect offset" data-style="zoom-in" dir="ltr">XEM THÊM</button>
+                    </div>
+                </div>
+                <div class="w-70 my-4 mx-auto border-bottom"></div>
+                <div class="form-group">
+                    <div class="title2">
+                        <h4 class="title-inner2 mb-1"><img src="/img/icon/ticket.png" height="32" alt="promotion"> KHUYẾN MÃI <b class="color-default">SHOP</b></h4>
+                    </div>
+                    <div class="row voucher-member mt-3" id="div_promotion_member"></div>
+                    <div class="w-100 text-center">
+                        <button onclick="LoadListPromotionMember()" id="btn_promotion_member_load_more" class="btn-effect offset" data-style="zoom-in" dir="ltr">XEM THÊM</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Hủy</button>
+                <button id="btn_submit_apply_promotion" type="button" class="btn btn-solid" onclick="ApplyPromotion(this)">Xong</button>
+            </div>
+        </div>
+    </div>
+</div>

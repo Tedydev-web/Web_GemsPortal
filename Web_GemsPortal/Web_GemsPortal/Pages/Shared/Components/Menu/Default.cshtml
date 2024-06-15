@@ -1,0 +1,332 @@
+﻿﻿@{
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    string fullName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Name).Select(c =>
+    c.Value).FirstOrDefault();
+    string avatar = identity.Claims.Where(c => c.Type == "Avatar").Select(c => c.Value).FirstOrDefault();
+    var supplierInfo = ViewBag.SupplierInfo as Web_GemsPortal.Models.M_Supplier;
+    var menuInfo = ViewBag.Menu as Web_GemsPortal.ViewModels.VM_Menu;
+}
+
+
+<header class="header-2 nav_top header_wrapper position-relative">
+    <div class="particles-js" id="particles_div_header"></div>
+    <div class="top-header top-header-theme">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="header-contact py-2">
+                        <ul class="fs-7">
+                            <li class="text-uppercase fw-bolder fs-7">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                    width="24px" fill="#e8eaed">
+                                    <path
+                                        d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+                                </svg>
+                                C&#xF4;ng ty C&#x1ED5; Ph&#x1EA7;n T&#x1EAD;p &#x110;o&#xE0;n GEMS
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <ul class="header-dropdown fs-7 d-none d-md-block">
+                        <li class="mobile-wishlist py-2">
+                            <a href="tel:1900888812" class="fw-bolder">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                    width="24px" fill="#e8eaed">
+                                    <path
+                                        d="M760-480q0-117-81.5-198.5T480-760v-80q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480h-80Zm-160 0q0-50-35-85t-85-35v-80q83 0 141.5 58.5T680-480h-80Zm198 360q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z" />
+                                </svg>
+                                1900888812
+                            </a>
+                        </li>
+                        <li class="mobile-wishlist fs-7 py-2">
+                            <a href="mailto:info.gemsgroupvn@gmail.com" class="fw-bolder">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                                    width="24px" fill="#e8eaed">
+                                    <path
+                                        d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                                </svg>
+                                info.gemsgroupvn@gmail.com
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---- main_menu ----->
+    <div class="container header_mobile">
+        <div class="row header_custom_when_mobile">
+            <div class="col-sm-12">
+                <div class="main-menu">
+                    <div class="menu-left">
+                        <div>
+                            <div class="brand-logo spotlight">
+                                <a href="/">
+                                    <img src="https://image-gems.h2aits.com/uploads/797590F6-012C-4EC8-9F2D-EC8D7261A3ED/images/297x302_532ceda6-7365-421f-a83e-af48bd97fe90.webp"
+                                        class="img-fluid blur-up img_logo_shop lazyloaded" alt="Logo"
+                                        onerror="this.onerror=null;this.src='/assets/images/error/logo.png';"
+                                        style="max-height:48px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-center pull-center">
+                        <div>
+                            <nav id="main-nav">
+                                <ul id="main-menu" class="sm pixelstrap sm-horizontal sidebar_unset"
+                                    data-smartmenus-id="17184642684053015">
+                                    <li>
+                                        <div class="mobile-back text-end">
+                                            <i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="menu_a" href="/">Trang chủ</a>
+                                    </li>
+                                    <li class="li_news_category">
+                                        <a class="menu_a has-submenu active" href="/gioi-thieu"
+                                            id="sm-17184642684053015-1" aria-haspopup="true"
+                                            aria-controls="sm-17184642684053015-2" aria-expanded="false">Câu chuyện về
+                                            GEMS<span class="sub-arrow"></span></a>
+                                        <ul class="ul_menu_news_category" id="sm-17184642684053015-2" role="group"
+                                            aria-hidden="true" aria-labelledby="sm-17184642684053015-1"
+                                            aria-expanded="false">
+                                            <li>
+                                                <a href="/gioi-thieu?c=4" style="white-space:inherit;">
+                                                    Giới thiệu về GEMS
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/chung-nhan?c=15" style="white-space:inherit;">
+                                                    Chứng nhận FDA
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/chung-nhan?c=16" style="white-space:inherit;">
+                                                    Chứng nhận ISO
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/chung-nhan?c=18" style="white-space:inherit;">
+                                                    Chứng nhận NSF
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/chung-nhan?c=19" style="white-space:inherit;">
+                                                    Chứng nhận sở hữu trí tuệ
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/chung-nhan?c=17" style="white-space:inherit;">
+                                                    Chứng nhận thử nghiệm Quatest 3
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="menu_a" href="/san-pham">Linh kiện và sản phẩm</a>
+                                    </li>
+                                    <li class="li_news_category">
+                                        <a class="menu_a has-submenu" href="/tin-tuc" id="sm-17184642684053015-3"
+                                            aria-haspopup="true" aria-controls="sm-17184642684053015-4"
+                                            aria-expanded="false">Tin tức &amp; Cẩm nang<span
+                                                class="sub-arrow"></span></a>
+                                        <ul class="ul_menu_news_category sm-nowrap" id="sm-17184642684053015-4"
+                                            role="group" aria-hidden="true" aria-labelledby="sm-17184642684053015-3"
+                                            aria-expanded="false"
+                                            style="width: auto; min-width: 10em; display: none; max-width: 34em; top: auto; left: 0px; margin-left: 0px; margin-top: 0px;">
+                                            <li>
+                                                <a href="/tin-tuc?c=21" style="white-space:inherit;">
+                                                    Bảo dưỡng bảo trì
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/tin-tuc?c=12" style="white-space:inherit;">
+                                                    Cẩm nang về nước
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/tin-tuc?c=20" style="white-space:inherit;">
+                                                    Chăm sóc khách hàng
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/tin-tuc?c=13" style="white-space:inherit;">
+                                                    Hoạt động nổi bật
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/tin-tuc?c=14" style="white-space:inherit;">
+                                                    Theo dòng thời sự
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <a class="menu_a" href="/lien-he">Liên hệ &amp; phản hồi</a>
+                                    </li>
+                                    <li hidden="">
+                                        <a class="menu_a" href="/trang-thanh-vien">Cửa hàng</a>
+                                    </li>
+                                    <li hidden="">
+                                        &lt; class="menu_a"a href="/dang-ky-thanh-vien"
+                                        class="btn_effect_custom_1"&gt;<span>ĐĂNG KÝ BÁN HÀNG</span>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                    <div class="menu-right pull-right">
+
+                        <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                        <div>
+                            <div class="icon-nav">
+                                <div class="navbar-other w-100 d-flex ms-auto">
+                                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+                                        <li class="nav-item dropdown language-select text-uppercase">
+                                            <div class="d-none" id="google_translate_element">
+                                                <div class="skiptranslate goog-te-gadget" dir="ltr" style="">
+                                                    <div id=":0.targetLanguage"><select class="goog-te-combo"
+                                                            aria-label="Tiện ích dịch ngôn ngữ">
+                                                            <option value="">Chọn Ngôn ngữ</option>
+                                                            <option value="vi">Việt</option>
+                                                            <option value="en">Anh</option>
+                                                        </select></div>Được hỗ trợ bởi <span
+                                                        style="white-space:nowrap"><a class="VIpgJd-ZVi9od-l4eHX-hSRGPd"
+                                                            href="https://translate.google.com" target="_blank"><img
+                                                                src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_42x16dp.png"
+                                                                width="37px" height="14px" style="padding-right: 3px"
+                                                                alt="Google Dịch">Dịch</a></span>
+                                                </div>
+                                            </div>
+                                            <div class="nav-link dropdown-item dropdown-toggle translate_current_lang"
+                                                role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"><img class="img_flag_lang" height="20" width="30"
+                                                    src="/img/icon_language/vi.png" alt="vi"></div>
+                                            <ul class="dropdown-menu translate_select">
+                                                <li class="nav-item">
+                                                    <div class="dropdown-item language_item notranslate active_flag"
+                                                        data-id="vi">
+                                                        <img class="img_flag_lang me-3" height="20" width="30"
+                                                            src="/img/icon_language/vi.png" alt="VI">VI
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <div class="dropdown-item language_item notranslate" data-id="en">
+                                                        <img class="img_flag_lang me-3" height="20" width="30"
+                                                            src="/img/icon_language/en.png" alt="EN">EN
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <ul class="d-flex">
+                                        <li class="onhover-div mobile-search d-inline-block">
+                                            <div>
+                                                <!--Icon Seach-->
+                                                <img src="/assets/images/icon/search.png" onclick="openSearch()"
+                                                    class="img-fluid blur-up d-none d-md-block lazyloaded" alt="">
+                                            </div>
+                                            <div id="search-overlay" class="search-overlay">
+                                                <div>
+                                                    <span class="closebtn" onclick="closeSearch()"
+                                                        title="Close Overlay">×</span>
+                                                    <div class="overlay-content">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-xl-12">
+                                                                    <form class="form_search ajax-search the-basics"
+                                                                        role="form" action="/Product/Search"
+                                                                        method="get">
+                                                                        <div class="typeahead__container form-group">
+                                                                            <div class="typeahead__field">
+                                                                                <div class="typeahead__query">
+                                                                                    <span
+                                                                                        class="typeahead__cancel-button">×</span><input
+                                                                                        name="keyword" maxlength="50"
+                                                                                        required=""
+                                                                                        placeholder="Tìm sản phẩm mong muốn..."
+                                                                                        class="js-typeahead-product_v2 nav-search nav-search-field typeahead"
+                                                                                        autocomplete="off"
+                                                                                        aria-expanded="true">
+                                                                                </div>
+                                                                                <div class="typeahead__button">
+                                                                                    <button type="button"
+                                                                                        class="btnShowSpeech border-0 p-0"
+                                                                                        style="position:relative;right:0;">
+                                                                                        <i class="ti-microphone"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <button type="submit"
+                                                                                    class="btn-search border-0 r-0"
+                                                                                    style="position:relative;right:0;">
+                                                                                    <i class="ti-search"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="onhover-div mobile-setting d-inline-block">
+                                            <div>
+                                                <a href="/lien-he">
+                                                    <img src="/assets/images/icon/send2.png"
+                                                        class="img-fluid blur-up d-none d-md-block lazyloaded" alt="">
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li class="onhover-div mobile-cart d-inline-block">
+                                            <div class="div_show_when_have_local_storage" style="display: none;">
+                                                <!--Cart-->
+                                                <a href="/checkout/cart">
+                                                    <img src="/assets/images/icon/cart.png"
+                                                        class="img-fluid blur-up lazyload img_cart" alt="">
+                                                </a>
+                                            </div>
+                                            <span class="cart_qty_cls" style="display:none;"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</header>
+
+
+<!------ ul_menu_product_category --------->
+<section class="p-0">
+    <!--<div class="container">
+        <div class="row">-->
+    @* <div class="col-xl-3">
+    <div id="sidebar-height" class="sidenav marketplace-sidebar svg-icon-menu ">
+    <nav>
+    <div>
+    <div class="sidebar-back text-start d-xl-none d-block">
+    <i class="fa fa-angle-left pe-2"
+    aria-hidden="true"></i>
+    </div>
+    </div>
+    <ul id="" class=" ul_menu_product_category sm pixelstrap sm-vertical" style="background:#f6f6f6;"></ul>
+    </nav>
+    </div>
+    </div>*@
+    <!--</div>
+    </div>-->
+    @* @await Html.PartialAsync("~/Views/Home/P_BannerTop.cshtml")*@
+</section>

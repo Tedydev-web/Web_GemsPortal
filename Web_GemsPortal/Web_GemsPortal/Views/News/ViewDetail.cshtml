@@ -1,0 +1,57 @@
+﻿@model Web_GemsPortal.Models.M_News
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+            {
+                currentName = Model.title,
+                lv1Name = "Tin tức",
+                lv1Url = "/tin-tuc",
+                lv2Name = Model.categoryObj?.name,
+                lv2Url = $"/tin-tuc?c={Model.categoryId}",
+            };
+}
+@section MetaHead {
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles {
+    <link href="~/css/pages/news_detail.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/controllers/news_detail.js" asp-append-version="true"></script>
+}
+<input type="hidden" id="input_news_id" value="@Model.id" />
+<input type="hidden" id="input_category_id" value="@Model.categoryId" />
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start -->
+<section class="blog-detail-page section-b-space ratio2_3 blog-page blog_page blog_detail_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 blog-detail">
+                <div class="col-12 col-md-8 mx-auto">
+                    <img src="@(string.IsNullOrEmpty(Model.imageObj?.relativeUrl) ? "/assets/images/error/news.png" : Model.imageObj?.relativeUrl)"
+                         class="img-fluid blur-up lazyload img_news" alt="@Model.title"
+                         onerror="this.onerror=null;this.src='/assets/images/error/news.png';">
+                </div>
+                <h3>@Model.title</h3>
+                <ul class="post-social">
+                    <li><i class="ti-calendar"></i> @Model.createdAt.ToString("dd-MM-yyyy")</li>
+                </ul>
+                @Html.Raw(Model.detail)
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="title4">
+                        <h2 class="title-inner4">Tin tức liên quan</h2>
+                        <div class="line"><span></span></div>
+                    </div>
+                    <div class="no-arrow" id="div_news_related">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content section end -->

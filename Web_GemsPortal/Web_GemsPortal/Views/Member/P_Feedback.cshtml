@@ -1,0 +1,74 @@
+﻿@model Web_GemsPortal.EditModels.Contact.EM_Contact
+
+<form class="theme-form" action="/Contact/SubmitContact" method="post" data-parsley-validate id="form_data_feedback">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="SupplierId" value="@Model.SupplierId" />
+    <input type="hidden" asp-for="Title" value="2" />
+    <input type="hidden" asp-for="TokenReCAPTCHA" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row row">
+
+        <div id="full-stars-example-two" class="text-center">
+            <div class="rating-group">
+                @*<input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio" required>*@
+                <label aria-label="1 star" data-rate="1" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" asp-for="RatingStart" id="rating3-1" value="1" type="radio">
+                <label aria-label="2 stars" data-rate="2" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" asp-for="RatingStart" id="rating3-2" value="2" type="radio">
+                <label aria-label="3 stars" data-rate="3" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" asp-for="RatingStart" id="rating3-3" value="3" type="radio">
+                <label aria-label="4 stars" data-rate="4" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" asp-for="RatingStart" id="rating3-4" value="4" type="radio" checked>
+                <label aria-label="5 stars" data-rate="5" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                <input class="rating__input" asp-for="RatingStart" id="rating3-5" value="5" type="radio">
+            </div>
+            <p class="desc" id="divStartDescrip" style="font-family: sans-serif; font-size:0.9rem">
+                <img src="/img/rate_face/5.png" />
+                <span></span>
+            </p>
+        </div>
+
+        <div class="col-md-6 mb-3 checkout-page">
+            <div class="col-md-12 checkout-form">
+                <label asp-for="ContactTypeId">Chọn vấn đề: <span class="text-danger">(*)</span></label>
+                <select asp-for="ContactTypeId" asp-items="ViewBag.ContactTypeId" class="bg-white" style="height: 38px;">
+                    @*<option value="1">Hài lòng</option>
+                        <option value="2">Bài đăng không rõ ràng</option>
+                        <option value="3">Bài đăng vi phạm tiêu chuẩn cộng đồng</option>
+                        <option value="4">CTV bán hàng không đúng với giá</option>
+                        <option value="5">Thái độ chưa tốt</option>
+                        <option value="6">Khác</option>*@
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="Name">Tên <span class="text-danger">(*)</span></label>
+            <input type="text" class="form-control mb-0" asp-for="Name" maxlength="50" placeholder="Nhập tên của bạn" required />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="PhoneNumber">Điện thoại <span class="text-danger">(*)</span></label>
+            <input type="text" asp-for="PhoneNumber" maxlength="20" class="form-control mb-0" placeholder="Nhập điện thoại" required />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="Email">Email</label>
+            <input type="email" asp-for="Email" class="form-control mb-0" placeholder="Nhập email" maxlength="100" pattern=@(@"^[a-zA-Z0-9.!#$%&’*+/ =?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$") />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="Detail">Nội dung <span class="text-danger">(*)</span></label>
+            <textarea asp-for="Detail" class="form-control mb-0" placeholder="Nhập nội dung" maxlength="1000" rows="6" required></textarea>
+        </div>
+
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-outline" data-bs-dismiss="modal">
+                <div class="d-inline-flex align-items-center"><i class="fa fa-times" aria-hidden="true"></i><span class="ml-1 d-none d-md-block">Đóng</span></div>
+            </button>
+            <button type="submit" class="btn btn-solid ladda-button" dir="ltr" data-style="expand-left" id="btn_submit_form_feedbacl">
+                <div class="d-inline-flex align-items-center"><i class="fa fa-paper-plane" aria-hidden="true"></i><span class="ml-1 d-none d-md-block">Gửi</span></div>
+            </button>
+
+        </div>
+    </div>
+</form>

@@ -1,0 +1,210 @@
+﻿.orderSuccess .success-text :is(p, a, em) {
+    color: #fff !important;
+}
+
+.desktop-div-custom {
+    color: black;
+}
+
+.mobile-cart-content {
+    color: #000;
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .desktop-div-custom {
+        display: none;
+    }
+
+    .mobile-cart-content {
+        display: block;
+    }
+}
+
+.card-payment-custom {
+    border: 1px solid #d8d5d5;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+    .card-payment-custom .zoneShop {
+        background-color: #f9f9f9;
+        border-radius: 4px;
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    .card-payment-custom .deliveryOpttion {
+        height: 50px;
+        border: 1px solid #81ba00;
+        border-radius: 4px;
+        margin: 4px;
+    }
+
+.zoneTrackItem {
+    margin: 20px 0;
+    background: #f2feff;
+    border: 1px solid var(--secondColor);
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+
+.title-custom {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.input-custom {
+    margin-top: 4px;
+    /*height: 34px !important;*/
+    padding: 0 12px !important;
+}
+
+.form-custom {
+    border: 1px solid var(--theme-deafult);
+    padding: 10px 10px 3px;
+    border-radius: 4px;
+    margin-top: 10px;
+    background: #f6f6f6;
+    position: relative;
+}
+
+    .form-custom:before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-top: 1px solid var(--theme-deafult);
+        border-left: 1px solid var(--theme-deafult);
+        background: #f6f6f6;
+        transform: rotate( 45deg);
+        position: absolute;
+        top: -5px;
+        left: 50px;
+    }
+
+
+.card-voucher .copy-button button.active {
+    background: white;
+    color: #198754;
+    font-weight: 500;
+    border: 2px #198754 solid;
+}
+
+.promotion_list .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .promotion_list .item .code {
+        color: #fc3c21;
+    }
+
+    .promotion_list .item .discount {
+        color: #fc3c21;
+        font-weight: 600;
+    }
+
+.zoneShop img.img-fluid {
+    height: 80px;
+    width: 80px;
+}
+
+.div_desktop_custom {
+    color: black;
+}
+
+.div_mobile_cart_content {
+    color: #000;
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .div_desktop_custom {
+        display: none !important;
+    }
+
+    .div_mobile_cart_content {
+        display: block !important;
+    }
+}
+
+.div_cart_payment_custom {
+    border: 1px solid #d8d5d5;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+
+    .div_cart_payment_custom .div_zone_shop {
+        background-color: #f9f9f9;
+        border-radius: 4px;
+        margin: 6px 0;
+        padding: 0;
+    }
+
+        .div_cart_payment_custom .div_zone_shop .div_first_row {
+            padding: 6px 12px 6px 12px;
+            background-color: #ecf9e9;
+        }
+
+        .div_cart_payment_custom .div_zone_shop .border_bottom {
+            border-bottom: 1px solid #fff;
+        }
+
+    .div_cart_payment_custom .deliveryOpttion {
+        height: 50px;
+        border: 1px solid #81ba00;
+        border-radius: 4px;
+        margin: 4px;
+    }
+
+.dashboard-table table thead {
+    background-color: #fafafa;
+}
+
+.dashboard-table table tr:hover {
+    background-color: #fafafa;
+}
+
+.div_zone_track_item {
+    margin: 10px 0;
+    padding: 14px;
+    border-bottom: 2px groove #cfc09f;
+}
+
+.div_diretion_banking {
+    background: white;
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+}
+
+.div_btn_supplier_wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.btn_supplier{
+    padding:5px 10px 0px 10px;
+}
+
+.btn_supplier.active {
+    background: var(--primaryColor);
+}
+
+    .btn_supplier:has(.form-check-input:checked) p, .btn_supplier:has(.form-check-input:checked) a {
+        color: white !important;
+    }
+.btn_supplier .form-check-input:checked {
+    border-color:greenyellow;
+    background-color: var(--primaryColor);
+}
+
+.btn_supplier:has(.form-check-input:checked){
+    background: var(--primaryColor);
+}
+
+.checkout_payment_wrapper {
+    background: #e0f0ff;
+}

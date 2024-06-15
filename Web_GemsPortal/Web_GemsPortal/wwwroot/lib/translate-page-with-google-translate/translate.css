@@ -1,0 +1,20 @@
+﻿body {
+    top: 0 !important;
+}
+
+.skiptranslate {
+    display: none !important;
+}
+
+.language_item:hover {
+    cursor: pointer;
+}
+
+    .language_item.active_flag {
+        background: beige;
+        cursor: unset;
+    }
+
+        .language_item.active_flag:hover {
+            background: beige;
+        }

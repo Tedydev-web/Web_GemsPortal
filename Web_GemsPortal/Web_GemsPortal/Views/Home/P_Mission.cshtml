@@ -1,0 +1,101 @@
+﻿@{
+    var listNews = ViewBag.ListIntroduce as List<M_News>;
+    var listConfigHome = ViewBag.ListConfigHomeLocation3 as List<M_ConfigHome>;/* col-md-6 align-self-center */
+}
+
+@if (listNews != null && listNews.Any())
+{
+    <section class="wrapper bg-light position-relation pt-5 mb-5 position-relative section_hot_introduce" style="background-image: url(&quot;/assets-sanbox/img/map.png&quot;);">
+        <div class="snowflakes div_snowflakes_mission" aria-hidden="true">
+            <div class="snowflake" style="color:var(--theme-color-first)">❅</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❆</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❅</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❆</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❅</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❆</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❅</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❆</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❅</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❆</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❅</div>
+            <div class="snowflake" style="color:var(--theme-color-first)">❆</div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="swiper-container blog grid-view px-0" data-margin="30" data-nav="true" data-dots="true" data-items="1">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+
+                            @foreach (var item in listNews)
+                            {
+                                <div class="swiper-slide">
+                                    <div class="row py-4">
+                                        <div class="col-lg-5 col-lg-5 col-xxl-6 text-center text-lg-start" data-cues="slideInDown" data-group="page-title" data-delay="600">
+                                            <p class="fs-18 text-uppercase mb-0 text-primary">@item.categoryObj?.name</p>
+                                            <h3 class="display-5 mb-2 sp-line-2">@(!string.IsNullOrEmpty(item.title) ? item.title : "")</h3>
+                                            <p class="lead fs-20 lh-sm mb-7 px-md-10 px-lg-0 sp-line-4">@(!string.IsNullOrEmpty(item.description) ? item.description : "")</p>
+                                            <div class="d-flex justify-content-center justify-content-lg-start" data-cues="slideInDown" data-group="page-title-buttons" data-delay="900">
+                                                <span><a href="/gioi-thieu/@(item.titleSlug)-@(item.id)" class="btn btn-lg btn-primary rounded-pill me-2">Xem thêm</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 offset-md-2 col-lg-6 col-xxl-5 offset-lg-1 position-relative order-lg-2 ms-md-5" data-cue="zoomIn">
+                                            <div class="shape bg-dot primary rellax w-17 h-19" data-rellax-speed="1" style="top: -1.7rem; left: -1.5rem;"></div>
+                                            <div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0" style="bottom: -1.8rem; right: -0.8rem; width: 85%; height: 90%;"></div>
+                                            <figure class="rounded spotlight"><img src="@(!string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? item.imageObj?.relativeUrl : "/assets/images/error/home_bannertop.png")" onerror="this.onerror=null;this.src='/assets/images/error/product_1x1_medium.png';" srcset="@(!string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? item.imageObj?.relativeUrl : "") 2x" alt="@item.title" /></figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="shape rounded-circle bg-soft-yellow rellax w-16 h-16" data-rellax-speed="1" style="bottom: 0.5rem; right: -1.7rem; transform: translate3d(0px, 18px, 0px);"></div>
+                <div class="shape rounded-circle bg-line red rellax w-16 h-16" data-rellax-speed="1" style="bottom: 0.5rem; left: -1.7rem; transform: translate3d(0px, -3px, 0px);"></div>
+            </div>
+        </div>
+    </section>
+}
+<section class="wrapper bg-light pt-5 div_config_home_location_3">
+    <div class="container">
+        <div class="row gx-lg-8 gx-xl-12 gy-8 px-3">
+            @if (listConfigHome != null)
+            {
+                foreach (var item in listConfigHome)
+                {
+                    <a href="@(!string.IsNullOrEmpty(item.url) ? item.url : "javascript:void(0)")" target="@(!string.IsNullOrEmpty(item.url) ? item.urlTarget : "_self" )" class="col-6 @item.align mt-2">
+                        <div class="d-flex flex-column align-items-center spotlight card_vission">
+                            <div>
+                                <img src="@item.fileUrl" alt="@item.title">
+                            </div>
+                            <div class="my-2">
+                                <h1 class="mb-1 text-center">@(!string.IsNullOrEmpty(item.title) ? item.title : "")</h1>
+                                <p class="mb-0 sp-line-6 text-wrap" style="text-align: justify;">@(!string.IsNullOrEmpty(item.description) ? item.description : "")</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+    @* <div class="overflow-hidden">
+        <div class="divider text-soft-primary mx-n2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+                <path fill="currentColor" d="M1260,1.65c-60-5.07-119.82,2.47-179.83,10.13s-120,11.48-180,9.57-120-7.66-180-6.42c-60,1.63-120,11.21-180,16a1129.52,1129.52,0,0,1-180,0c-60-4.78-120-14.36-180-19.14S60,7,30,7H0v93H1440V30.89C1380.07,23.2,1319.93,6.15,1260,1.65Z" />
+            </svg>
+        </div>
+    </div> *@
+    <div class="mt-n100">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 208, 255, 20%)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 208, 255, 57%)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 208, 255, 77%)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 208, 255, 100%)" />
+            </g>
+        </svg>
+    </div>
+</section>

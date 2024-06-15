@@ -1,0 +1,97 @@
+﻿@{
+    var listSupplier = ViewBag.ListSupplier as List<M_Supplier>;
+}
+@if (listSupplier != null && listSupplier.Any())
+{
+    <section class="p-0 product-vertical overflow-hidden div_supplier_news">
+        <div class="full-banner text-center p-left bg-theme">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 m-auto">
+                        <div class="title6">
+                            <h2 class="text-white">NHÀ PHÂN PHỐI HỆ THỐNG GEMS GROUP</h2>
+                        </div>
+                        @*   <div class="product-para">
+                    <p class="text-white" style="text-align:justify">
+                    Thành viên sàn GEMS GROUP không chỉ là những doanh nghiệp thương mại điện tử mà còn là những người đóng góp tích cực vào sự phát triển và thịnh vượng của ngành này thông qua kiến thức sâu rộng, sự sáng tạo và khả năng quản lý hiệu quả
+                    </p>
+                    </div> *@
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="slider_supplier no-arrow full-box">
+                            @foreach (var item in listSupplier)
+                            {
+                                <div class="theme-card center-align">
+                                    <div class="offer-slider">
+                                        <div class="sec-1">
+                                            <div class="product-box2">
+                                                <div class="media">
+                                                    <a target="_blank" href="/npp/@item.memberUrlIdentity">
+                                                        <img class="img-fluid "
+                                                             src="@(!string.IsNullOrEmpty(item.imageObj?.smallUrl) ? item.imageObj?.smallUrl  : "/assets/images/error/avatar.png")" alt="" onerror="this.onerror=null;this.src='/assets/images/error/home_bannermiddle.png';">
+                                                    </a>
+                                                    <div class="media-body align-self-center">
+                                                        <div class="rating">
+                                                            <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i>
+                                                        </div>
+                                                        <a target="_blank" data-toggle="tooltip" data-placement="top" title="@item.name" class="name_supplier" target="_blank" rel="noreferrer" href="/npp/@(item.memberUrlIdentity)">
+                                                            @(item.name.Length > 60 ? item.name.Substring(0, 57) + "..." : item.name)
+                                                        </a><br />
+                                                        <small class="py-2" data-toggle="tooltip" data-placement="top" title="@(item.description)">
+                                                            @(item.description?.Length > 100 ? item.description.Substring(0, 100) + "..." : item.description)
+                                                        </small>
+                                                        @*  <div class="d-flex">
+                                                <a target="_blank" href="tel: @(!string.IsNullOrEmpty(item.hotlineNumber) ? item.hotlineNumber : item.telephoneNumber)" class="mx-1 text-info" data-toggle="tooltip" data-placement="top" title="Số điện thoại"><i class="fa fa-mobile" aria-hidden="true"></i></a>
+                                                <a target="_blank" href="mailto: @item.email" class="mx-1 text-info" data-toggle="tooltip" data-placement="top" title="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                                                <a target="_blank" href="@item.zalo" class="mx-1 text-info" data-toggle="tooltip" data-placement="top" title="Zalo"><i class="fa fa-link" aria-hidden="true"></i></a>
+                                                <a target="_blank" href="@item.youtube" class="mx-1 text-info" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                                                </div> *@
+
+                                                        <a target="_blank" href="/npp/@item.memberUrlIdentity" class="btn rounded btn-solid btn-sm hover-solid btn-animation my-2">
+                                                            Xem <i class="fa fs-6 fa-external-link" aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @* <div class="theme-card center-align">
+                        <div class="offer-slider">
+                        <div class="sec-1">
+                        <div class="product-box2">
+                        <div class="media">
+                        <a href="product-page(no-sidebar).html">
+                        <img class="img-fluid blur-up lazyload"
+                        src="../assets/images/pro2/43.jpg" alt="">
+                        </a>
+                        <div class="media-body align-self-center">
+                        <div class="rating">
+                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                        </div>
+                        <a href="product-page(no-sidebar).html">
+                        <h6>Slim Fit Cotton Shirt</h6>
+                        </a>
+                        <h4>$500.00 <del>$600.00</del></h4>
+                        <ul class="color-variant">
+                        <li class="bg-light0"></li>
+                        <li class="bg-light1"></li>
+                        <li class="bg-light2"></li>
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

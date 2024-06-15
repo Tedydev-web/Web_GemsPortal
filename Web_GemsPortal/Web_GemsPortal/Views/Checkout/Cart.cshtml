@@ -1,0 +1,356 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+    ViewData["Title"] = "Giỏ hàng | GEMS GROUP";
+    ViewData["Keywords"] = "Gio hang GEMS GROUP,  Gio hang";
+    ViewData["Description"] = "Trang giỏ hàng của GEMS GROUP";
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+    {
+        currentName = "Giỏ hàng",
+    };
+}
+@section MetaHead{
+    <meta name="robots" content="noindex, nofollow">
+}
+@section Styles{
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/css/checkbox_custom_1.css" rel="stylesheet" />
+    <style>
+        .desktop-div-custom {
+            text-align: left;
+        }
+
+        @@media (max-width: 767px) {
+            .desktop-div-custom {
+                display: none;
+            }
+
+            .tableHeader th:nth-child(2) {
+                width: 64%;
+            }
+        }
+
+        @@media (min-width: 768px) {
+            .tableHeader th:nth-child(1) {
+                width: 100px;
+            }
+
+            .tableHeader th:nth-child(2) {
+                width: 150px;
+            }
+
+            .tableHeader th:nth-child(3) {
+                width: 100px;
+            }
+
+            .tableHeader th:nth-child(4) {
+                width: 120px;
+            }
+
+            .tableHeader th:nth-child(5) {
+                width: 100px;
+            }
+
+            .tableHeader th:nth-child(6) {
+                width: 20px;
+            }
+        }
+
+        @@media (min-width: 992px) {
+            .tableHeader th:nth-child(1) {
+                width: 100px;
+            }
+
+            .tableHeader th:nth-child(2) {
+                min-width: 260px;
+            }
+
+            .tableHeader th:nth-child(3) {
+                max-width: 90px;
+            }
+
+            .tableHeader th:nth-child(4) {
+                max-width: 90px;
+            }
+
+            .tableHeader th:nth-child(5) {
+                min-width: 100px;
+            }
+
+            .tableHeader th:nth-child(6) {
+                width: 20px;
+            }
+        }
+
+        .table tr {
+            border-bottom: 2px solid #fff;
+        }
+
+            .table tr td {
+                border: 0px;
+            }
+
+        .card-checkout-custom {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        .table .active {
+            background-color: #f0f8ff;
+        }
+
+        .group-quantity-custom {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            border-radius: 3px;
+        }
+
+        .productItem.disabled td:not(:last-child) {
+            opacity: 0.5;
+        }
+    </style>
+    <link href="~/css/pages/checkout_cart.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts{
+    <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/controllers/checkout_cart.js" asp-append-version="true"></script>
+    <script>
+        var placeOrderFail = '@TempData["PlaceOrderFail"]';
+        if (placeOrderFail) {
+            ShowToastNoti('error', '', 'Xảy ra lỗi, hãy thử lại!');
+        }
+    </script>
+}
+@*@section LoaderBody{
+        @await Html.PartialAsync("P_Loader")
+    }*@
+<!-- breadcrumb start -->
+<partial name="_P_BreadcrumbMember" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start -->
+<section class="cart-section section-b-space" id="cart-section">
+    <div class="container">
+        <div class="row" id="zoneCard">
+            @*<div class="col-sm-12">
+                    <div class="cart_counter">
+                        <div class="countdownholder">
+                            Your cart will be expired in<span id="timer"></span> minutes!
+                        </div>
+                        <a href="checkout.html" class="cart_checkout btn btn-solid btn-xs">check out</a>
+                    </div>
+                </div>*@
+
+
+            <!--Emxample-->
+            @*<div class="col-sm-12 table-responsive-xs">
+                    <table class="table cart-table tableHeader">
+                        <thead>
+                            <tr class="table-head">
+                                <th scope="col" style="padding-left:0">
+                                    <input class="checkbox-effect checkbox-effect-1" id="table-checkAll" type="checkbox" />
+                                    <label class="mb-0 label-checkbox-custom" for="table-checkAll">Tất cả</label>
+                                </th>
+                                <th scope="col">Sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Thành tiền</th>
+                                <th scope="col" style="width: 10px !important;padding-left:0;padding-right:0;">
+                                    <a href="javascript:void(0)" class="icon" onclick="DeleteMulti()" title="Xoá mục đã chọn">
+                                        <i class="ti-trash"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col-sm-12 table-responsive-xs card-checkout-custom zoneShop">
+                    <div style="padding:6px 12px 6px 12px;">
+                        <input type="checkbox" class="checkbox-effect checkbox-effect-1 checkAllShop" data-id="1" id="check-shopAll_1" />
+                        <label class="mb-0 label-checkbox-custom" for="check-shopAll_1"><b class="text-success">Shop1</b><a style="padding-left:6px;" href="#"><i class="fa fa-link"></i></a></label>
+                    </div>
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr class="productItem" data-id="1">
+                                <td class="col-2 d-flex align-items-center" style="padding-left:12px;">
+                                    <input class="checkbox-effect checkbox-effect-1 checkShop_1" id="product_1" type="checkbox" />
+                                    <label class="mb-0 label-checkbox-custom" for="product_1"> </label>
+                                    <a href="#"><img src="../assets/images/pro3/2.jpg" alt=""></a>
+                                </td>
+                                <td class="col-10" data-id="1">
+                                    <a href="#">
+                                        <div class="desktop-div-custom">
+                                            Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguy...
+                                            <span class="col-auto badge badge-grey-color">Size S</span>
+                                            <span class="col-auto badge badge-default">Màu Xanh</span>
+                                        </div>
+                                        <div class="mobile-cart-content row">
+                                            <span class="col-12">Quần baggy kaki nữ Quần baggy kaki nữ ống suông ab...</span>
+                                            <span class="col-auto badge badge-grey-color">Size S</span>
+                                            <span class="col-auto badge badge-default">Màu Xanh</span>
+                                        </div>
+                                    </a>
+                                    <div class="mobile-cart-content row">
+                                        <div class="col">
+                                            <div class="qty-box">
+                                                <div class="input-group group-quantity-custom">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button" class="btn btn-sm quantity-left-minus p-1" data-id="1" data-type="minus" data-field="">
+                                                            <i class="ti-angle-left"></i>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="quantity" data-id="1" style="width:34px;" onchange="OnChangeRangeQuantityWithMinMax(this)" onkeypress="return IsNumberKey(event)"
+                                                           class="qty-input-card form-control form-control-sm input-number quantity_1" value="1">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button" class="btn btn-sm quantity-right-plus p-1" data-id="1" data-type="plus" data-field="">
+                                                            <i class="ti-angle-right"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h5 class="td-color">
+                                                1.000.000.000đ
+                                            </h5>
+                                            <del>1.000.000.000đ</del>
+                                        </div>
+                                        <div class="col" style="max-width:24px;">
+                                            <h2 class="td-color">
+                                                <a href="javascript:void(0)" class="icon" onclick="Delete(1)"> <i class="ti-trash"></i></a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 id="price_1">1.000.000.000đ</h5>
+                                    <del>1.000.000.000đ</del>
+                                </td>
+                                <td>
+                                    <div class="qty-box">
+                                        <div class="input-group group-quantity-custom">
+                                            <span class="input-group-prepend">
+                                                <button type="button" class="btn btn-sm quantity-left-minus p-1" data-id="1" data-type="minus" data-field="">
+                                                    <i class="ti-angle-left"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" name="quantity" data-id="1" style="width:34px;" onchange="OnChangeRangeQuantityWithMinMax(this)" onkeypress="return IsNumberKey(event)"
+                                                   class="qty-input-card form-control form-control-sm input-number quantity_1" value="1">
+                                            <span class="input-group-prepend">
+                                                <button type="button" class="btn btn-sm quantity-right-plus p-1" data-id="1" data-type="plus" data-field="">
+                                                    <i class="ti-angle-right"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 class="td-color totalItem" id="totalItem_1">1.000.000.000đ</h5>
+                                </td>
+                                <td><a href="javascript:void(0)" class="icon" onclick="Delete(1)"><i class="ti-trash"></i></a></td>
+                            </tr>
+                            <tr class="productItem" data-id="2">
+                                <td class="col-2 d-flex align-items-center" style="padding-left:12px;">
+                                    <input class="checkbox-effect checkbox-effect-1 checkShop_1" id="product_2" type="checkbox" />
+                                    <label class="mb-0 label-checkbox-custom" for="product_2"> </label>
+                                    <a href="#"><img src="../assets/images/pro3/2.jpg" alt=""></a>
+                                </td>
+                                <td class="col-10">
+                                    <a href="#">
+                                        <div class="desktop-div-custom">
+                                            Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguy...
+                                            <span class="col-auto badge badge-grey-color">Size S</span>
+                                            <span class="col-auto badge badge-default">Màu Xanh</span>
+                                        </div>
+                                        <div class="mobile-cart-content row">
+                                            <span class="col-12">Quần baggy kaki nữ Quần baggy kaki nữ ống suông ab...</span>
+                                            <span class="col-auto badge badge-grey-color">Size S</span>
+                                            <span class="col-auto badge badge-default">Màu Xanh</span>
+                                        </div>
+                                    </a>
+                                    <div class="mobile-cart-content row">
+                                        <div class="col">
+                                            <div class="qty-box">
+                                                <div class="input-group group-quantity-custom">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button" class="btn btn-sm quantity-left-minus p-1" data-id="2" data-type="minus" data-field="">
+                                                            <i class="ti-angle-left"></i>
+                                                        </button>
+                                                    </span>
+                                                    <input type="text" name="quantity" data-id="2" style="width:34px;"
+                                                           class="qty-input-card form-control form-control-sm input-number quantity_2" value="1">
+                                                    <span class="input-group-prepend">
+                                                        <button type="button" class="btn btn-sm quantity-right-plus p-1" data-id="2" data-type="plus" data-field="">
+                                                            <i class="ti-angle-right"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h5 class="td-color">
+                                                1.000.000.000đ
+                                            </h5>
+                                            <del>1.000.000.000đ</del>
+                                        </div>
+                                        <div class="col" style="max-width:24px;">
+                                            <h2 class="td-color">
+                                                <a href="#" class="icon" onclick="Delete(2)"> <i class="ti-trash"></i></a>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>1.000.000.000đ</h5>
+                                    <del>1.000.000.000đ</del>
+                                </td>
+                                <td>
+                                    <div class="qty-box">
+                                        <div class="input-group group-quantity-custom">
+                                            <span class="input-group-prepend">
+                                                <button type="button" class="btn btn-sm quantity-left-minus p-1" data-id="2" data-type="minus" data-field="">
+                                                    <i class="ti-angle-left"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" name="quantity" data-id="2" style="width:34px;"
+                                                   class="qty-input-card form-control form-control-sm input-number quantity_2" value="1">
+                                            <span class="input-group-prepend">
+                                                <button type="button" class="btn btn-sm quantity-right-plus p-1" data-id="2" data-type="plus" data-field="">
+                                                    <i class="ti-angle-right"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5 class="td-color totalItem">1.000.000.000đ</h5>
+                                </td>
+                                <td><a href="#" class="icon" onclick="Delete(2)"><i class="ti-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12 table-responsive-xs">
+                    <div class="table-responsive-md">
+                        <table class="table cart-table ">
+                            <tfoot>
+                                <tr>
+                                    <td>Tổng cộng:</td>
+                                    <td>
+                                        <h2 class="text-lowercase" id="totalPay">200.222.000đ</h2>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>*@
+            <!--Emxample-->
+        </div>
+        <div class="row cart-buttons">
+            <div class="col-6"><a href="javascript:void(0)" onclick="ReturnMemberPage()" class="btn btn-solid">Tiếp tục mua sắm</a></div>
+            <div class="col-6"><button type="button" class="btn btn-solid" id="btn-comfirm">Mua hàng</button></div>
+        </div>
+    </div>
+</section>
+<!-- content section end -->

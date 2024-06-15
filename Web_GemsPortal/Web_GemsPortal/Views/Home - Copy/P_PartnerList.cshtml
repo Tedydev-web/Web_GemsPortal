@@ -1,0 +1,56 @@
+﻿@{
+    var listPartner = ViewBag.ListPartner as List<M_PartnerList>;
+}
+
+@if (listPartner != null)
+{
+    <section class="ratio_square py-4 pb-0 partner_list_zone">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 p-0">
+                    <div class="title1">
+                        <h2 class="title-inner1 mb-0">ĐỐI TÁC CỦA CHÚNG TÔI</h2>
+                    </div>
+                    <div class="container">
+                        <div class="div_supplier_list">
+                            @* id="div_supplier_list" *@
+                            @foreach (var item in listPartner)
+                            {
+                                <div class="">
+                                    <a data-toggle="tooltip" data-placement="top" title="@(item.title ?? "")" href="@(item.url ?? "javascript:void(0)")" @(string.IsNullOrEmpty(item.url) ? "" : "target='_blank'")>
+                                        <div class="">
+                                            <img style="aspect-ratio: 1/1" src="@(item.imageObj?.smallUrl ?? "/assets/images/error/avatar.png")" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" class="img-fluid bg-img"
+                                                 alt="@(item.title ?? "")">
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<section class="ratio_square supplier_list_zone">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <div class="title1 section-t-space">
+                    <h2 class="title-inner1">Các thành viên của Sàn thương mại GEMS GROUP</h2>
+                </div>
+                <div class="" id="div_supplier_list">
+                    @*<div>
+                    <a href="#">
+                    <div class="instagram-box">
+                    <img src="~/assets/images/slider/marketplace/1.jpg" class="bg-img"
+                    alt="img">
+                    <div class="overlay"><i class="fa fa-star" aria-hidden="true"></i></div>
+                    </div>
+                    </a>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+</section>

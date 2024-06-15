@@ -1,0 +1,68 @@
+﻿@{
+    var dataMain = ViewBag.BannerTopMain as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+    var dataRight1 = ViewBag.BannerTopRight1 as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+    var dataRight2 = ViewBag.BannerTopRight2 as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+}
+
+<div class="container banner-slider">
+    <div class="row justify-content-center">
+        <div class="col-md-8 px-1 mb-2">
+            <div class="slide_top_main home-slider home-slider-2 text-white">
+                @if (dataMain != null && dataMain.Any())
+                {
+                    foreach (var item in dataMain)
+                    {
+                        <div class="container-banner">
+                            <a target="_blank" href="@item.url">
+                                <div class="home text-center p-center">
+                                    <img src="@item.imageUrl" alt="@item.title" class="bg-img blur-up lazyload"
+                                         onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';" />
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-4 px-1">
+            <div class="row home-banner">
+                <div class="col-12">
+                    <div class="slide_top_right home-slider-2 text-white">
+                        @if (dataRight1 != null && dataRight1.Any())
+                        {
+                            foreach (var item in dataRight1)
+                            {
+                                <div class="container-banner">
+                                    <a target="_blank" href="@item.url">
+                                        <div class="home text-center p-center">
+                                            <img src="@item.imageUrl" alt="@item.title" class="bg-img blur-up lazyload"
+                                                 onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';" />
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="slide_top_right home-slider-2 text-white">
+                        @if (dataRight2 != null && dataRight2.Any())
+                        {
+                            foreach (var item in dataRight2)
+                            {
+                                <div class="container-banner">
+                                    <a target="_blank" href="@item.url">
+                                        <div class="home text-center p-center">
+                                            <img src="@item.imageUrl" alt="@item.title" class="bg-img blur-up lazyload"
+                                                 onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';" />
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

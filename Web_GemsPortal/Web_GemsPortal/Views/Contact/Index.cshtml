@@ -1,0 +1,256 @@
+﻿@model Web_GemsPortal.EditModels.Contact.EM_Contact
+@{
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+    {
+        currentName = "Liên hệ",
+    };
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+}
+@section MetaHead{
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles{
+    <link href="~/lib/parsleyjs/parsley.css" rel="stylesheet" />
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/rating_start.css" rel="stylesheet" />
+}
+@section Scripts{
+    <partial name="_P_ReCAPTCHAVertify" />
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/parsleyjs/parsley.min.js"></script>
+    <script src="~/lib/parsleyjs/i18n/vn.js"></script>
+    <script src="~/lib/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewData["KeyGoogleMap"]&callback=InitMap" defer></script>
+    <script src="~/js/gmaps.min.js"></script>
+    <script>
+        const LATITUDE = @supplierInfo.addressObj?.latitude;
+        const LONGITUDE = @supplierInfo.addressObj?.longitude;
+    </script>
+    <script src="~/controllers/contact.js" asp-append-version="true"></script>
+}
+@*@section LoaderBody{
+        @await Html.PartialAsync("P_Loader")
+    }*@
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start -->
+<section class="contact-page py-4 section-b-space contact_wrapper">
+    <div class="title1 title5">
+        <h4>“Vì một cuộc sống khoẻ – đẹp – giàu có, thịnh vượng bền vững cho toàn xã hội” </h4>
+        <h2 class="title-inner1">CÔNG TY CỔ PHẦN TẬP ĐOÀN <strong style="color: var(--primaryColor);">GEMS</strong></h2>
+        <hr role="tournament6">
+    </div>
+    <div class="container">
+        <div class="row section-b-space">
+            <div class="col-lg-7 map" data-aos="zoom-in-down" data-aos-duration="600">
+                <div id="map" style="height:450px;">
+
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="contact-right" data-aos="zoom-in-down" data-aos-duration="600">
+                    <ul>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fa fa-map-marker text-primary" aria-hidden="true"></i>
+                            </div>
+                            <div class="media-body">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=@supplierInfo.addressObj?.latitude,@supplierInfo.addressObj?.longitude" class="text-dark">
+                                    Địa chỉ: @supplierInfo.addressObj?.addressText, @supplierInfo.addressObj?.wardObj?.name, @supplierInfo.addressObj?.districtObj?.name, @supplierInfo.addressObj?.provinceObj?.name
+                                </a>
+                            </div>
+                        </li>
+                        @if (!string.IsNullOrEmpty(supplierInfo.hotlineNumber))
+                        {
+                            <li>
+                                <div class="contact-icon">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <div class="media-body">
+                                    <a href="tel:@supplierInfo.hotlineNumber" class="text-dark">
+                                        Hotline: @supplierInfo.hotlineNumber
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                        @if (!string.IsNullOrEmpty(supplierInfo.telephoneNumber))
+                        {
+                            <li>
+                                <div class="contact-icon">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <div class="media-body">
+                                    <a href="tel:@supplierInfo.telephoneNumber" class="text-dark">
+                                        Điện thoại: @supplierInfo.telephoneNumber
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                        @if (!string.IsNullOrEmpty(supplierInfo.fax))
+                        {
+                            <li>
+                                <div class="contact-icon">
+                                    <i class="fa fa-fax" aria-hidden="true"></i>
+                                    <h6>Fax</h6>
+                                </div>
+                                <div class="media-body">
+                                    <p class="fax_shop_contact">
+                                        @supplierInfo.fax
+                                    </p>
+                                </div>
+                            </li>
+                        }
+                        @if (!string.IsNullOrEmpty(supplierInfo.email))
+                        {
+                            <li>
+                                <div class="contact-icon">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                                <div class="media-body">
+                                    <a href="mailto:@supplierInfo.email" class="text-dark">
+                                       Email: @supplierInfo.email
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row rounded border bg-white p-3" data-aos="zoom-in-down" data-aos-duration="600">
+            <div class="title1 mb-4">
+                <h2 class="title-inner1">Góp ý - Phản hồi - Liên hệ</h2>
+                <h4>
+                    Hãy để lại những phản hồi, ý kiến của bạn về chất lượng dịch vụ hoặc lỗi gặp phải khi sử dụng.
+                    Chúng tôi luôn quan tâm đến trải nghiệm của bạn.
+                </h4>
+            </div>
+
+            @*<div id="full-stars-example">
+                    <div class="rating-group">
+                        <input class="rating__input rating__input--none" name="rating" id="rating-none" value="0" type="radio">
+                        <label aria-label="No rating" class="rating__label" for="rating-none"><i class="rating__icon rating__icon--none fa fa-ban"></i></label>
+                        <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating" id="rating-1" value="1" type="radio">
+                        <label aria-label="2 stars" class="rating__label" for="rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating" id="rating-2" value="2" type="radio">
+                        <label aria-label="3 stars" class="rating__label" for="rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating" id="rating-3" value="3" type="radio" checked>
+                        <label aria-label="4 stars" class="rating__label" for="rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating" id="rating-4" value="4" type="radio">
+                        <label aria-label="5 stars" class="rating__label" for="rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating" id="rating-5" value="5" type="radio">
+                    </div>
+                    <p class="desc" style="margin-bottom: 2rem; font-family: sans-serif; font-size:0.9rem">Full stars<br />'No rating' option</p>
+                </div>
+                <div id="half-stars-example">
+                    <div class="rating-group">
+                        <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                        <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+                        <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                        <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                        <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                        <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                        <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio" checked>
+                        <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
+                        <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
+                        <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
+                        <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
+                        <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                        <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
+                    </div>
+                    <p class="desc" style="margin-bottom: 2rem; font-family: sans-serif; font-size:0.9rem">
+                        Half stars<br />
+                        Space on left side to select 0 stars
+                    </p>
+                </div>*@
+
+            <div class="col-sm-12">
+                <form class="theme-form" action="/Contact/SubmitContact" method="post" data-parsley-validate id="form_data">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="SupplierId" value="@Model.SupplierId" />
+                    <input type="hidden" asp-for="Title" value="1" />
+                    <input type="hidden" asp-for="TokenReCAPTCHA" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-row row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Name">Tên <span class="text-danger">(*)</span></label>
+                            <input type="text" class="form-control mb-0" asp-for="Name" maxlength="50" placeholder="Nhập tên của bạn" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="PhoneNumber">Điện thoại <span class="text-danger">(*)</span></label>
+                            <input type="text" asp-for="PhoneNumber" maxlength="20" class="form-control mb-0" placeholder="Nhập điện thoại" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Email">Email</label>
+                            <input type="email" asp-for="Email" class="form-control mb-0" placeholder="Nhập email" maxlength="100" pattern=@(@"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$") />
+                        </div>
+                        <div class="col-md-6 mb-3 checkout-page">
+                            <div class="col-md-12 checkout-form">
+                                <label asp-for="ContactTypeId">Loại: <span class="text-danger">(*)</span></label>
+                                <select asp-for="ContactTypeId" asp-items="ViewBag.ContactTypeId" class="bg-white" style="height:54px;">
+                                    @*<option value="1">Chất lượng dịch vụ</option>
+                                        <option value="2">Lỗi khi sử dụng</option>
+                                        <option value="3">Đánh giá Cộng tác viên</option>
+                                        <option value="4">Hòm thư góp ý</option>
+                                        <option value="5">Liên hệ đặt hàng số lượng lớn</option>
+                                        <option value="6">Khác</option>*@
+                                </select>
+                            </div>
+                            @*<label asp-for="Title">Loại <span class="text-danger">(*)</span></label>*@
+                            @*<input type="text" asp-for="Title" class="forkm-control mb-0" placeholder="Nhập tiêu đề" maxlength="100" required />*@
+                        </div>
+
+                        <div id="full-stars-example-two">
+                            <div class="rating-group">
+                                @*<input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio" required>*@
+                                <label aria-label="1 star" data-rate="1" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" asp-for="RatingStart" id="rating3-1" value="1" type="radio">
+                                <label aria-label="2 stars" data-rate="2" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" asp-for="RatingStart" id="rating3-2" value="2" type="radio">
+                                <label aria-label="3 stars" data-rate="3" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" asp-for="RatingStart" id="rating3-3" value="3" type="radio">
+                                <label aria-label="4 stars" data-rate="4" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" asp-for="RatingStart" id="rating3-4" value="4" type="radio" checked>
+                                <label aria-label="5 stars" data-rate="5" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                <input class="rating__input" asp-for="RatingStart" id="rating3-5" value="5" type="radio">
+                            </div>
+                            <p class="desc" id="divStartDescrip" style="font-family: sans-serif; font-size:0.9rem">
+                                <img src="/img/rate_face/5.png" />
+                                <span></span>
+                            </p>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label asp-for="Detail">Nội dung <span class="text-danger">(*)</span></label>
+                            <textarea asp-for="Detail" class="form-control mb-0" placeholder="Nhập nội dung" maxlength="1000" rows="6" required></textarea>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button class="btn btn-solid ladda-button" dir="ltr"
+                                    data-style="expand-right" id="btn_submit_form" type="submit">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Gửi
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content section end -->
+<!-- modal send success start-->
+<partial name="_P_SendFeedbackSuccess" />
+<!-- modal send success end-->

@@ -1,0 +1,191 @@
+﻿@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    Web_GemsPortal.ViewModels.VM_AccountInfo account = new Web_GemsPortal.ViewModels.VM_AccountInfo();
+    if (identity.IsAuthenticated)
+    {
+        account = new Web_GemsPortal.ViewModels.VM_AccountInfo()
+                {
+                    userName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Select(c => c.Value)?.SingleOrDefault(),
+                    fullName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Name).Select(c => c.Value)?.SingleOrDefault(),
+                    avatar = identity.Claims.Where(c => c.Type == "Avatar").Select(c => c.Value).SingleOrDefault(),
+                    isAuthenticated = identity.IsAuthenticated,
+                };
+    }
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi" data-aos-once="true" style="overflow-x: hidden">
+@*  data-aos-once="true" *@
+
+<head>
+    <meta name="robots" content="noodp,noydir,index,follow" />
+    <meta http-equiv="Content-Security-Policy" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="@(!string.IsNullOrEmpty(supplierInfo.description) ? supplierInfo.description : ViewData["Description"])" />
+    <meta name="keywords" content="@(!string.IsNullOrEmpty(supplierInfo.description) ? supplierInfo.name : ViewData["Keywords"])" />
+    <meta name="author" content="GEMS" />
+    <link rel="shortcut icon" id="link_favicon_shortcut_shop" type="image/x-icon" href="@supplierInfo.imageFavicon" />
+    <link rel="icon" id="link_favicon_shop" type="image/x-icon" href="@supplierInfo.imageFavicon" />
+
+    <!-- Facebook, Zalo, Telegram Meta Tags -->
+    <meta property="og:image" content="@ViewData["ImagePreview"]" />
+    <meta property="og:image:alt" content="@ViewData["Title"]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi" />
+    <meta property="og:url" href="@(new Uri($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}"))" />
+    <meta property="og:site_name" content="@(string.IsNullOrEmpty(supplierInfo.name) ? "GEMS GROUP" : supplierInfo.name)" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:description" content="@(string.IsNullOrEmpty(supplierInfo.description) ? ViewData["Description"] : supplierInfo.description)" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="@(!string.IsNullOrEmpty(supplierInfo.imageObj?.mediumUrl) ? supplierInfo.imageObj?.mediumUrl : ViewData["ImagePreview"])" />
+    <meta name="twitter:title" content="@ViewData["Title"]" />
+    <meta name="twitter:description" content="@(string.IsNullOrEmpty(supplierInfo.description) ? ViewData["Description"] : supplierInfo.description)" />
+
+    <partial name="_P_Styles" />
+
+    <!-- Theme css -->
+    <link href="/assets/css/style-min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendors/slick-theme.css">
+    <link href="/lib/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Css Version 2 -->
+    @* <link href="/css/style_v2-min.css" rel="stylesheet" media="print" onload="this.media='all'" asp-append-version="true" /> *@
+    <link href="/css/style_v2.css" rel="stylesheet" media="print" onload="this.media='all'" asp-append-version="true" />
+
+    <link href="/css/pages/home.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Responsive Version 2 -->
+    @* <link href="/assets/responsive_dev/responsive_v2.min.css" rel="stylesheet" media="print" onload="this.media='all'"/> *@
+    <link href="/assets/responsive_dev/responsive_v2.css" rel="stylesheet" media="print" onload="this.media='all'" asp-append-version="true" />
+
+    <style>
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .swiper-slide img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    </style>
+</head>
+
+<body class="theme-color-11 home_wrapper">
+
+    @await Component.InvokeAsync("Menu")
+
+    <partial name="_P_Loader" />
+
+    <partial name="P_BannerLocation1" />
+
+    <partial name="P_BannerLocation2" />
+
+    <partial name="P_LatestNews" />
+
+    <partial name="P_BannerLocation3" />
+
+    <partial name="P_WeService" />
+
+    <partial name="P_BannerLocation4" />
+
+    <partial name="P_Sale" />
+
+    <partial name="P_PartnerList" />
+
+    <partial name="P_WhyChooseWe" />
+
+    <partial name="P_NewSupplier" />
+
+    <partial name="P_SomeThingsAboutUs" />
+
+    <partial name="_P_Footer" />
+
+    <partial name="_P_SignoutModal" model="supplierInfo" />
+
+    <partial name="_P_ListenVoiceModal" />
+
+    <div class="modal fade bd-example-modal-lg theme-modal" id="modal_notify_register_account" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body ">
+                    @*modal-border-1*@
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="modal-bg p-0">
+                                    <button type="button" class="btn-close" style="z-index: 9999;" data-bs-dismiss="modal" aria-label="Close"><span class="text-muted" aria-hidden="true">×</span></button>
+                                    <div class="offer-content d-flex">
+                                        <div style="margin-right: 6px;">
+                                            <a href="/account/signin" class="hover15">
+                                                <figure class="mb-0">
+                                                    <img class="w-100 mb-0" src="/img/popup-1.png" asp-append-version="true" alt="sign in" />
+                                                </figure>
+                                                @*<x-sign data="type_1">
+                                                ĐĂNG NHẬP MUA HÀNG
+                                                </x-sign>*@
+                                            </a>
+                                        </div>
+                                        <div style="margin-left: 6px;">
+                                            <a href="/dang-ky-thanh-vien" class="hover15">
+                                                <figure class="mb-0">
+                                                    <img class="w-100 mb-0" src="/img/popup-2.png" asp-append-version="true" alt="register member" />
+                                                </figure>
+                                                @*<x-sign data="type_2">
+                                                ĐĂNG KÝ THÀNH VIÊN
+                                                </x-sign>*@
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @if (!string.IsNullOrEmpty(supplierInfo.hotlineNumber))
+    {
+        <div class="draggable_bubble bubble_move_cart bubble_phone">
+            <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" title="Điện thoại: @supplierInfo.hotlineNumber" href="tel:@supplierInfo.hotlineNumber" rel="nofollow" aria-label="phone"> <i class="fa fa-phone text-white fs-30 text-black"></i></a>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(supplierInfo.facebook))
+    {
+        <div class="draggable_bubble bubble_move_cart bubble_gmail">
+            <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" target="_blank" title="Chat với chúng tôi qua Facebook" href="@supplierInfo.facebook" rel="nofollow" aria-label="facebook"> <i class="fa fa-facebook text-white fs-30 text-black"></i></a>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(supplierInfo.zalo))
+    {
+        <div class="draggable_bubble bubble_move_cart bubble_zalo">
+            <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" target="_blank" title="Chat với chúng tôi qua zalo" href="@supplierInfo.zalo" rel="nofollow" aria-label="zalo"> <img src="~/img/zalo.png" alt="zalo" style=" width: 100%;" /></a>
+        </div>
+    }
+
+    <script src="/lib/swiper/swiper-bundle.min.js"></script>
+    <partial name="_P_Scripts" model="account" />
+    <script src="/lib/count-up-me/countMe.min.js"></script>
+    <script src="/controllers/home.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@{
+    var bannerBottom = ViewBag.BannerBottomHome as List<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+}
+@*<section class="p-0">
+    <div class="full-banner parallax text-center p-left bg-size blur-up lazyloaded" style="background-image: url(&quot;../assets/images/parallax/3.jpg&quot;); background-size: cover; background-position: center center; display: block;">
+        <img src="../assets/images/parallax/3.jpg" alt="" class="bg-img blur-up lazyload" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="banner-contain">
+                        <h2>2018</h2>
+                        <h3>interior design in home</h3>
+                        <h4>special offer</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+@*<section class="banner_collection_header_about_us_wrapper p-0">
+    <div class=" full-banner parallax text-center p-left bg-size blur-up lazyloaded">
+        <div class="responsive_home_introduce banner_collection_header_about_us">
+            @if (bannerBottom != null)
+            {
+                foreach (var item in bannerBottom)
+                {
+                    <div class="img_about">
+                        <img src="@item.imageUrl" alt="@item.title" class="">
+                        <div class="container" style="margin: 0; position: absolute; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%);">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="slider-contain px-padding height-apply banner-contain">
+                                        <div>
+                                            <h4 class="animated sp-line-1" data-animation-in="fadeInUp" style="color:@item.descShort; text-shadow: 1px 1px 1px #000000;">@item.descShort</h4>
+                                            <h1 class="animated sp-line-1" data-animation-in="fadeInUp" data-delay-in="0.3" style="color: @item.titleColor; text-shadow: 2px 2px 4px #000000;">@item.title</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>*@

@@ -1,0 +1,40 @@
+﻿@*@{var data = ViewBag.BannerHeader as List<Web_GemsPortal.Models.VM_Banner>;}
+
+    <div class="row small-slider home-fashion mt-0">
+        <section class="pt-0 px-0">
+            <div class="div_banner_header_slide home-slider">
+                @if (data != null && data.Any())
+                {
+                foreach (var item in data)
+                    {
+                        <div>
+                            <div class="home p-right height-apply">
+                                <img src="@item.imageUrl" alt="@item.title"
+                                     onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';"
+                                     class="bg-img blur-up lazyload w-100 img_header_banner" />
+                                <div class="container" style="margin: 0; position: absolute; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%);">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="slider-contain px-padding height-apply">
+                                                <div>
+                                                    <h4 class="animated sp-line-1" data-animation-in="fadeInUp" style="color: @item.descShortColor; text-shadow: 1px 1px 1px #000000;">@item.descShort</h4>
+                                                    <h1 class="animated sp-line-1" data-animation-in="fadeInUp" data-delay-in="0.3" style="color: @item.titleColor; text-shadow: 2px 2px 4px #000000;">
+                                                        @item.title
+                                                    </h1>
+                                                    @if (!string.IsNullOrEmpty(item.url))
+                                                    {
+                                                    <a href="@item.url"
+                                                       class="btn btn-solid animated" data-animation-in="fadeInUp"
+                                                       data-delay-in="0.5">Xem</a>}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                
+                    }
+                }
+            </div>
+        </section>
+    </div>*@

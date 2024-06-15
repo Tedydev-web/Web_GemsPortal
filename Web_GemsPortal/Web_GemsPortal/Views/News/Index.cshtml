@@ -1,0 +1,114 @@
+﻿@{
+    int categoryId = Convert.ToInt32(ViewBag.categoryId);
+    string categoryTitle = ViewBag.categoryTitle;
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+            {
+                currentName = string.IsNullOrEmpty(categoryTitle) ? "Tin tức" : categoryTitle,
+                lv1Name = !string.IsNullOrEmpty(categoryTitle) ? "Tin tức" : categoryTitle,
+                lv1Url = string.IsNullOrEmpty(categoryTitle) ? "" : "/tin-tuc",
+            };
+    var listQuality = ViewBag.ListQuality as List<M_News>;
+    var listIntroduce = ViewBag.ListNews as List<M_News>;
+}
+@section MetaHead {
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Scripts {
+    <script src="~/controllers/news.js" asp-append-version="true"></script>
+}
+@*@section LoaderBody{
+        @await Html.PartialAsync("P_Loader")
+    }*@
+<input type="hidden" id="input_keyword" value="@ViewBag.keyword" />
+<input type="hidden" id="input_category_id" value="@ViewBag.categoryId" />
+<input type="hidden" id="input_page" value="@ViewBag.page" />
+<input type="hidden" id="input_record" value="@ViewBag.record" />
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start -->
+<section class="section-b-space blog-page ratio2_3 header-news news_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-7 order-1 order-md-1 order-lg-1" id="div_main_data" data-aos="zoom-in-down" data-aos-duration="1500">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-5 order-3 order-md-2 order-lg-2" data-aos="zoom-in-down" data-aos-duration="1500">
+                <div class="blog-sidebar">
+                    <div class="theme-card">
+                        <!--Load list related news start-->
+                        <h4><i class="fa fa-newspaper-o text-danger" aria-hidden="true"></i> Tin tức mới</h4>
+                        <ul class="recent-blog" id="ul_latest_news">
+                        </ul>
+                        <!--Load list related news end-->
+                    </div>
+                    @if (listQuality != null && listQuality.Count > 0)
+                    {
+                        <div class="theme-card">
+                            <h4><i class="fa fa-certificate text-danger" aria-hidden="true"></i> Chứng nhận</h4>
+                            <ul class="recent-blog" id="ul_latest_news">
+
+                                @foreach (var item in listQuality)
+                                {
+                                    <li>
+                                        <a href="/chung-nhan/@item.titleSlug-@item.id">
+                                            <div class="media mt-2">
+                                                <img class="img-fluid blur-up lazyload" loading="lazy" src="@(string.IsNullOrEmpty(item.imageObj?.mediumUrl) ? " /assets/images/error/news.png" : item.imageObj?.mediumUrl)" alt="@(item.title ?? "")" style="aspect-ratio: 1 / 1; height: 70px;"
+                                                     onerror="this.onerror=null;this.src='/assets/images/error/news.png';">
+                                                <div class="media-body align-self-center">
+                                                    <h6 class="sp-line-2 fs-6" data-toggle="tooltip" data-placement="right" title="@(item.title ?? "")">@(item.title ?? "")</h6>
+                                                    <p class="sp-line-2 mt-1">@(item.description ?? "")</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    }
+                    @if (listIntroduce != null && listIntroduce.Count > 0)
+                    {
+                        <div class="theme-card">
+                            <h4>Về chúng tôi</h4>
+                            <ul class="recent-blog" id="ul_latest_news">
+
+                                @foreach (var item in listIntroduce)
+                                {
+                                    <li>
+                                        <a href="/gioi-thieu/@item.titleSlug-@item.id">
+                                            <div class="media mt-2">
+                                                <img class="img-fluid blur-up lazyload" loading="lazy" src="@(string.IsNullOrEmpty(item.imageObj?.mediumUrl) ? " /assets/images/error/news.png" : item.imageObj?.mediumUrl)" alt="@(item.title ?? "")" style="aspect-ratio: 1 / 1; height: 70px;"
+                                                     onerror="this.onerror=null;this.src='/assets/images/error/news.png';">
+                                                <div class="media-body align-self-center">
+                                                    <h6 class="sp-line-2 fs-6" data-toggle="tooltip" data-placement="right" title="@(item.title ?? "")">@(item.title ?? "")</h6>
+                                                    <p class="sp-line-2 mt-1">@(item.description ?? "")</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row div_pagination" style="display:none">
+                <div class="col-12 col-md-12 col-lg-12 news_wrappper order-2 order-md-3 order-lg-3">
+                    <div class="product-pagination mt-4">
+                        <div class="theme-paggination-block">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 order-2">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination text-center" id="ul_main_pagination" style="padding-right:0;justify-content:center"></ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!-- content section end -->

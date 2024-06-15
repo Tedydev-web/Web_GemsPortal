@@ -1,0 +1,63 @@
+﻿@{
+    var listCategory = ViewBag.ListCategory as List<M_Category>;
+}
+<section class="p-0">
+    <div class="tab-bg tab-grey-bg">
+        <div class="container-fluid">
+            <div class="row" data-aos="zoom-in-down" data-aos-duration="600">
+                <div class="col">
+                    <div class="title4">
+                        <h2 class="title-inner4 vibrate">Nhanh tay mua sắm, rước quà liền tay</h2>
+                        <div class="line"><span></span></div>
+                    </div>
+                    <div class="theme-tab">
+                        <div class="swiper swiper_btn_product_by_category">
+                            <ul class="swiper-wrapper my-auto">
+                                @if (listCategory != null && listCategory.Any())
+                                {
+                                    <li onclick="OnchangeListProductByCategory(0,this)" data-id="0" data-toggle="tooltip" data-placement="top" title="Tất cả" class="current swiper-slide btn_tab_product_by_category"><a class="fw-bolder" href="javascript:void(0)">Tất cả</a></li>
+                                    foreach (var item in listCategory)
+                                    {
+                                        <li onclick="OnchangeListProductByCategory(@item.id,this)" data-id="@item.id" data-toggle="tooltip" data-placement="top" title="@item.name" class="swiper-slide btn_tab_product_by_category"><a class="fw-bolder" href="javascript:void(0)">@(item.name.Length > 25 ? item.name.Substring(0, 20) + "..." : item.name)</a></li>
+                                    }
+                                }
+                                @* <li class=""><a href="tab-8">best product</a></li>
+                                <li class=""><a href="tab-9">sale product</a></li> *@
+                            </ul>
+                            @*    <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div> *@
+                        </div>
+                        <div class="tab-content-cls  pt-5 pb-3" id="div_product_by_category">
+                            @* <div id="tab-7" class="tab-content active default">
+                            <div class="row product-tab">
+                            <div class="tab-box">
+                            <div class="product-box2">
+                            <div class="media">
+                            <a class="col-5" href="product-page(no-sidebar).html">
+                            <img class="img-fluid blur-up lazyload"
+                            src="../assets/images/nursery/pro/1.jpg" alt="">
+                            </a>
+                            <div class="media-body align-self-center col-5">
+                            <div class="rating"><i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i></div>
+                            <a href="product-page(no-sidebar).html">
+                            <strong>Slim Fit Cotton Shirt</strong>
+                            </a>
+                            <h6 class="mb-0">$500.00</h6>
+                            <small>Slim Fit Cotton it Cotton Shit Cotton Shit Cotton Shit Cotton ShShirt</small>
+                            <br /><i><i class="fa fa-tags" aria-hidden="true"></i> ECOTECH 2A JSC</i>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div> *@
+                        </div>
+                        <div class="d-flex">
+                            <a class="mx-auto" href="javascript:void(0)" onclick="RedirectToProduct()">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

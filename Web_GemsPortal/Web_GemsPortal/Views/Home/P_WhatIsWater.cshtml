@@ -1,0 +1,49 @@
+﻿@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    List<string> listColor = new List<string> { "#ffbc4e", "#f99a00", "#8f67ff", "#679aff", "#67d9ff", "#67ffde", "#ff6767", "#adff67", "#ffe552", "#8f67ff" };
+}
+<section class="wrapper section_water_and_live">
+    <div class="container py-6">
+        <div class="row d-flex">
+            <div class="col" data-delay="500">
+                <img src="/img/water.png" class="mb-4 avatar w-15 h-15" alt="@supplierInfo.name">
+            </div>
+            <div class="col-8 col-md-10 d-flex flex-column px-0" data-cues="slideInUp" data-delay="500">
+                @* <h2 class="fs-16 text-uppercase text-primary mb-2">TÌM HIỂU VỀ NƯỚC VÀ CÁC THÀNH PHẦN KHOÁNG HỮU CƠ</h2> *@
+                <h2 class="display-4" style="height:fit-content"><span class="underline-3 style-2 yellow"> </span> <span style="color:var(--theme-color-second)">3 THÀNH PHẦN</span> QUAN TRỌNG</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xl-4 px-2" data-cues="flipInX" data-delay="300">
+                <div class="card shadow-lg" style="background-color:@listColor[1]52">
+                    <div class="card-body card-border-bottom" style="border-color: @listColor[1]">
+                        <img src="/assets-sanbox/img/icons/solid/edit.svg" class="svg-inject icon-svg icon-svg-sm solid-mono text-fuchsia mb-3" alt="" />
+                        <h4 class="sp-line-2">HYDROGEN</h4>
+                        <p class="mb-2 sp-line-4">Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras justo.</p>
+                        <a href="#" class="more hover link-fuchsia">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 px-2" data-cues="flipInX" data-delay="300">
+                <div class="card shadow-lg" style="background-color:@listColor[2]52">
+                    <div class="card-body card-border-bottom" style="border-color: @listColor[2]">
+                        <img src="/assets-sanbox/img/icons/solid/team.svg" class="svg-inject icon-svg icon-svg-sm solid-mono text-violet mb-3" alt="" />
+                        <h4 class="sp-line-2">ION</h4>
+                        <p class="mb-2 sp-line-4">Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras justo.</p>
+                        <a href="#" class="more hover link-violet">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 px-2" data-cues="flipInX" data-delay="300">
+                <div class="card shadow-lg" style="background-color:@listColor[3]52">
+                    <div class="card-body card-border-bottom" style="border-color: @listColor[3]">
+                        <img src="/assets-sanbox/img/icons/solid/lamp.svg" class="svg-inject icon-svg icon-svg-sm solid-mono text-orange mb-3" alt="" />
+                        <h4 class="sp-line-2">KIỀM</h4>
+                        <p class="mb-2 sp-line-4">Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras justo.</p>
+                        <a href="#" class="more hover link-orange">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

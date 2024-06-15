@@ -1,0 +1,755 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+            {
+                currentName = "Mua hàng",
+                lv1Name = "Giỏ hàng",
+                lv1Url = "/checkout/cart",
+            };
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    string name = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Name).Select(c => c.Value).FirstOrDefault();
+}
+@section MetaHead {
+    <meta name="robots" content="noindex, nofollow">
+}
+@section Styles {
+    <link href="~/lib/parsleyjs/parsley.css" rel="stylesheet" />
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/lib/microtip-master/microtip.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-select-fix/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="~/css/loading_small.css" rel="stylesheet" />
+    <link href="~/css/checkbox_custom_1.css" rel="stylesheet" />
+    <link href="~/css/checkbox_custom_2.css" rel="stylesheet" />
+    <link href="~/lib/pretty-checkbox/pretty-checkbox.min.css" rel="stylesheet" />
+    <link href="~/css/pages/checkout_payment.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/bootstrap-select-fix/bootstrap-select.min.js"></script>
+    <script src="~/lib/bootstrap-select-fix/i18n/defaults-vi_VN.min.js"></script>
+    <script src="~/lib/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script>
+        const SUPPLIER_ID = '@ViewBag.SupplierId';
+        const SUPPLIER_ID_NO_HASH = @ViewBag.SupplierIdNoHash;
+        const SUPPLIER_ID_ADMIN = '@ViewBag.SupplierIdAdmin';
+        const ORDER_DISCOUNT_100 = JSON.parse('@(Html.Raw(ViewBag.OrderDiscount100))');
+    </script>
+    <script src="~/controllers/checkout_payment.js" asp-append-version="true"></script>
+}
+
+<partial name="P_PromotionList" />
+<!-- breadcrumb start -->
+<partial name="_P_BreadcrumbMember" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- section start -->
+<section class="section-b-space orderConfirm pt-3 checkout_payment_wrapper">
+    <div class="container">
+        <div class="checkout-page">
+            <div class="checkout-form">
+                <input type="hidden" id="listCartItemSelected" value="@ViewBag.CartItemSelected" />
+                <input type="hidden" id="defaultAddress" value="@ViewBag.DefaultAddress" />
+                <input type="hidden" id="addressDeliveryName" value="" />
+                <input type="hidden" id="addressDeliveryPhoneNumber" value="" />
+                <input type="hidden" id="addressDeliveryLocation" value="" />
+                <input type="hidden" id="addressDeliveryAddressText" value="" />
+                <input type="hidden" id="addressDeliveryProvinceId" value="0" />
+                <input type="hidden" id="addressDeliveryDistrictId" value="0" />
+                <input type="hidden" id="addressDeliveryWardId" value="0" />
+                <input type="hidden" id="addressDeliveryProvinceName" value="" />
+                <input type="hidden" id="addressDeliveryDistrictName" value="" />
+                <input type="hidden" id="addressDeliveryWardName" value="" />
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12 col-xs-12">
+
+                        <div>
+                            <div class="card-payment-custom tab-product pt-0 pb-2 bg-white">
+                                <div class="mt-2 border-bottom"><span class="title-custom"><i class="fa fa-map-marker text-danger fw-bolder" aria-hidden="true"></i> <strong class="text-primary">BƯỚC 1</strong>. CHỌN ĐỊA CHỈ NHẬN HÀNG</span></div>
+
+                                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link p-2 receiveType active" data-value="1" id="top-tab1-tab" data-bs-toggle="tab" style="text-transform: none;"
+                                           href="#top-tab1" role="tab" aria-selected="true" title="Chọn địa chỉ nhận hàng">
+                                            <i class="icofont icofont-ui-home"></i>Địa chỉ nhận hàng
+                                        </a>
+                                        <div class="material-border"></div>
+                                    </li>
+                                    @*<li class="nav-item">
+                                    <a class="nav-link p-2 receiveType active" data-value="2" id="top-tab2-tab" data-bs-toggle="tab" style="text-transform: none;"
+                                    href="#top-tab2" role="tab" aria-selected="false" title="Nhận tại cửa hàng">
+                                    <i class="icofont icofont-man-in-glasses"></i>Nhận tại cửa hàng
+                                    </a>
+                                    <div class="material-border"></div>
+                                    </li>*@
+                                </ul>
+                                <div class="tab-content nav-material pt-0" id="top-tabContent">
+                                    <div class="tab-pane fade show active" id="top-tab1" role="tabpanel" aria-labelledby="top-tab1-tab">
+                                        <div class="row py-2 mx-0 mt-2 mb-2" style="background: #fffad6; border: 1px dashed #ffc107; border-radius: 6px;">
+                                            <div class="col-12">
+                                                <b class="text-break" id="address-name"></b>
+                                                <a href="javascript:void(0)" onclick="ShowAddressListModal(this)" class="float-right text-sucess" aria-label="Chỉnh sửa"
+                                                   data-microtip-position="left" data-microtip-align="center"
+                                                   data-microtip-size="small" role="tooltip"> <i class="fa fa-pencil text-success"></i> Chọn địa chỉ</a>
+                                            </div>
+                                            <div class="col-12">
+                                                <span>
+                                                    <i class="fa fa-map-marker text-success"></i>
+                                                    <span class="text-break" id="address-location" data-province="" data-district="" data-ward="">Vui lòng chọn địa chỉ nhận hàng</span>
+                                                </span>
+                                            </div>
+                                            <div class="col-12">
+                                                <span><i class="fa fa-phone text-success"></i> <span id="address-phone"></span></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    @*<div class="tab-pane fade show active" id="top-tab2" role="tabpanel" style="position: relative" aria-labelledby="top-tab2-tab">
+                                    <div class="row mb-2">
+                                    <div class="col-12 col-md-6 pt-1">
+                                    <select asp-items="ViewBag.ProvinceIdActive" id="provinceIdMain" onchange="OnChangeProvinceMainEvent(this)" data-none-results-text="Không tìm thấy kết quả phù hợp"
+                                    data-none-selected-text="Chọn tỉnh/thành phố" title="Chọn tỉnh/thành phố" data-live-search-placeholder="Nhập tỉnh/thành phố cần tìm"
+                                    class="selectpicker form-control show-tick" data-style="border" data-live-search="true" data-size="10">
+                                    <option value="" selected>--Tất cả--</option>
+                                    </select>
+                                    </div>
+                                    <div class="col-12 col-md-6 pt-1">
+                                    <div class="position-relative" id="divDistrictMain">
+                                    <select onchange="OnChangeDistrictMainEvent(this)" id="districtIdMain" data-none-results-text="Không tìm thấy kết quả phù hợp" disabled
+                                    data-none-selected-text="Chọn quận/huyện" title="Chọn quận/huyện" data-live-search-placeholder="Nhập quận/huyện cần tìm"
+                                    class="selectpicker form-control show-tick" data-style="border" data-live-search="true" data-size="10">
+                                    </select>
+                                    </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 pt-1">
+                                    <div class="position-relative" id="divWardMain">
+                                    <select data-none-results-text="Không tìm thấy kết quả phù hợp" id="wardIdMain" disabled
+                                    data-none-selected-text="Chọn phường/xã" title="Chọn phường/xã" data-live-search-placeholder="Nhập phường/xã cần tìm"
+                                    class="selectpicker form-control show-tick" data-style="border" data-live-search="true" data-size="10">
+                                    </select>
+                                    </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 pt-1 text-right">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="GetShopAddressFilter()">Tra cứu</button>
+                                    </div>
+                                    </div>
+                                    <input type="text" id="searchAddressShopFilter" maxlength="100" class="input-custom" placeholder="Nhập từ khóa tìm kiếm" style="display: none;" />
+                                    <div class="mt-2 mb-2 overflow-auto" id="shopAddressFilterZone" style="height: auto; max-height: 200px; display: none;">
+
+                                    </div>
+                                    <div id="messageShopAddressFilter" class="text-center"></div>
+                                    </div>*@
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div hidden>
+                            <div class="card-payment-custom tab-product pt-0 pb-2 bg-white">
+                                <div class="mt-2 border-bottom"><span class="title-custom"><i class="fa fa-home text-danger fw-bolder" aria-hidden="true"></i> <strong class="text-primary">BƯỚC 2</strong>. CHỌN CỬA HÀNG GẦN KHU VỰC CỦA BẠN</span></div>
+
+                                <div class="tab-content nav-material pt-0 position-relative div_btn_supplier_wrapper" id="top-tabContent">
+                                    <div class="tab-pane fade show active" id="top-tab1" role="tabpanel" aria-labelledby="top-tab1-tab">
+                                        <div class="row py-2 mx-0 my-0">
+                                            <ul class="list-group" id="ul_data_supplier">
+
+                                                @*  <li for="btn_choose_supplier_1">
+                                                <div class="media">
+                                                <div class="text-center">
+                                                <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="inputChooseShop" id="btn_choose_supplier_1">
+                                                <label class="form-check-label" for="btn_choose_supplier_1">
+                                                <div class="media-body mx-2 text-left">
+                                                <a href="javascript:void(0)"  class="fw-bold fs-6">CÔNG TY CỔ PHẦN ECOTECHNOLOGY 2A</a>
+                                                <p style="line-height:normal" class="fs-6 mb-0"><strong><i class="fa fa-map-marker text-danger fs-5"></i> </strong> C19 số 40 Đường Nguyễn Du, Phường Quang Vinh, Thành phố Biên Hòa, Tỉnh Đồng Nai</p>
+                                                </div>
+                                                </label>
+                                                </div>
+                                                </div>
+
+                                                </div>
+                                                </li> *@
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="card-payment-custom bg-white" style="margin-top:28px;">
+                                <div class="mt-2 border-bottom"><span class="title-custom"><i class="fa fa-shopping-cart text-danger fw-bolder" aria-hidden="true"></i> <strong class="text-primary">BƯỚC 2</strong>. XEM LẠI SẢN PHẨM VÀ SỐ LƯỢNG BẠN ĐÃ CHỌN </span></div>
+
+                                <div class="row mx-0" id="zoneCart"></div>
+
+                                @*<div class="col-12 zoneShop">
+                                <div class="col-12" style="padding:6px 12px 6px 12px;">
+                                <label class="mb-0"><b class="text-success">Gói hàng 1</b></label>
+                                </div>
+                                <div class="col-12 section over-hide z-bigger row" style="padding:4px;">
+                                <input class="checkbox-tools" type="radio" name="delivery_package_1" id="delivery_1" checked>
+                                <label class="for-checkbox-tools" for="delivery_1">
+                                <b>GH tiêu chuẩn</b> <br />
+                                <span>Giá liên hệ NCC</span>
+                                </label>
+                                </div>
+                                <div class="col-12 row m-0 p-2">
+                                <div class="col-3 col-md-2 col-lg-2 col-xl-2">
+                                <a href="#"><img src="../assets/images/pro3/2.jpg" style="width:60px; height:60px;" alt=""></a>
+                                </div>
+                                <div class="col-9 col-md-5 col-lg-5 col-xl-5">
+                                <a href="#">
+                                <div class="desktop-div-custom text-muted">
+                                Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễ...
+                                <span class="col-auto badge badge-grey-color">Size S</span>
+                                <span class="col-auto badge badge-default">Màu Xanh</span>
+                                </div>
+                                <div class="mobile-cart-content text-center row">
+                                <span class="col-12 text-muted">Nguyễn Nguyễn Nguyễn Nguyễn Nguyễn Nguyễ...</span>
+                                <span class="col-auto badge badge-grey-color">Size S</span>
+                                <span class="col-auto badge badge-default">Màu Xanh</span>
+                                <div class="col-12 row">
+                                <div class="col-9">
+                                <h5 class="m-0" style="color:#81ba00">100.000.000.000đ</h5>
+                                <del>100.000đ</del>
+                                </div>
+                                <div class="col-3">
+                                <small>SL: <b>99</b></small>
+                                </div>
+                                </div>
+                                </div>
+                                </a>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-3 desktop-div-custom">
+                                <span class="m-0" style="color:#81ba00">100.000.100.000đ</span>
+                                <del>100.000.100.000đ</del>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-xl-2 desktop-div-custom">
+                                <small class="text-muted">Số lượng: <b>1</b></small>
+                                </div>
+                                </div>
+                                </div>*@
+
+                            </div>
+
+                        </div>
+
+                        @*   <div class="mt-4 card-payment-custom overflow-auto">
+                        <div class="mt-2 border-bottom"><span class="title-custom">3. CHỌN HÌNH THỨC THANH TOÁN</span></div>
+                        <div class="">
+                        <div class="payment-box">
+                        <div class="upper-box">
+                        <div class="payment-options pl-2 pr-2">
+                        <ul>
+                        <li>
+                        <div class="pretty p-default p-curve">
+                        <input type="radio" name="payment-group" id="payment_1" checked="checked" value="1" />
+                        <div class="state p-success-o">
+                        <label>Thanh toán tiền mặt khi nhận hàng</label>
+                        </div>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="pretty p-default p-curve">
+                        <input type="radio" name="payment-group" id="payment_2" value="2" />
+                        <div class="state p-success-o">
+                        <label>Chuyển khoản qua ngân hàng (Thanh toán sau khi đặt hàng)</label>
+                        </div>
+                        </div>
+                        </li>
+                        @* <li>
+                        <div class="pretty p-default p-curve">
+                        <input type="radio" name="payment-group" value="6" data-value="100" checked />
+                        <div class="state p-success-o">
+                        <label>Chuyển khoản <b>100%</b></label>
+                        </div>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="pretty p-default p-curve">
+                        <input type="radio" name="payment-group" value="5" data-value="70" />
+                        <div class="state p-success-o">
+                        <label>Chuyển khoản <b>70%</b></label>
+                        </div>
+                        </div>
+                        </li>*@
+                        @*@foreach (var item in payment)
+                        {
+                        <li>
+                        <div class="radio-option">
+                        <input type="radio" name="payment-group" id="payment_@item.id" @(payment.FirstOrDefault().id == item.id ? "checked" : "") />
+                        <label for="payment_@item.id">
+                        @item.name
+                        </label>
+                        </div>
+                        </li}>*@
+
+                        @*<li>
+                        <div class="radio-option paypal">
+                        <input type="radio" name="payment-group" id="payment-3">
+                        <label for="payment-3">
+                        PayPal <br />
+                        <span class="image">
+                        <img src="../assets/images/paypal.png"
+                        alt="">
+                        </span>
+                        </label>
+                        </div>
+                        </li>*@
+                        @*</ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                        <div>
+                            <div class="card-payment-custom tab-product pt-0 pb-2 bg-white">
+                                <div class="mt-2" hidden>
+                                    <input class="checkbox-effect checkbox-effect-6" style="margin-right:6px;" type="checkbox" id="issueCompanyInvoice" onclick="$(this).is(':checked') ? $('.issueCompanyInvoiceZone').slideDown(200) : $('.issueCompanyInvoiceZone').slideUp(200)" />
+                                    <label class="form-check-label mb-0" for="issueCompanyInvoice">
+                                        Xuất hóa đơn VAT
+                                    </label>
+                                </div>
+                                <div class="issueCompanyInvoiceZone" style="display:none;" hidden>
+                                    <form class="form-custom" onsubmit="event.preventDefault()">
+                                        <div class="form-group mb-2">
+                                            <input class="form-control input-custom" id="BusinessCode" type="text" placeholder="Mã số thuế" maxlength="20" required />
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <input class="form-control input-custom" id="BusinessName" type="text" placeholder="Tên công ty" maxlength="100" required />
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <textarea class="form-control input-custom" id="BusinessAddress" rows="4" type="text" placeholder="Cung cấp thông tin về địa chỉ Công ty và Email để hệ thống chuyển Hóa đơn về Email" maxlength="250" required></textarea>
+                                        </div>
+                                        <button type="submit" hidden></button>
+                                    </form>
+                                </div>
+
+                                <hr />
+                                <div class="form-group mb-2">
+                                    <textarea class="form-control p-2" style="height:80px" type="text" id="RemarkOrder" placeholder="Ghi chú về giao hàng, đóng gói,..." maxlength="250"></textarea>
+                                </div>
+
+                                @*  <hr />*@
+                                @* <hr />
+                                <div class="form-group mb-0">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div><img src="~/img/icon/ticket.png" height="32" alt="ticket" /><span>Mã giảm giá</span></div>
+                                <a href="javascript:void(0);" onclick="ShowModalPromotionList(this)" class="color-default">Chọn hoặc nhập mã <i class="fa fa-angle-right" style="font-size:18px;"></i></a>
+                                </div>
+                                <div class="promotion_list" id="div_list_promotion_apply">
+
+                                </div>
+                                </div>*@
+
+                            </div>
+
+                        </div>
+
+                        <div class="checkout-details">
+                            <div class="order-box">
+                                <div class="title-box">
+                                    <div class="title-custom">
+                                        <i class="fa fa-credit-card text-danger fw-bolder" aria-hidden="true"></i>  THÔNG TIN THANH TOÁN <small>
+                                            <i class="text-muted">(Thông tin này chỉ là TẠM TÍNH)</i>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="payment-box">
+                                    <div class="upper-box">
+                                        <div class="payment-options pl-2 pr-2">
+                                            <ul>
+                                                <li>
+                                                    <div class="pretty p-default p-curve">
+                                                        <input type="radio" name="payment-group" id="payment_1" checked="checked" value="1" />
+                                                        <div class="state p-success-o">
+                                                            <label>Thanh toán khi nhận hàng</label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="pretty p-default p-curve">
+                                                        <input type="radio" name="payment-group" id="payment_2" value="2" />
+                                                        <div class="state p-success-o">
+                                                            <label>Chuyển khoản/Đặt cọc sau khi đặt hàng</label>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="qty">
+                                    <li class="text-primary fw-bolder">
+                                        Tạm tính (<b style="font-weight:normal;" id="countCartItem">0</b> sản phẩm)
+                                        <span class="float-right text-danger" id="totalPriceAllItem">0đ</span>
+                                    </li>
+                                    <li class="text-muted" hidden>
+                                        Giảm giá (<b style="font-weight:normal;" id="countPromotionCode">0</b> mã)
+                                        <span class="float-right text-danger" id="discountFee">-0đ</span>
+                                    </li>
+                                    <li class="text-muted" style="display:none;" id="li_discount_payment" hidden>
+                                        Giảm giá thanh toán <b style="font-weight:normal;" id="discountPercentPayment"></b>
+                                        <span class="float-right text-danger" id="discountPaymentFee">-0đ</span>
+                                    </li>
+                                    <li class="text-muted" hidden>
+                                        Tổng phí vận chuyển
+                                        <span class="float-right" id="transportFee">(chưa tính)</span>
+                                    </li>
+                                    <li class="text-muted">
+                                        <i class="fa fa-info-circle text-danger" aria-hidden="true"></i> <i class="fw-bold">Lưu ý: Mỗi loại sản phẩm khi chúng tôi giao đến, sẽ được tính thêm phí lắp đặt và phí vận chuyển !</i>
+                                    </li>
+                                </ul>
+                                @*  <ul class="total">
+                                <li class="m-0">Tổng cộng <span class="count" id="totalPricePayment">0đ</span></li>
+                                <li class="m-0 text-danger py-2" style="font-size: 20px;">Thanh toán @*<i class="small" id="ratioPayment">(70%)</i>*@   @*<span class="count text-danger" style="font-size: 20px;" id="totalMustPay">0đ</span></li>
+                                @*  <li> <span class="text-muted" style="font-size:12px;"><i>(Đã bao gồm VAT nếu có)</i></span></li>
+                                <li> <span class="text-muted" style="font-size:12px;"><i class="text-muted">Lưu ý: nếu bạn không chọn được nhà vận chuyển, phí vận chuyển sẽ được Shop cập nhật sau.</i></span></li>
+                                @*<li> <span class="text-muted" style="font-size:12px;"><i class="text-danger">Lưu ý: nếu bạn không chọn được nhà vận chuyển, phí vận chuyển sẽ được Cửa hàng cập nhật sau.</i></span></li>*@
+                                @* </ul>*@
+                            </div>
+                            <div class="payment-box pt-2">
+                                <div class="text-end">
+                                    <button type="button" class="btn-solid btn w-100 ladda-button" id="btn-placeOrder"
+                                            dir="ltr" data-style="expand-left">
+                                        Đặt hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->
+<!-- thank-you section start -->
+<section class="section-b-space light-layout orderSuccess" style="display:none;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 mb-2">
+                <div class="success-text">
+                    <div class="checkmark">
+                        <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                            </path>
+                        </svg>
+                        <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                            </path>
+                        </svg>
+                        <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                            </path>
+                        </svg>
+                        <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                            </path>
+                        </svg>
+                        <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                            </path>
+                        </svg>
+                        <svg class="star" height="19" viewBox="0 0 19 19" width="19"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.296.747c.532-.972 1.393-.973 1.925 0l2.665 4.872 4.876 2.66c.974.532.975 1.393 0 1.926l-4.875 2.666-2.664 4.876c-.53.972-1.39.973-1.924 0l-2.664-4.876L.76 10.206c-.972-.532-.973-1.393 0-1.925l4.872-2.66L8.296.746z">
+                            </path>
+                        </svg>
+                        <svg class="checkmark__check" height="25" viewBox="0 0 48 36" width="36"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M47.248 3.9L43.906.667a2.428 2.428 0 0 0-3.344 0l-23.63 23.09-9.554-9.338a2.432 2.432 0 0 0-3.345 0L.692 17.654a2.236 2.236 0 0 0 .002 3.233l14.567 14.175c.926.894 2.42.894 3.342.01L47.248 7.128c.922-.89.922-2.34 0-3.23">
+                            </path>
+                        </svg>
+                        <svg class="checkmark__background" height="75" viewBox="0 0 120 115" width="80"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M107.332 72.938c-1.798 5.557 4.564 15.334 1.21 19.96-3.387 4.674-14.646 1.605-19.298 5.003-4.61 3.368-5.163 15.074-10.695 16.878-5.344 1.743-12.628-7.35-18.545-7.35-5.922 0-13.206 9.088-18.543 7.345-5.538-1.804-6.09-13.515-10.696-16.877-4.657-3.398-15.91-.334-19.297-5.002-3.356-4.627 3.006-14.404 1.208-19.962C10.93 67.576 0 63.442 0 57.5c0-5.943 10.93-10.076 12.668-15.438 1.798-5.557-4.564-15.334-1.21-19.96 3.387-4.674 14.646-1.605 19.298-5.003C35.366 13.73 35.92 2.025 41.45.22c5.344-1.743 12.628 7.35 18.545 7.35 5.922 0 13.206-9.088 18.543-7.345 5.538 1.804 6.09 13.515 10.696 16.877 4.657 3.398 15.91.334 19.297 5.002 3.356 4.627-3.006 14.404-1.208 19.962C109.07 47.424 120 51.562 120 57.5c0 5.943-10.93 10.076-12.668 15.438z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h2>cảm ơn <span class="text-light">@name</span></h2>
+                    <p>Đơn hàng của bạn đã được chuyển đến SHOP xử lý.</p>
+                    <p>
+                        Để biết thêm chi tiết về trạng thái đơn hàng, vào
+                        <a href="/order/view" class="font-weight-bold text-muted"> Tài khoản » Đơn hàng</a>
+                    </p>
+                    <em class="font-italic">
+                        Lưu ý: chỉ nhận hàng khi đơn hàng ở trạng thái <b>Đang vận chuyển</b>.
+                        Kiểm tra mã đơn hàng và người gửi trước khi thanh toán.
+                    </em>
+                </div>
+            </div>
+            @*<div>
+            <hr />
+            <h5 class="mt-2 font-weight-bold text-center text-success text-uppercase"><i class="fa fa-credit-card h4"></i> Thông tin thanh toán</h5>
+            <p class="text-center">
+            <b>Nội dung chuyển khoản: </b>0123456798111111
+            <input type="hidden" id="contentSend" value="012345679811111" />
+            <button type="button" class="btn btn-sm p-0" onclick="CopyValue('#contentSend');" title="Sao chép">
+            <i class="fa fa-clone color-default"></i>
+            </button>
+            </p>
+            <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 mb-2">
+            <ul class="list-group text-left">
+            <li class="list-group-item">
+            <i class="fa fa-id-card-o mr-1"></i> <span>
+            Số tài khoản:
+            </span>117002868043
+            <input type="hidden" id="bankId_1" value="117002868043" />
+            <button type="button" class="btn btn-sm p-0" onclick="CopyValue('#bankId_1');" title="Sap chép">
+            <i class="fa fa-clone color-default"></i>
+            </button>
+            </li>
+            <li class="list-group-item"><i class="fa fa-user mr-1"></i> <span>Tên người nhận: </span>CTCP GIAI PHAP CONG NGHE H2A VIET NAM</li>
+            <li class="list-group-item"><i class="fa fa-bank mr-1"></i> <span>Ngân hàng: </span>Ngân hàng TMCP Công Thương Việt Nam - VietinBank</li>
+            </ul>
+            </div>
+            </div>
+            </div>*@
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+<!-- order-detail section start -->
+<section class="section-b-space orderSuccess" style="display:none;">
+    <div class="container">
+        <div class="row justify-content-center">
+            @*   <div class="col-md-4 col-lg-6 col-xl-6 px-2 mb-4" id="payment_info">
+            <h5 class="font-weight-bold text-center text-success text-uppercase"><i class="fa fa-credit-card h4"></i> Thông tin thanh toán</h5>
+            <p class="text-center mb-0">
+            <b>Số tiền: </b>${totalPay}
+            </p>
+            <p class="text-center">
+            <b>Nội dung chuyển khoản: </b><span>${orderId}</span>
+            <button type="button" class="btn btn-sm p-0 color-default" onclick="CopyText('${orderId}')" title="Sap chép">
+            <i class="fa fa-clone"></i> <span style="text-transform:none;font-weight:normal;">Sao chép</span>
+            </button>
+            </p>
+            <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-6 mb-2">
+            <ul class="list-group text-left">
+            <li class="list-group-item">
+            <i class="fa fa-id-card-o mr-1"></i> <span>
+            Số tài khoản:
+            </span>${value.number}
+            <button type="button" class="btn btn-sm p-0 color-default" onclick="CopyText('${value.number}')" title="Sap chép">
+            <i class="fa fa-clone"></i> <span style="text-transform:none;font-weight:normal;">Sao chép</span>
+            </button>
+            </li>
+            <li class="list-group-item"><i class="fa fa-user mr-1"></i> <span>Tên người nhận: </span>${value.personName}</li>
+            <li class="list-group-item"><i class="fa fa-bank mr-1"></i> <span>Ngân hàng: </span>${value.bankName} - ${value.bankTradeName}</li>
+            </ul>
+            </div>
+            </div>
+            </div> *@
+            <div class="col-12 col-md-10 px-2 mx-auto">
+                <div class="product-order">
+
+                    <div id="listOrderItem">
+                        @*<div class="zoneTrackItem">
+                        <div class="col-12" style="margin-bottom:-10px;margin-top:-6px;">
+                        <p><b>Đơn hàng:</b> #20210522202146654YIU</p>
+                        </div>
+                        <div class="row product-order-detail">
+                        <div class="col-3 col-md-2 col-lg-2 col-xl-2">
+                        <img src="../assets/images/pro3/27.jpg" alt=""
+                        class="img-fluid blur-up lazyload">
+                        </div>
+                        <div class="col-9 col-md-5 col-lg-5 col-xl-5 order_detail zoneShop">
+                        <div class="desktop-div-custom">
+                        <h4>product name product name product name</h4>
+                        <h5>
+                        <span class="col-auto badge badge-grey-color">Size</span>
+                        <span class="col-auto badge badge-default">Màu Xanh</span>
+                        </h5>
+                        </div>
+                        <div class="row w-100 d-md-none">
+                        <div class="col-7 p-0">
+                        <h4>product name product name product name</h4>
+                        <h5>
+                        <span class="col-auto badge badge-grey-color">Size</span>
+                        <span class="col-auto badge badge-default">Màu</span>
+                        </h5>
+                        </div>
+                        <div class="col-5 text-center">
+                        <h4>SL: <span>9999</span></h4>
+                        <h4 class="text-dark" style="font-weight:600;">1.100.150.000đ</h4>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="d-none d-md-flex col-md-2 col-lg-2 col-xl-2 order_detail">
+                        <div>
+                        <h4>SL: <span>9998</span></h4>
+                        </div>
+                        </div>
+                        <div class="d-none d-md-flex col-md-3 col-lg-3 col-xl-3 order_detail">
+                        <div class="w-100">
+                        <h4 class="text-dark float-right" style="font-weight:600;">1.100.150.000đ</h4>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="total-sec p-0">
+                        <ul>
+                        <li>Tạm tính <span>$55.00</span></li>
+                        <li>Phí vận chuyển <span>$12.00</span></li>
+                        <li>Thành tiền <span>$12.00</span></li>
+                        <li>
+                        <button type="button" data-id="1" onclick="ShowBankPayment(this)"
+                        class="btn btn-sm btn-danger font-weight-bold float-right ladda-button" dir="ltr" data-style="zoom-in">THANH TOÁN</button>
+                        </li>
+                        </ul>
+                        </div>
+                        </div>*@
+                    </div>
+
+                    <div class="final-total p-2">
+                        <h3>Tổng cộng <span class="text-lowercase text-danger" id="orderReviewTotalPay">0đ</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center overflow-hidden">
+            <div class="text-center pt-4">
+                <a href="/san-pham" class="btn-solid btn">
+                    Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- order-detail Section ends -->
+<!-- Modal addressList -->
+<div class="modal fade" id="addressListModal" tabindex="-1" role="dialog" aria-labelledby="addressListModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document" style="padding:50px 0;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <b class="text-uppercase">Địa chỉ nhận hàng </b>|
+                    <a href="javascript:void(0)" onclick="ShowAddAddressModal(this)" class="text-default"><small> Thêm mới</small></a>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top: -10px;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-0" style="overflow-x:hidden;">
+                <div class="dashboard-section section-b-space" style="padding-bottom:0px;">
+
+                    <div class="faq-content tab-content" id="top-tabContent">
+                        <div class="tab-pane fade show active" id="products">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="dashboard-table mt-0">
+                                        <div class="table-responsive-md">
+                                            <table class="table mb-0" id="addressListTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Tên</th>
+                                                        <th scope="col">Địa chỉ</th>
+                                                        <th scope="col" style="text-align:left;">Điện thoại</th>
+                                                        <th scope="col" style="text-align:left;">Vị trí</th>
+                                                        <th scope="col"> </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="addressList-body">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-solid" onclick="SaveAddressInfo()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal addressList -->
+<!-- Modal address add -->
+<div class="modal fade" id="addressAddModal" tabindex="-1" role="dialog" aria-labelledby="addressAddModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" role="document" style="padding:50px 0;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <b class="text-uppercase">Thêm địa chỉ nhận hàng mới</b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top: -10px;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body register-page pt-0" id="divAddAddress" style="padding-bottom: 50px !important;">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal address add -->
+<!-- Modal bank list -->
+<div class="modal fade" id="bankListModal" tabindex="-1" role="dialog" aria-labelledby="bankListModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" role="document" style="padding:50px 0;">
+        <div class="modal-content">
+            <div class="modal-header pb-0">
+                <h4 class="modal-title">
+                    <b class="text-uppercase"></b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top: -10px;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body register-page pt-0 pb-0" id="divBankList">
+                @*<h5 class="font-weight-bold text-center text-success text-uppercase"><i class="fa fa-credit-card h4"></i> Thông tin thanh toán</h5>
+                <p class="text-center mb-0">
+                <b>Số tiền: </b>100.000đ
+                </p>
+                <p class="text-center">
+                <b>Nội dung chuyển khoản: </b><span>0123456798111111</span>
+                <button type="button" class="btn btn-sm p-0" onclick="CopyText('012345679811111')" title="Sao chép">
+                <i class="fa fa-clone color-default"></i>
+                </button>
+                </p>
+                <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-6 mb-2">
+                <ul class="list-group text-left">
+                <li class="list-group-item">
+                <i class="fa fa-id-card-o mr-1"></i> <span>
+                Số tài khoản:
+                </span>117002868043
+                <button type="button" class="btn btn-sm p-0" onclick="CopyText('012345679811111')" title="Sap chép">
+                <i class="fa fa-clone color-default"></i>
+                </button>
+                </li>
+                <li class="list-group-item"><i class="fa fa-user mr-1"></i> <span>Tên người nhận: </span>CTCP GIAI PHAP CONG NGHE H2A VIET NAM</li>
+                <li class="list-group-item"><i class="fa fa-bank mr-1"></i> <span>Ngân hàng: </span>Ngân hàng TMCP Công Thương Việt Nam - VietinBank</li>
+                </ul>
+                </div>
+                </div>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-solid" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal bank list -->

@@ -1,0 +1,11 @@
+﻿.blog-detail img, p, iframe {
+    max-width: 100% !important;
+}
+
+.blog-detail p, h1, h2, h3, h4, span, strong, b, i {
+    word-break: break-word;
+}
+
+    h1 span {
+        color: #000;
+    }

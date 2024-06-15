@@ -1,0 +1,155 @@
+﻿@{
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    string fullName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Name).Select(c => c.Value).FirstOrDefault();
+    string avatar = identity.Claims.Where(c => c.Type == "Avatar").Select(c => c.Value).FirstOrDefault();
+    var supplierInfo = ViewBag.SupplierInfo as Web_GemsPortal.Models.M_Supplier;
+    var menuInfo = ViewBag.Menu as Web_GemsPortal.ViewModels.VM_Menu;
+}
+
+
+<header class="header-2 nav_top">
+    <div class="mobile-fix-option icon_fix_wrapper d-md-none">
+        <i class="ti-search" onclick="openSearch()"></i>
+        <a href="javascript:void()" onclick="ReturnMemberPage()"><i class="ti-home" aria-hidden="true"></i></a>
+        <a href="/checkout/cart"> <i class="ti-shopping-cart icon_cart"></i></a>
+        <ul class="header-dropdown">
+            @if (identity.IsAuthenticated)
+            {
+                <li class="onhover-dropdown mobile-account">
+                    <!--User-->
+                    <i class="ti-user" aria-hidden="true"></i>
+
+                    <ul class="onhover-show-div div_nav_profile">
+                        <li class="mb-1 fs-6"><a href="/order/view">Đơn hàng</a></li>
+                        <li class="mb-1 fs-6"><a href="/checkout/cart">Giỏ hàng</a></li>
+                        <li class="mb-1 fs-6"><a href="/account/profile">Hồ sơ</a></li>
+                        <li class="mb-1 fs-6"><a href="/account/address">Sổ địa chỉ</a></li>
+                        <li class="fs-6">
+                            <a data-toggle="modal" data-target="#modal_signout" class="text-danger"
+                               href="javascript:void(0)">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="onhover-dropdown mobile-account div_nav_profile">
+                    <i class="ti-user" aria-hidden="true"></i>
+                    <ul class="onhover-show-div div_nav_profile">
+                        <li><a href="/account/signin">Đăng nhập</a></li>
+                        <li><a href="/account/register">Đăng ký</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+        <a href="/lien-he"> <i class="fa fa-paper-plane-o"></i></a>
+    </div>
+
+    <!--Small_top_header-->
+    <div class="text-white alert-dismissible fade show rounded-0 mb-0 text-lg-center alert_home" role="alert">
+        <div class="container">
+            <div class="alert-inner p-0 text-white text-center">
+                <span class="badge badge-lg bg-white text-uppercase rounded me-2 text-dark"></span><strong class="fw-bolder custom_text_shadow_small_banner_top_first"> HỆ THỐNG THƯƠNG MẠI</strong> <a class="alert-link hover custom_text_shadow_small_banner_top_second mx-2" style="color:#bd6c00"> GEMS</a> <span class="fw-bold custom_text_shadow_small_banner_top_second"> - TRÂN TRỌNG KÍNH CHÀO QUÝ KHÁCH</span>
+            </div>
+            <!-- /.alert-inner -->
+        </div>
+        <!-- /.container -->
+        @*  <button type="button" class="btn-close btn-white" data-bs-dismiss="alert" aria-label="Close"></button>*@
+    </div>
+    <div class="top-header">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-auto" data-aos="fade-down" data-aos-duration="600">
+                    <div class="header-contact">
+                        <ul>
+                            <li class="">
+                                @*  CÔNG TY CỔ PHẦN <span style="color:var(--secondColor)">ECO</span> <span style="color:var(--primaryColor)">TECHNOLOGY 2A</span> *@
+                                <div class="text-dark waviy name_shop">
+                                    <span style="--i:1">C</span>
+                                    <span style="--i:2">Ô</span>
+                                    <span style="--i:3">N</span>
+                                    <span style="--i:4">G</span>
+                                    <span style="--i:4"></span>
+                                    <span style="--i:5">T</span>
+                                    <span style="--i:6">Y</span>
+                                    <span style="--i:6"> </span>
+                                    <span style="--i:7">C</span>
+                                    <span style="--i:8">Ổ</span>
+                                    <span style="--i:8"> </span>
+                                    <span style="--i:9">P</span>
+                                    <span style="--i:10">H</span>
+                                    <span style="--i:11">Ầ</span>
+                                    <span style="--i:12">N</span>
+
+                                    <span style="--i:12"> </span>
+                                    <span class="text_secondColor" style="--i:13">T</span>
+                                    <span class="text_secondColor" style="--i:14">Ậ</span>
+                                    <span class="text_secondColor" style="--i:15">P</span>
+                                    <span class="text_primary" style="--i:16">Đ</span>
+                                    <span class="text_primary" style="--i:17">O</span>
+                                    <span class="text_primary" style="--i:18">À</span>
+                                    <span class="text_primary" style="--i:19">N</span>
+                                    <span class="text_primary" style="--i:20"></span>
+                                    <span class="text_primary" style="--i:21">G</span>
+                                    <span class="text_primary" style="--i:22">E</span>
+                                    <span class="text_primary" style="--i:23">M</span>
+                                    <span class="text_primary" style="--i:24">S</span>
+                                </div>
+                            </li>
+                            <li class="mx-1">
+                                <i class="fa fa-phone px-0 fw-bolder" aria-hidden="true"></i>
+                                <a class="text-white" href="tel:@supplierInfo.hotlineNumber" class="hotline_shop fw-bolder">@supplierInfo.hotlineNumber</a>
+                            </li>
+                            <li class="mx-1">
+                                <i class="fa fa-envelope-o px-0 fw-bolder" aria-hidden="true"></i>
+                                <span class="hotline_shop  fw-bolder">@supplierInfo.email</span>
+                            </li>
+                            <li class="mx-1 vibrate">
+                                <i class="fa fa-globe px-0 fw-bolder" aria-hidden="true"></i>
+                                <span> <a class="text-light  fw-bolder" target="_blank" href="/gioi-thieu" class="hotline_shop fw-bolder">Tìm hiểu về GEMS</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col text-end d-none d-md-block">
+                    <ul class="header-dropdown">
+                        <li class="mobile-wishlist">
+                            <!--icon Home-->
+                            @*<a href="/"><i class="fa fa" aria-hidden="true" style="color:#209e00 !important"></i></a>*@
+                        </li>
+                        @if (identity.IsAuthenticated)
+                        {
+                            <li class="onhover-dropdown mobile-account">
+                                <!--User-->
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                @fullName
+                                <ul class="onhover-show-div div_nav_profile">
+                                    <li><a href="/order/view">Đơn hàng</a></li>
+                                    <li><a href="/checkout/cart">Giỏ hàng</a></li>
+                                    <li><a href="/account/profile">Hồ sơ</a></li>
+                                    <li><a href="/account/address">Sổ địa chỉ</a></li>
+                                    @* <li><a href="/colection-voucher-coupon">Ví Voucher/Coupon</a></li> *@
+                                    <li>
+                                        <a data-toggle="modal" data-target="#modal_signout" class="text-danger"
+                                           href="javascript:void(0)">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="onhover-dropdown mobile-account">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                Đăng nhập / Đăng ký
+                                <ul class="onhover-show-div div_nav_profile">
+                                    <li><a href="/account/signin">Đăng nhập</a></li>
+                                    <li><a href="/account/register">Đăng ký</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

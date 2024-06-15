@@ -1,0 +1,143 @@
+﻿
+@{
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+            {
+                currentName = "Liên kết bán hàng",
+            };
+}
+@section MetaHead {
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles {
+    <link href="~/lib/simplelightbox-master/dist/simple-lightbox.min.css" rel="stylesheet" />
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/member-profile.css" rel="stylesheet" />
+}
+@section Scripts {
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/simplelightbox-master/dist/simple-lightbox.jquery.min.js"></script>
+    <script src="~/controllers/member.js" asp-append-version="true"></script>
+}
+
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<section class="authentication-page">
+    <div class="container">
+        <section class="search-block">
+            <div class="container tab-product pt-0">
+                <ul class="nav nav-tabs nav-material justify-content-center" id="top-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link p-2 active" data-value="1" id="top-tab1-tab" data-bs-toggle="tab"
+                           href="#top-tab1" role="tab" aria-selected="true">
+                            <i class="icofont icofont-ui-home"></i>bản tin
+                        </a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2" data-value="2" id="top-tab2-tab" data-bs-toggle="tab"
+                           href="#top-tab2" role="tab" aria-selected="false">
+                            <i class="icofont icofont-man-in-glasses"></i>Thành viên
+                        </a>
+                        <div class="material-border"></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</section>
+<!--cart section start-->
+<section class="cart-section section-b-space" data-aos="fade-down" data-aos-duration="600">
+    <div class="container">
+
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+
+            <div class="tab-content nav-material pt-0" id="top-tabContent">
+
+                <div class="tab-pane fade show active" id="top-tab1" role="tabpanel" style="position: relative" aria-labelledby="top-tab1-tab">
+                    <div class="row" style="min-height:50px;" id="divPostsList">
+                    </div>
+
+                    <!--Loader post item start-->
+                    <div class="loader_skeleton loader_post_item show">
+                        <div class="collection-product-wrapper">
+                            <div class="product-wrapper-grid">
+                                <div class="row">
+                                    <div class="col-12 col-grid-box">
+                                        <div class="product-box card card-body mt-0 mb-4">
+                                            <div class="product-detail mt-0 mb-2">
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <h4 class="avatar"></h4>
+                                                    </div>
+                                                    <div class="col-auto p-1">
+                                                        <h4 class="m-0"></h4>
+                                                        <h5></h5>
+                                                    </div>
+                                                </div>
+                                                <h5 class="w-100"></h5>
+                                                <h5 class="w-50"></h5>
+                                                <p></p>
+                                            </div>
+                                            <div class="row px-2">
+                                                <div class="col-md-6 px-1">
+                                                    <div class="img-wrapper"></div>
+                                                </div>
+                                                <div class="col-md-6 px-1 d-none d-md-block">
+                                                    <div class="img-wrapper"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Loader post item end-->
+
+                </div>
+
+                <div class="tab-pane fade" id="top-tab2" role="tabpanel" style="position: relative" aria-labelledby="top-tab2-tab">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <form class="form-header">
+                                <div class="input-group">
+                                    <input type="text" id="searchMemberInput" class="form-control" placeholder="Nhập tên, địa chỉ..." />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-solid" style="min-width:50px;" id="btnSearchMember"><i class="fa fa-search p-0"></i></button>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <p id="messageError"></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row" style="position: relative; min-height: 150px;" id="divListData">
+
+                        @*<div class="col-xl-3 col-md-6 xl-50 mb-2" style="padding: 0 6px;">
+                        <a href="#">
+                        <div class="card o-hidden widget-cards">
+                        <div class="bg-custom warning card-body">
+                        <div class="media static-top-widget row align-items-center">
+                        <div class="icons-widgets col-4">
+                        <div class="align-self-center text-center"><img class="rounded-circle" height="50" src="/assets/images/error/avatar.png" /></div>
+                        </div>
+                        <div class="media-body col-8 pl-0">
+                        <span class="m-0 color-default">Nguyễn Văn A</span>
+                        <h5 class="mb-0 max-line-2" style="font-weight:500;">Cửa hàng tiện lợi số 1</h5>
+                        <span class="text-muted mb-0 max-line-2">93B Trung Dũng, Biên Hòa, Đồng Nai</span>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </a>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

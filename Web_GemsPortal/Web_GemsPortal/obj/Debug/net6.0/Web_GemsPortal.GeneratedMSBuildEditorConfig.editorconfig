@@ -1,0 +1,547 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Web_GemsPortal
+build_property.RootNamespace = Web_GemsPortal
+build_property.ProjectDir = /Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = /Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Pages/Shared/Components/Menu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL0NvbXBvbmVudHMvTWVudS9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/About/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/About/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvUF9Mb2FkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/About/P_LoaderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvUF9Mb2FkZXJEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/About/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvVmlld0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/ChangePasswordPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9DaGFuZ2VQYXNzd29yZFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Gb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2FkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Qcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/P_ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9QX0NoYW5nZVBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Account/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9TaWduSW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Address/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRkcmVzcy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Address/P_Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRkcmVzcy9QX0FkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Address/P_Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRkcmVzcy9QX0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Checkout/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hlY2tvdXQvQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Checkout/Payment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hlY2tvdXQvUGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Checkout/P_AddAddress.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hlY2tvdXQvUF9BZGRBZGRyZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Checkout/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hlY2tvdXQvUF9Mb2FkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Checkout/P_PromotionList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hlY2tvdXQvUF9Qcm9tb3Rpb25MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Consulting/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3VsdGluZy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Consulting/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3VsdGluZy9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Consulting/P_LoaderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3VsdGluZy9QX0xvYWRlckRldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Consulting/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uc3VsdGluZy9WaWV3RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Contact/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Error/400.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvNDAwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Error/404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvNDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Error/408.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvNDA4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Error/500.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvNTAwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Error/503.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvNTAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Error/ExpiredDomain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXJyb3IvRXhwaXJlZERvbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerBottom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJCb3R0b20uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJIZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerIntroduce.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJJbnRyb2R1Y2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerLocation1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJMb2NhdGlvbjEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerLocation2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJMb2NhdGlvbjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerLocation3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJMb2NhdGlvbjMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerLocation4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJMb2NhdGlvbjQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerMid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJNaWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerQC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJRQy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerTop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJUb3AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_BannerTop2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9CYW5uZXJUb3AyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_Category.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9DYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_LatestConsulting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9MYXRlc3RDb25zdWx0aW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_LatestNews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9MYXRlc3ROZXdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_LatestTraning.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9MYXRlc3RUcmFuaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Mb2FkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_NewSupplier.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9OZXdTdXBwbGllci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_PartnerList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9QYXJ0bmVyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_ProductByCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Qcm9kdWN0QnlDYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_ProductByOption.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Qcm9kdWN0QnlPcHRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_ProductDiscount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Qcm9kdWN0RGlzY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_ProductRecently.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Qcm9kdWN0UmVjZW50bHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_ProductSale.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Qcm9kdWN0U2FsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_Sale.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9TYWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_Service.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9TZXJ2aWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_SomethingsAboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9Tb21ldGhpbmdzQWJvdXRVcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_WeService.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9XZVNlcnZpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home - Copy/P_WhyChooseWe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZSAtIENvcHkvUF9XaHlDaG9vc2VXZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_BannerLocation1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0Jhbm5lckxvY2F0aW9uMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_BannerLocation2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0Jhbm5lckxvY2F0aW9uMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_BannerLocation3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0Jhbm5lckxvY2F0aW9uMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_BannerLocation4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0Jhbm5lckxvY2F0aW9uNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_BannerLocation5.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0Jhbm5lckxvY2F0aW9uNS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_CurrentSocial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0N1cnJlbnRTb2NpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_CustomerComment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX0N1c3RvbWVyQ29tbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_Mission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX01pc3Npb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_Quatity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX1F1YXRpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_WaterAndLive.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX1dhdGVyQW5kTGl2ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Home/P_WhatIsWater.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QX1doYXRJc1dhdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Member/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Member/P_Feedback.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyL1BfRmVlZGJhY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Member/P_ProductDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyL1BfUHJvZHVjdERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Member/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyL1ZpZXdEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/MemberRegister/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVtYmVyUmVnaXN0ZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/News/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTmV3cy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/News/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTmV3cy9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/News/P_LoaderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTmV3cy9QX0xvYWRlckRldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/News/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTmV3cy9WaWV3RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Order/P_AddOrderComment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvUF9BZGRPcmRlckNvbW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Order/P_AddOrderImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvUF9BZGRPcmRlckltYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Order/P_EditOrderImage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvUF9FZGl0T3JkZXJJbWFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Order/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvUF9Mb2FkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Order/Views.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvVmlld3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Product/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Product/P_LoaderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9QX0xvYWRlckRldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Product/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9WaWV3RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Promotion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW90aW9uL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Promotion/P_BannerMid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW90aW9uL1BfQmFubmVyTWlkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Promotion/P_BannerTop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW90aW9uL1BfQmFubmVyVG9wLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/PromotionApply/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvbW90aW9uQXBwbHkvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Quality/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVhbGl0eS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Quality/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVhbGl0eS9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Quality/P_LoaderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVhbGl0eS9QX0xvYWRlckRldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Quality/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVhbGl0eS9WaWV3RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_LayoutError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_LayoutHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_LayoutMaster.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRNYXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_LayoutMember.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRNZW1iZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_BreadCrumb.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0JyZWFkQ3J1bWIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_BreadcrumbMember.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0JyZWFkY3J1bWJNZW1iZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0Zvb3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_FooterHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0Zvb3RlckhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_FooterMember.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0Zvb3Rlck1lbWJlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_HeaderHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0hlYWRlckhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_HeaderInfoPortal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0hlYWRlckluZm9Qb3J0YWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_HeaderMember.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0hlYWRlck1lbWJlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_ListenVoiceModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0xpc3RlblZvaWNlTW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_LoaderHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0xvYWRlckhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_LoaderTopBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0xvYWRlclRvcEJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_MenuAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX01lbnVBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_ReCAPTCHAVertify.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX1JlQ0FQVENIQVZlcnRpZnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_Scripts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX1NjcmlwdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_SendFeedbackSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX1NlbmRGZWVkYmFja1N1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_SignOutModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX1NpZ25PdXRNb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_Styles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX1N0eWxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_ValidationScripts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX1ZhbGlkYXRpb25TY3JpcHRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Supplier/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3VwcGxpZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Supplier/P_AgentsAndCollaborators.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3VwcGxpZXIvUF9BZ2VudHNBbmRDb2xsYWJvcmF0b3JzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Training/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhaW5pbmcvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Training/P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhaW5pbmcvUF9Mb2FkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Training/P_LoaderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhaW5pbmcvUF9Mb2FkZXJEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Training/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhaW5pbmcvVmlld0RldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/hieudat/Library/CloudStorage/OneDrive-qph6/Workplace/Download_Mac/Web_GemsPortal/Web_GemsPortal/Web_GemsPortal/Views/Shared/_P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-4x0d2gllhc

@@ -1,0 +1,91 @@
+﻿@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    List<string> listColor = new List<string> { "#ffbc4e", "#f99a00", "#8f67ff", "#679aff", "#67d9ff", "#67ffde", "#ff6767", "#adff67", "#ffe552", "#8f67ff" };
+    var listConfigHome1 = ViewBag.ListConfigHome1;
+    int key = 0;
+}
+@* @if (listConfigHome1 != null)
+{ *@
+<section class="wrapper section_water_and_live">
+    </div>
+    <div class="container py-6">
+        <div class="d-flex justify-content-center div_img_title_water_and_live" data-cues="bounceInRight" data-delay="300">
+            <div class="d-flex align-items-center">
+                <img src="/img/water.png" class="avatar h-15" alt="@supplierInfo.name">
+                <h1 class="display-2 mb-0 mt-5" style="height:fit-content"><span class="underline-3 style-2 yellow"></span> <span style="color:var(--theme-color-second)"></span><span style="color:#0064a1">NƯỚC</span> & <span style="color:green">SỰ SỐNG</span></h1>
+                <img src="/img/water.png" class="avatar h-15" alt="@supplierInfo.name">
+            </div>
+        </div>
+        <div class="row">
+            @*  @foreach (var item in listConfigHome1)
+            {
+            key++;
+            <div class="col-md-6 col-xl-4 my-1 px-1" data-cues="bounceInRight" data-delay="300">
+            <div class="card shadow-lg" style="background-color:@listColor[key]52">
+            <div class="card-body card-border-bottom" style="border-color: @listColor[key]">
+            <img src="@(!string.IsNullOrEmpty(item.url) ? $"https://admin-gemsgroup.tmdt247.vn/{item.url}" : "")" class="svg-inject icon-svg icon-svg-sm solid-mono text-fuchsia mb-3" alt="@item.title" />
+            <h4 class="sp-line-1">@(item.title ?? "")</h4>
+            <p class="mb-2 sp-line-2">@(item.description ?? "")</p>
+            <a href="/gioi-thieu" class="more hover link-fuchsia">Xem thêm</a>
+            </div>
+            </div>
+            </div>
+            } *@
+
+            <div class="col-md-6 col-xl-4 my-1 px-1 position-relative spotlight" data-cues="bounceInRight" data-delay="300">
+
+                <div class="particles-js" id="particles_div_1"></div>
+                <div class="card shadow-lg" style="background-color:@listColor[1]52">
+                    <div class="card-body card-border-bottom px-2 py-1 d-flex align-items-center" style="border-color: @listColor[1];height: 180px;">
+                        <img src="/img/picture/earth.png" style="object-fit: contain;" class="svg-inject vibrate icon-svg icon-svg-sm solid-mono text-fuchsia" alt="" />
+                        <h4 class="mb-2 fs-20 sp-line-3" style="line-height: normal;" data-bs-toggle="tooltip" data-bs-placement="top" title="3/4 trái đất là nước, 75% cơ thể của chúng ta là nướct">
+                            <span class="fs-30" style="color:#0064a1">3/4</span> trái đất là nước,
+                            <span class="fs-30" style="color:#0064a1">75%</span> cơ thể của chúng ta là <span class="fs-35" style="color:#0064a1">nước</span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 my-1 px-1 position-relative spotlight" data-cues="bounceInRight" data-delay="300">
+                <div class="particles-js" id="particles_div_2"></div>
+                <div class="card shadow-lg" style="background-color:@listColor[3]52">
+                    <div class="card-body card-border-bottom px-2 py-1 d-flex align-items-center" style="border-color: @listColor[3];height: 180px;">
+                        <img src="/img/picture/person.png" style="object-fit: contain;" class="svg-inject vibrate icon-svg icon-svg-sm solid-mono text-violet" alt="" />
+
+                        <h4 class="mb-2 fs-20 sp-line-3" style="line-height: normal;" data-bs-toggle="tooltip" data-bs-placement="top" title="Nước là gắn liền với sự tồn tại và phát triển của mọi sự sống trên trái đất">
+                            <span class="fs-40" style="color:#0064a1">Nước</span> là gắn liền với sự tồn tại và phát triển của mọi <span class="fs-28" style="color:#0064a1">sự sống</span> trên trái đất
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4 my-1 px-1 position-relative spotlight" data-cues="bounceInRight" data-delay="300">
+                <div class="particles-js" id="particles_div_3"></div>
+                <div class="card shadow-lg" style="background-color:@listColor[2]52">
+                    <div class="card-body card-border-bottom px-2 py-1 d-flex align-items-center" style="border-color: @listColor[2];height: 180px;">
+                        <img src="/img/picture/water-png.png" style="object-fit: contain;" class="svg-inject vibrate icon-svg icon-svg-sm solid-mono text-violet" alt="" />
+                        <div>
+                            <h4 class="mb-2 fs-20 sp-line-4" style="line-height: normal;" data-bs-toggle="tooltip" data-bs-placement="top" title="Chúng ta có thể tồn tại khi không ăn 1 tuần thậm chí lâu hơn – nhưng không có nước 3 - 5 ngày con người sẽ chết">
+                                Chúng ta có thể tồn tại khi không ăn 1 tuần thậm chí lâu hơn – nhưng không có nước <span class="fs-30" style="color:#0064a1"> 3 - 5 ngày</span> con người sẽ chết
+                            </h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 208, 255, 20%)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 208, 255, 57%)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 208, 255, 77%)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 208, 255, 100%)" />
+            </g>
+        </svg>
+    </div>
+</section>
+@* } *@

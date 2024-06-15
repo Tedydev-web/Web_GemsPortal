@@ -1,0 +1,160 @@
+﻿@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    var cateogry = ViewBag.Category as List<M_Category>;
+    var menuNewsCateogry = ViewBag.NewsCategory as List<M_NewsCategory>;
+    var newsCategory = menuNewsCateogry?.Where(x => x.typeId == EN_NewsCategoryTypeId.News).ToList();
+    var introduceCategory = menuNewsCateogry?.Where(x => x.typeId == EN_NewsCategoryTypeId.Introduce).ToList();
+}
+
+<footer class="footer-light mb-0">
+    <div class="mt-n100" style="background: #e0f0ff;">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 100 , 161, 20%)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 100 , 161, 40%)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 100 , 161, 60%)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 100 , 161, 100%)" />
+            </g>
+        </svg>
+    </div>
+    <section class="light-layout position-relative py-5">
+        <div class="particles-js" id="particles_div_footer"></div>
+        <div class="container" style="z-index: 2; position: relative;">
+            <div class="row footer-theme partition-f">
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-title footer-mobile-title">
+                        <h4>Về chúng tôi</h4>
+                    </div>
+                    <div class="footer-contant">
+
+                        <div class="footer-logo">
+                            <a class="" href="/">
+                                <img class="image-shop logo-shop bg-white rounded avatar" src="@(supplierInfo.imageObj?.mediumUrl ?? "/assets/images/error/logo.png")" alt="Logo" loading="lazy"
+                                     onerror="this.onerror=null;this.src='/assets/images/error/logo.png';" style="max-height: 150px; width: auto; max-width: 100%;">
+                            </a>
+                        </div>
+                        <div class="footer-social">
+                            <ul>
+                                @if (!string.IsNullOrEmpty(supplierInfo.facebook))
+                                {
+                                    <li><a href="@supplierInfo.facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                }
+                                @if (!string.IsNullOrEmpty(supplierInfo.youtube))
+                                {
+                                    <li><a href="@supplierInfo.youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                                }
+                                @if (!string.IsNullOrEmpty(supplierInfo.zalo))
+                                {
+                                    <li>
+                                        <a href="@supplierInfo.zalo">
+                                        <i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col offset-xl-1">
+                    <div class="sub-title">
+                        <div class="footer-title">
+                            <h4>Tin tức mới</h4>
+                        </div>
+                        <div class="footer-contant">
+                            <ul>
+                                @if (newsCategory.Any())
+                                {
+                                    foreach (var item in newsCategory)
+                                    {
+                                        <li><a href="/tin-tuc?c=@item.id">@item.name</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sub-title">
+                        <div class="footer-title">
+                            <h4>Xem thêm</h4>
+                        </div>
+                        <div class="footer-contant">
+                            <ul>
+                               @*  @if (introduceCategory.Any())
+                                {
+                                    foreach (var item in introduceCategory)
+                                    {
+                                        <li><a href="/tin-tuc?c=@item.id">@item.name</a></li>
+                                    }
+                                } *@
+                                <li><a href="/gioi-thieu">Câu chuyện về GEMS</a></li>
+                                <li><a href="/san-pham">Linh kiện và sản phẩm</a></li>
+                                <li><a href="/tin-tuc">Tin tức và Cẩm nang</a></li>
+                                <li><a href="/lien-he">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sub-title">
+                        <div class="footer-title">
+                            <h4>LIÊN HỆ</h4>
+                        </div>
+                        <div class="footer-contant">
+                            <ul class="contact-list">
+                                <li>
+                                    <i class="fa fa-map-marker"></i>
+                                    <i class="uil uil-location-pin-alt"></i>
+                                    @if (!string.IsNullOrEmpty(supplierInfo.addressObj?.addressText))
+                                    {
+                                        <span>@supplierInfo.addressObj?.addressText,</span>
+                                    }
+                                    @if (!string.IsNullOrEmpty(supplierInfo.addressObj?.wardObj?.name))
+                                    {
+                                        <span>@supplierInfo.addressObj?.wardObj?.name,</span>
+                                    }
+                                    @if (!string.IsNullOrEmpty(supplierInfo.addressObj?.districtObj?.name))
+                                    {
+                                        <span>@supplierInfo.addressObj?.districtObj?.name,</span>
+                                    }
+                                    @if (!string.IsNullOrEmpty(supplierInfo.addressObj?.provinceObj?.name))
+                                    {
+                                        <span>@supplierInfo.addressObj?.provinceObj?.name</span>
+                                    }
+                                </li>
+                                <li><i class="fa fa-envelope-o"></i><a href="mailto:@supplierInfo.email">@supplierInfo.email</a></li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:@supplierInfo.telephoneNumber">Điện thoại: @supplierInfo.telephoneNumber</a></li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:@supplierInfo.hotlineNumber">Hotline: @supplierInfo.hotlineNumber</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <p class="text-center col-12 mx-auto custom_author_footer">
+                <a href="https://ecotech2a.com/" class="text-decoration-none py-2 rounded text-white px-1" style="background: #eeeeee47; " target="_blank">© 2024 BẢN QUYỀN THUỘC <b class="mx-1" style="color:#d6b154">  GEMS GROUP </b> | CÔNG NGHỆ ĐƯỢC CUNG CẤP BỞI  <b class="mx-1"> ECOTECH 2A</b> </a>
+            </p>
+        </div>
+    </section>
+</footer>
+@*<div class="cookie-bar">
+        <p class="">
+
+        </p>
+        <a href="javascript:void(0)" class="btn btn-solid btn-xs" style="width:80px;">Đồng ý</a>
+    </div>*@
+<!-- cookie bar end -->
+<div class="tap-top top-cls">
+    <div>
+        <i class="fa fa-angle-double-up"></i>
+    </div>
+</div>
+
+<div class="added-notification">
+    <img src="~/assets/images/add-to-cart.png" style="color:seagreen" class="img-fluid" alt="Success">
+    <h3>Đã thêm vào giỏ hàng</h3>
+</div>

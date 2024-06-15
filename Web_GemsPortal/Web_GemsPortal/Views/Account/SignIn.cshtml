@@ -1,0 +1,104 @@
+﻿@model Web_GemsPortal.EditModels.Account.EM_Login
+@{
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+    {
+        currentName = "Đăng nhập",
+    };
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/parsleyjs/parsley.css" rel="stylesheet" />
+    <link href="~/lib/microtip-master/microtip.min.css" rel="stylesheet" />
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        /*Show password css*/
+        .field-icon {
+            right: 20px;
+            top: 40px;
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        @@media (max-width:575px) {
+            .field-icon {
+                top: 37px;
+            }
+        }
+
+        @@media (max-width:764px) {
+            .field-icon {
+                top: 37px;
+            }
+        }
+    </style>
+}
+
+@section Scripts{
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/parsleyjs/parsley.min.js"></script>
+    <script src="~/lib/parsleyjs/i18n/vn.js"></script>
+    <script src="~/controllers/account_sign_in.js" asp-append-version="true"></script>
+}
+
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!--section start-->
+<section class="login-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="text-dark">ĐĂNG NHẬP</h3>
+                <div class="theme-card">
+                    <form method="post" class="theme-form mb-3" data-parsley-validate id="form_data">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="UserName">Tài khoản:</label>
+                            <input type="text" asp-for="UserName" class="form-control" maxlength="20" placeholder="Nhập số điện thoại" pattern="^[0-9]{1,20}$" required />
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label asp-for="Password">Mật khẩu:</label>
+                            <input type="password" asp-for="Password" class="form-control" placeholder="Nhập mật khẩu" maxlength="50" required />
+                            <span class="fa fa-eye-slash field-icon " data-forcus="#Password" onclick="ShowPassword(this)" id="togglePassword"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" asp-for="StayLoggedIn" class="mb-0" id="checkbox-stayloggedin" />
+                                <label class="custom-control-label mb-0" for="checkbox-stayloggedin">
+                                    Duy trì trạng thái đăng nhập
+                                    <span aria-label="Hệ thống sẽ cài đặt phiên đăng nhập của bạn là 30 ngày. Mặc định của một phiên là 30 phút."
+                                          data-microtip-position="top" data-microtip-align="center" data-microtip-size="medium" role="tooltip">
+                                        <i class="fa fa-info-circle text-success"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-solid w-auto ladda-button" dir="ltr" data-style="expand-left" id="btn-submitForm">ĐĂNG NHẬP</button>
+                    </form>
+                    <a href="/account/forgot-password">Quên mật khẩu?</a>
+                </div>
+            </div>
+            <div class="col-lg-6 right-login">
+                <h3 class="text-dark">Bạn chưa có tài khoản?</h3>
+                <div class="theme-card authentication-right" style="height: calc(100% - 37px);">
+                    <h5 style="text-transform:uppercase;" class="title-font">Cùng trải nghiệm mua hàng ngay</h5>
+                    <p>
+                        Đăng ký một tài khoản miễn phí tại hệ thống của chúng tôi. <br />
+                        Thủ tục đăng kí nhanh chóng và đơn giản. <br />
+                        Nó cho phép bạn có thể đặt hàng từ cửa hàng của chúng tôi. <br />
+                        Để bắt đầu mua sắm bấm
+                        <a class="font-weight-bold color-default" href="/account/register?returnUrl=@(Context.Request.Query["returnUrl"])">"ĐĂNG KÝ"</a>.
+                    </p>
+                    <a href="/account/register?returnUrl=@(Context.Request.Query["returnUrl"])"
+                       class="btn btn-solid">ĐĂNG KÝ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->

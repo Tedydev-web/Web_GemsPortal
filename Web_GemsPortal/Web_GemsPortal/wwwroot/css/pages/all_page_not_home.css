@@ -1,0 +1,27 @@
+.marketplace-sidebar.sidenav-default {
+    height: unset;
+    width: unset;
+    position: relative;
+    z-index: 1;
+    top: unset;
+    left: unset;
+}
+
+.marketplace-sidebar.sidenav {
+    height: unset;
+    width: 92%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: unset;
+}
+
+.promotion_slider{
+    height: 450px!important;
+}
+
+@media (min-width: 1199px) {
+    .marketplace-sidebar.sidenav {
+        display: none;
+    }
+}

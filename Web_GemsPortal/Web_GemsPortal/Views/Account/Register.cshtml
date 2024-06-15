@@ -1,0 +1,205 @@
+﻿
+@model Web_GemsPortal.EditModels.Account.EM_Register
+
+@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+    {
+        currentName = "Đăng ký",
+    };
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+@section Styles{
+    <link href="~/lib/parsleyjs/parsley.css" rel="stylesheet" />
+    <link href="~/lib/microtip-master/microtip.min.css" rel="stylesheet" />
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        /*Show password css*/
+        .field-icon {
+            right: 35px;
+            top: 40px;
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        @@media (max-width:575px) {
+            .field-icon {
+                top: 37px;
+            }
+        }
+
+        @@media (max-width:764px) {
+            .field-icon {
+                top: 37px;
+            }
+        }
+    </style>
+}
+
+@section Scripts{
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/parsleyjs/parsley.min.js"></script>
+    <script src="~/lib/parsleyjs/i18n/vn.js"></script>
+    <script src="~/controllers/account_register.js" asp-append-version="true"></script>
+    @*<script src="https://www.google.com/recaptcha/api.js?render=6LdywI0bAAAAAIOxXjhNX4K17kpkXKHEv63UYjMt"></script>*@
+}
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start-->
+<section class="login-page section-b-space register_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+                <div class="theme-card">
+
+                    <div id="div_register_form">
+
+                        <form method="post" class="theme-form" data-parsley-validate id="form_data">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-row row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="phoneNumber">
+                                        Điện thoại: <span class="text-danger">(*)</span>
+                                        <span aria-label="Vui lòng nhập số điện thoại chính xác.
+                                      Bạn sẽ dùng thông tin này làm tên đăng nhập."
+                                              data-microtip-position="top" data-microtip-align="center" data-microtip-size="medium" role="tooltip">
+                                            <i class="fa fa-info-circle text-success"></i>
+                                        </span>
+                                    </label>
+                                    <input asp-for="phoneNumber" class="form-control" pattern="^[0-9]{3,12}$" autocomplete="new-password"
+                                           placeholder="Nhập điện thoại" maxlength="12" onkeypress="return IsNumberKey(event)" required />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="password">
+                                        Mật khẩu: <span class="text-danger">(*)</span>
+                                        <span aria-label="Mật khẩu không được chứa ký tự có dấu và khoảng trắng."
+                                              data-microtip-position="top" data-microtip-align="center" data-microtip-size="medium" role="tooltip">
+                                            <i class="fa fa-info-circle text-success"></i>
+                                        </span>
+                                    </label>
+                                    <input type="password" asp-for="password" class="form-control" autocomplete="new-password" placeholder="Nhập mật khẩu" maxlength="50" pattern="^([^'ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\-\s]+)$" required />
+                                    <span class="fa fa-eye-slash field-icon " data-forcus="#password" onclick="ShowPassword(this)"></span>
+                                </div>
+                            </div>
+                            <div class="form-row row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="lastName">Họ: <span class="text-danger">(*)</span></label>
+                                    <input asp-for="lastName" class="form-control" placeholder="Nhập họ" maxlength="30" required />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="firstName">Tên: <span class="text-danger">(*)</span></label>
+                                    <input asp-for="firstName" class="form-control" placeholder="Nhập tên" maxlength="30" required />
+                                </div>
+                            </div>
+                            <div class="form-row row mb-3 checkout-page">
+                                <div class="col-md-6 mb-3 checkout-form">
+                                    <label asp-for="gender">Giới tính: </label>
+                                    <select asp-for="gender" class="bg-white">
+                                        <option value="0">Nam</option>
+                                        <option value="1">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                           @*  <p>
+                                Bằng cách ấn vào nút “ĐĂNG KÝ”, tôi đồng ý với
+                                <a href="/pdf/policy/ĐIỀU KHOẢN SỬ DỤNG.pdf" target="_blank">Điều Khoản Sử Dụng</a>,
+                                <a href="/pdf/policy/CHÍNH SÁCH BẢO MẬT.pdf" target="_blank"> Chính Sách Bảo Mật</a> và
+                                <a href="/pdf/policy/QUY CHẾ HOẠT ĐỘNG.pdf" target="_blank"> Quy Chế Hoạt Động</a>
+                                của <span class="contactName-shop color-default font-weight-bold">@supplierInfo.name</span> *@
+                            </p>
+                            <button type="submit" class="btn btn-solid w-auto ladda-button" dir="ltr" data-style="expand-left" id="btn_submit_form">ĐĂNG KÝ</button>
+                        </form>
+
+                        <p class="pt-3">
+                            Bạn đã có tài khoản? <a href="/account/signin"><i class="fa fa-sign-in mr-1" aria-hidden="true"></i>Đăng nhập tại đây</a>
+                        </p>
+                    </div>
+
+                    <div class="row justify-content-center" id="div_verified_code" style="display:none;">
+                        <div class="col-lg-4 col-md-6">
+
+                            <h4 class="font-weight-bold text-uppercase" style="text-decoration:underline;">Xác thực tài khoản</h4>
+                            <div class="form-group mt-3 mb-1">
+                                <label for="VerifiedCode">Mã xác thực đã được gửi về điện thoại của bạn</label>
+                                <input type="text" name="VerifiedCode" id="input_verified_code" placeholder="Nhập mã xác thực" class="form-control" maxlength="6" pattern="^[0-9]{0,6}$" onkeypress="return IsNumberKey(event)" />
+                                <p class="text-danger" id="p_error_input_verified"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0)" onclick="ResendCode(this)" class="text-warning">Tôi không nhận được mã xác thực. Gửi lại.</a>
+                            </div>
+
+                            <div class="form-group mb-0 text-center">
+                                <button class="btn btn-success btn-block ladda-button" style="background-color: #1abc9c"
+                                        dir="ltr" data-style="expand-left" id="btn_verified_code" type="submit">
+                                    <i class="mdi mdi-checkbox-marked-circle-outline mr-1"></i>XÁC THỰC
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content section end-->
+<!-- modal register success start-->
+<div class="modal fade bd-example-modal-lg theme-modal exit-modal" id="modal_register_success" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal1">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="media d-flex align-items-center">
+                                    <img src="~/assets/images/email-temp/success.png"
+                                         class="stop img-fluid blur-up lazyload me-3" alt="SignIn" />
+                                    <div class="media-body text-start align-self-center" id="div_signin_success_auto_redirect">
+                                        <div class="text-center">
+                                            <h2 style="padding-right:10px;">Đăng ký thành công!</h2>
+                                            <h4>
+                                                Tự động "CHUYỂN HƯỚNG" sau:
+                                                <b class="b_time_out_auto_login">3</b> giây
+                                            </h4>
+                                            <div class="mt-1">
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-xs btn-solid black-btn me-3" data-bs-dismiss="modal" onclick="clearInterval(intervalCountDown);">ĐÓNG</a>
+                                                @* <a href="/" class="btn btn-sm btn-xs btn-solid me-3">Trang mua hàng</a> *@
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body text-start align-self-center" style="display: none;" id="div_auto_redirect_signin">
+                                        <div class="text-center">
+                                            <h2 style="padding-right:10px;">Đăng ký thành công!</h2>
+                                            <h4>
+                                                Bạn sẽ được chuyển đến trang <br /> <a href="/account/signin">"ĐĂNG NHẬP"</a> sau:
+                                                <b class="b_time_out_auto_login">5</b> giây
+                                            </h4>
+                                            <div class="mt-1">
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-xs btn-solid black-btn me-3" data-bs-dismiss="modal" onclick="clearInterval(intervalCountDown);">ĐÓNG</a>
+                                                <a href="/account/signin" class="btn btn-sm btn-xs btn-solid me-3">ĐĂNG NHẬP</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal register success end-->

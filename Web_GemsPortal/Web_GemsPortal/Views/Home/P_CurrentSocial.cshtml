@@ -1,0 +1,107 @@
+﻿@{
+    var dataDetail = ViewBag.ListConfigHome1 as string;
+    var listConfigHome = ViewBag.ListConfigHomeLocation1 as List<M_ConfigHome>;/* col-md-6 align-self-center */
+    var listConfigHome2 = ViewBag.ListConfigHomeLocation2 as List<M_ConfigHome>;/* col-md-6 align-self-center */
+}
+@if (listConfigHome != null || string.IsNullOrEmpty(dataDetail))
+{
+    <section class="wrapper bg-light py-0">
+        <div class="container">
+            <div class="row gy-10 gy-sm-13 gx-md-8 gx-xl-12 align-items-center pt-10">
+                <div class="col-md-7 col-lg-6 div_img_current_social">
+                    <div class="row gx-md-5 gy-5">
+                        @if (listConfigHome != null)
+                        {
+                            foreach (var item in listConfigHome)
+                            {
+                                @if (item.urlType == "0")
+                                {
+                                    if (!string.IsNullOrEmpty(item.url))
+                                    {
+                                        <a href="@item.url" target="@item.urlTarget" class="@item.align align-self-center spotlight">
+                                            <figure class="rounded"><img src="@item.fileUrl" srcset="@item.fileUrl 2x" alt="@item.title"></figure>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@item.fileUrl" target="_self" data-glightbox="title:@item.title;description:@item.description" data-gallery="g2" class="@item.align align-self-center spotlight">
+                                            <figure class="rounded"><img src="@item.fileUrl" srcset="@item.fileUrl 2x" alt="@item.title"></figure>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="@item.align spotlight align-self-center rounded div_video" style="background-size: cover;background-image:url(@(string.IsNullOrEmpty(item.fileUrl) ? "/assets/portal/img/photos/bg13.jpg" : item.fileUrl))">
+                                        <div class="caption-wrapper p-12 caption-wrapper d-flex align-items-center justify-content-center">
+                                            <div class="caption rounded px-4 animate__animated animate__slideInDown animate__delay-1s">
+                                                <a href="@item.url" class="btn btn-circle btn-white btn-play ripple mx-auto"
+                                                   data-gallery="gallery-video" data-glightbox="title:@item.title;description:@item.description"><i class="icn-caret-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+
+                <!--/column -->
+                <div class="col-md-5 col-lg-6 div_detail_current_social">
+                    @Html.Raw(dataDetail)
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@if (listConfigHome2 != null && listConfigHome2.Count > 0)
+{
+    <section class="wrapper bg-light upper-end lower-end">
+
+        <div class="px-lg-5 py-3">
+            <div class="row gx-0 gx-md-8 gx-xl-12 gy-8 align-items-center">
+                <div class="swiper slider_small_image">
+                    <div class="swiper-wrapper">
+                        @foreach (var item in listConfigHome2)
+                        {
+                            @if (item.urlType == "0")
+                            {
+                                if (!string.IsNullOrEmpty(item.url))
+                                {
+                                    <a href="@item.url" target="@item.urlTarget" class="swiper-slide mx-1 spotlight">
+                                        <figure class="rounded"><img style="aspect-ratio: 16 / 9;" src="@item.fileUrl" srcset="@item.fileUrl 2x" alt="@item.title"></figure>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="swiper-slide mx-1 spotlight" href="@item.fileUrl" target="_self" data-glightbox="title:@item.title;description:@item.description" data-gallery="g2">
+                                        <figure class="rounded"><img style="aspect-ratio: 16 / 9;" src="@item.fileUrl" srcset="@item.fileUrl 2x" alt="@item.title"></figure>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                @*  <a class="swiper-slide mx-1" href="@(!string.IsNullOrEmpty(item.url) ? item.url : item.fileUrl)" target="@(string.IsNullOrEmpty(item.url) ? @item.urlTarget : "_seft")" data-glightbox="title:@item.title;description:@item.description" data-gallery="g2">
+                    <figure class="rounded"><img style="aspect-ratio: 16 / 9;" src="@item.fileUrl" srcset="@item.fileUrl 2x" alt="@item.title"></figure>
+                    </a> *@
+                                <div class="swiper-slide spotlight" style="aspect-ratio: 16 / 9">
+                                    <div class="align-self-center rounded swiper-slide" style="background-size: cover;background-image:url(@(string.IsNullOrEmpty(item.fileUrl) ? "/assets/portal/img/photos/bg13.jpg" : item.fileUrl))">
+                                        <div class="caption-wrapper caption-wrapper d-flex align-items-center justify-content-center">
+                                            <div class="caption rounded px-4 animate__animated animate__slideInDown animate__delay-1s">
+                                                <a href="@item.url" class="btn btn-circle btn-white btn-play ripple mx-auto"
+                                                   data-gallery="gallery-video" data-glightbox="title:@item.title;description:@item.description"><i class="icn-caret-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            }
+                        }
+                    </div>
+                    <div class="swiper-button-prev"><i class="fa fs-2 text-white fa-chevron-circle-left" aria-hidden="true"></i></div>
+                    <div class="swiper-button-next"><i class="fa fs-2 text-white fa-arrow-circle-right" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

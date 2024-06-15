@@ -1,0 +1,188 @@
+﻿@model M_Supplier
+
+@{
+    var cateogry = ViewBag.Category as List<M_Category>;
+    var menuNewsCateogry = ViewBag.NewsCategory as List<M_NewsCategory>;
+    var newsCategory = menuNewsCateogry?.Where(x => x.typeId == EN_NewsCategoryTypeId.News).ToList();
+    var introduceCategory = menuNewsCateogry?.Where(x => x.typeId == EN_NewsCategoryTypeId.Introduce).ToList();
+}
+
+@* <div class="row">
+<div class="overflow-hidden">
+<div class=" text-white" style="color: var(--theme-color-first) !important;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" style="color: var(--theme-color-first) !important;">
+<path fill="currentColor"
+d="M1260,1.65c-60-5.07-119.82,2.47-179.83,10.13s-120,11.48-180,9.57-120-7.66-180-6.42c-60,1.63-120,11.21-180,16a1129.52,1129.52,0,0,1-180,0c-60-4.78-120-14.36-180-19.14S60,7,30,7H0v93H1440V30.89C1380.07,23.2,1319.93,6.15,1260,1.65Z"></path>
+</svg>
+</div>
+</div>
+</div> *@
+<div class="mt-n100">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0, 100 , 161, 20%)" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0, 100 , 161, 40%)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0, 100 , 161, 60%)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0, 100 , 161, 100%)" />
+        </g>
+    </svg>
+</div>
+<footer class="footer_wrapper">
+    <div class="container py-10">
+        <div class="row gy-6 gy-lg-0 footer_main position-relative">
+            <div class="particles-js" id="particles_div_footer"></div>
+            <div class="col-lg-3">
+                <div class="widget">
+                    <img class="mb-4 bg-white rounded avatar" src="@Model.imageObj?.relativeUrl"
+                        srcset="@Model.imageObj?.relativeUrl" alt="@Model.name" loading="lazy" width="160" height="160"
+                        style="object-fit:contain" />
+                    @*<p class="mb-4">@(Model.description ?? "")</p> *@
+                    <nav class="nav social">
+                        @if (!string.IsNullOrEmpty(Model.facebook))
+                        {
+                            <a href="@Model.facebook" title="Facebook" target="_blank" rel="noreferrer"><i
+                                    class="uil uil-facebook-f text-dark"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.youtube))
+                        {
+                            <a href="@Model.youtube" title="Youtube" target="_blank" rel="noreferrer"><i
+                                    class="uil uil-youtube"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.zalo))
+                        {
+                            <a href="@Model.zalo" title="Zalo" target="_blank" rel="noreferrer"><i
+                                    class="fa uil-comment"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.instagram))
+                        {
+                            <a href="@Model.instagram" title="Instagram" target="_blank" rel="noreferrer"><i
+                                    class="uil uil-instagram"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.twitter))
+                        {
+                            <a href="@Model.twitter" title="Twitter" target="_blank" rel="noreferrer"><i
+                                    class="uil uil-twitter"></i></a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.tiktokUrl))
+                        {
+                            <a href="@Model.tiktokUrl" title="Tiktok" target="_blank" rel="noreferrer"><i
+                                    class="uil uil-music-note"></i></a>
+                        }
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <p class="widget-title mb-3 text-white h4 text-uppercase">Tin tức mới</p>
+                    <ul class="list-unstyled mb-0">
+                        @if (newsCategory.Any())
+                        {
+                            foreach (var item in newsCategory)
+                            {
+                                <li><a href="/tin-tuc?c=@item.id">@item.name</a></li>
+                            }
+                        }
+                    </ul>
+
+
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <p class="widget-title mb-3 text-white h4 text-uppercase">Xem thêm</p>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="/gioi-thieu">Câu chuyện về GEMS</a></li>
+                        <li><a href="/san-pham">Linh kiện và sản phẩm</a></li>
+                        <li><a href="/tin-tuc">Tin tức và Cẩm nang</a></li>
+                        <li><a href="/lien-he">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <p class="widget-title mb-3 text-white h4 text-uppercase">Liên hệ</p>
+                    <address class="mb-1">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=@Model?.addressObj?.latitude,@Model?.addressObj?.longitude"
+                            rel="noreferrer" target="_blank">
+                            <i class="uil uil-location-pin-alt"></i>
+                            @if (!string.IsNullOrEmpty(Model.addressObj?.addressText))
+                            {
+                                <span>@Model.addressObj?.addressText,</span>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.addressObj?.wardObj?.name))
+                            {
+                                <span>@Model.addressObj?.wardObj?.name,</span>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.addressObj?.districtObj?.name))
+                            {
+                                <span>@Model.addressObj?.districtObj?.name,</span>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.addressObj?.provinceObj?.name))
+                            {
+                                <span>@Model.addressObj?.provinceObj?.name</span>
+                            }
+                        </a>
+                    </address>
+                    @if (!string.IsNullOrEmpty(Model.email))
+                    {
+                        <p class="mb-1"><a rel="noreferrer" href="mailto:@Model.email" title="@Model.email"><i
+                                    class="uil uil-envelope"></i>&nbsp; @Model.email</a></p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.telephoneNumber))
+                    {
+                        <p class="mb-1"><a href="tel:@Model.telephoneNumber" title="@Model.telephoneNumber"><i
+                                    class="uil uil-phone"></i>&nbsp; Điện thoại: @Model.telephoneNumber</a></p>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.hotlineNumber))
+                    {
+                        <p class="mb-1"><a href="tel:@Model.hotlineNumber" title="@Model.hotlineNumber"><i
+                                    class="uil uil-phone"></i>&nbsp; Hotline: @Model.hotlineNumber</a></p>
+                    }
+                </div>
+
+            </div>
+            <div class="d-md-flex align-items-center justify-content-between text-center text-white mt-4">
+                <p class="mb-2 mb-lg-0 w-100 copyright text-brown">© 2024 Bản quyền thuộc về <b
+                        class="text-brown">GEMSGROUP</b> | Công nghệ được cung cấp bởi <a href="https://ecotech2a.com/"
+                        class="text-brown fw-bold" target="_blank"> ECOTECH 2A</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+</div>
+
+<div class="alert alert-warning alert-dismissible fade show text-center w-100" id="alert-cookies" role="alert"
+    style="display:none;position: fixed; bottom: 0px; margin: 0; z-index: 1010;">
+    Trang web của chúng tôi sử dụng cookie để cung cấp cho bạn trải nghiệm duyệt web tốt hơn.
+    Vui lòng chấp nhận cookie trên trang web của chúng tôi để tắt thông báo này.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.telephoneNumber))
+{
+    <div id="callme" class="zalo" style="bottom: 104px;">
+    <a href="tel:@Model.telephoneNumber" class="text-violet" target="_self" rel="noreferrer"
+        title="@Model.telephoneNumber" data-bs-toggle="tooltip" data-bs-placement="right">
+        <div id="callmeMain"></div>
+    </a>
+</div>
+}
+
+@if (!string.IsNullOrEmpty(Model.facebook))
+{
+    <div id="callme" class="facebook">
+    <a href="@Model.facebook" class="text-primary" target="_blank" rel="noreferrer" title="Facebook"
+        data-bs-toggle="tooltip" data-bs-placement="right">
+        <div id="callmeMain"></div>
+    </a>
+</div>
+}

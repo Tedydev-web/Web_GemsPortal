@@ -1,0 +1,107 @@
+﻿@{
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    Web_GemsPortal.ViewModels.VM_AccountInfo account = new Web_GemsPortal.ViewModels.VM_AccountInfo();
+    if (identity.IsAuthenticated)
+    {
+        account = new Web_GemsPortal.ViewModels.VM_AccountInfo()
+                {
+                    userName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Select(c => c.Value)?.SingleOrDefault(),
+                    fullName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Name).Select(c => c.Value)?.SingleOrDefault(),
+                    avatar = identity.Claims.Where(c => c.Type == "Avatar").Select(c => c.Value).SingleOrDefault(),
+                    isAuthenticated = identity.IsAuthenticated,
+                };
+    }
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+}
+
+<!DOCTYPE html>
+<html lang="vi" style="overflow-x:hidden">
+<head>
+    @await RenderSectionAsync(name: "MetaHead", required: false)
+    <meta http-equiv="Content-Security-Policy" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="@(!string.IsNullOrEmpty(supplierInfo.description) ? supplierInfo.description : ViewData["Description"])" />
+    <meta name="keywords" content="@(!string.IsNullOrEmpty(supplierInfo.description) ? supplierInfo.name : ViewData["Keywords"])" />
+    <meta name="author" content="GEMS" />
+    <link rel="shortcut icon" id="link_favicon_shortcut_shop" type="image/x-icon" href="@supplierInfo.imageFavicon" />
+    <link rel="icon" id="link_favicon_shop" type="image/x-icon" href="@supplierInfo.imageFavicon" />
+
+    <!-- Facebook, Zalo, Telegram Meta Tags -->
+    <meta property="og:image" content="@ViewData["ImagePreview"]" />
+    <meta property="og:image:alt" content="@ViewData["Title"]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi" />
+    <meta property="og:url" href="@(new Uri($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}"))" />
+    <meta property="og:site_name" content="@(string.IsNullOrEmpty(supplierInfo.name) ? "GEMS GROUP" : supplierInfo.name)" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:description" content="@(string.IsNullOrEmpty(supplierInfo.description) ? ViewData["Description"] : supplierInfo.description)" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="@(!string.IsNullOrEmpty(supplierInfo.imageObj?.mediumUrl) ? supplierInfo.imageObj?.mediumUrl : ViewData["ImagePreview"])" />
+    <meta name="twitter:title" content="@ViewData["Title"]" />
+    <meta name="twitter:description" content="@(string.IsNullOrEmpty(supplierInfo.description) ? ViewData["Description"] : supplierInfo.description)" />
+
+    <partial name="_P_Styles" />
+    @await RenderSectionAsync(name: "Styles", required: false)
+
+    <!-- Theme css -->
+    <link href="~/assets/css/style-min.css" rel="stylesheet" asp-append-version="true" />
+
+    <!-- Css Version 2 -->
+    @* <link href="/css/style_v2-min.css" rel="stylesheet" media="print" onload="this.media='all'" asp-append-version="true" /> *@
+    <link href="/css/style_v2.css" rel="stylesheet" media="print" onload="this.media='all'" asp-append-version="true" />
+    <link href="/assets/responsive_dev/responsive_v2.css" rel="stylesheet" asp-append-version="true" />
+</head>
+
+<body class="theme-color-11">
+
+
+    <partial name="_P_HeaderMember" />
+
+    @RenderBody()
+
+    <partial name="_P_FooterMember" />
+
+    <partial name="_P_SignoutModal" model="supplierInfo" />
+
+    <partial name="_P_ListenVoiceModal" />
+
+    <partial name="_P_Scripts" model="account" />
+
+    @* @if (!string.IsNullOrEmpty(supplierInfo.hotlineNumber))
+    {
+        <div class="draggable_bubble bubble_move_cart bubble_phone">
+            <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" title="Điện thoại: @supplierInfo.hotlineNumber" href="tel:@supplierInfo.hotlineNumber" rel="nofollow" aria-label="phone"> <i class="fa fa-phone text-white fs-30 text-black"></i></a>
+        </div>
+    } *@
+    @* @if (!string.IsNullOrEmpty(supplierInfo.facebook))
+    {
+        <div class="draggable_bubble bubble_move_cart bubble_gmail">
+            <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" target="_blank" title="Chat với chúng tôi qua Facebook" href="@supplierInfo.facebook" rel="nofollow" aria-label="facebook"> <i class="fa fa-facebook text-white fs-30 text-black"></i></a>
+        </div>
+    } *@
+   @*  @if (!string.IsNullOrEmpty(supplierInfo.zalo))
+    {
+        <div class="draggable_bubble bubble_move_cart bubble_zalo">
+            <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" target="_blank" title="Chat với chúng tôi qua Zalo" href="@supplierInfo.zalo" rel="nofollow" aria-label="zalo"> <img src="~/img/zalo.png" alt="zalo" style=" width: 100%;" /></a>
+        </div>
+    } *@
+    <div class="draggable_bubble bubble_move_cart bubble_home">
+        <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" title="Trang chủ" href="/" rel="nofollow" aria-label="home"> <i class="fa text-white fa-home" aria-hidden="true"></i></a>
+    </div>
+    <div class="draggable_bubble bubble_move_cart bubble_identity">
+        <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher"  title="Trở về kênh mua hàng" onclick="ReturnMemberPage()" rel="nofollow" aria-label="buy"><i class="fa text-white fa-shopping-cart" aria-hidden="true"></i> </a>
+    </div>
+    <div class="draggable_bubble bubble_move_cart bubble_my_cart">
+        <a class="cart_food glow-on-hover avatar btn btn-circle btn-play ripple text-uppercase fs-11 animate_pusher" title="Giỏ hàng" href="/checkout/cart" rel="nofollow" aria-label="cart"> <i class="fa text-white fa-shopping-basket" aria-hidden="true"></i></a>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

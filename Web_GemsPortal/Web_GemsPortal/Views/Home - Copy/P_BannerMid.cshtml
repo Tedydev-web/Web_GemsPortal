@@ -1,0 +1,113 @@
+﻿@{var listBanner = ViewBag.BannerMid as IEnumerable<Web_GemsPortal.ViewModels.Banner.VM_BannerList>; }
+
+@if (listBanner != null && listBanner.Any())
+{
+    <section class="py-0 ratio2_1 banner_mid_wrapper">
+        @*<div class="container">
+                <div class="row partition2">
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="collection-banner">
+                                <div class="img-part">
+                                    <img src="~/assets/images/vegetables/banner/3.jpg"
+                                         class="img-fluid blur-up lazyload bg-img" alt="">
+                                </div>
+                                <div class="contain-banner content-bg">
+                                    <div>
+                                        <h2>fresh</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="collection-banner">
+                                <div class="img-part">
+                                    <img src="~/assets/images/vegetables/banner/4.jpg"
+                                         class="img-fluid blur-up lazyload bg-img" alt="">
+                                </div>
+                                <div class="contain-banner content-bg">
+                                    <div>
+                                        <h2>juices</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>*@
+        <div class="banner-goggles banner-padding ratio2_1 banner_mid">
+            <div class="container">
+                <div class="row partition3 d-flex justify-content-center responsive">
+                    @foreach (var item in listBanner)
+                    {
+                        <div class="col-md-4 pb-2 banner_mid_width">
+                            <a target="_blank" href="@item.url">
+                                <div class="collection-banner p-right">
+                                    <div class="img-part">
+                                        <img src="@item.imageUrl" class="img-fluid blur-up lazyload bg-img" alt="@item.title" loading="lazy"
+                                             onerror="this.onerror=null;this.src='/assets/images/error/home_bannermiddle.png';">
+                                    </div>
+                                    @if (!string.IsNullOrEmpty(item.title))
+                                    {
+                                        <div class="contain-banner banner-3">
+                                            <div>
+                                                <h2 class="sp-line-1" style="color:@item.titleColor;">@item.title</h2>
+                                                <h5 class="sp-line-1" style="color:@item.descShortColor;">@item.descShort</h5>
+                                            </div>
+                                        </div>}
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    @*<div class="col-md-4">
+                            <a href="#">
+                                <div class="collection-banner p-right">
+                                    <div class="img-part">
+                                        <img src="~/assets/images/vegetables/banner/5.jpg"
+                                             class="img-fluid blur-up lazyload bg-img" alt="">
+                                    </div>
+                                    <div class="contain-banner content-bg banner-3">
+                                        <div>
+                                            <h2>fruits</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="collection-banner p-right">
+                                    <div class="img-part">
+                                        <img src="~/assets/images/vegetables/banner/6.jpg"
+                                             class="img-fluid blur-up lazyload bg-img" alt="">
+                                    </div>
+                                    <div class="contain-banner content-bg banner-3">
+                                        <div>
+                                            <h2>veggies</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#">
+                                <div class="collection-banner p-right">
+                                    <div class="img-part">
+                                        <img src="~/assets/images/vegetables/banner/7.jpg"
+                                             class="img-fluid blur-up lazyload bg-img" alt="">
+                                    </div>
+                                    <div class="contain-banner content-bg banner-3">
+                                        <div>
+                                            <h2>herbs</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </section>
+    }

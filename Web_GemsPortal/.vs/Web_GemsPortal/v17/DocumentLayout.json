@@ -1,0 +1,44 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "\\\\Mac\\Home\\Workhome\\GitHub\\Web_GemsPortal\\Web_GemsPortal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{19FED8F6-680E-497A-8196-391EFB94642C}|Web_GemsPortal\\Web_GemsPortal.csproj|\\\\mac\\home\\workhome\\github\\web_gemsportal\\web_gemsportal\\web_gemsportal\\views\\shared\\_layouthome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_LayoutHome.cshtml",
+              "DocumentMoniker": "\\\\Mac\\Home\\Workhome\\GitHub\\Web_GemsPortal\\Web_GemsPortal\\Web_GemsPortal\\Views\\Shared\\_LayoutHome.cshtml",
+              "RelativeDocumentMoniker": "Web_GemsPortal\\Views\\Shared\\_LayoutHome.cshtml",
+              "ToolTip": "\\\\Mac\\Home\\Workhome\\GitHub\\Web_GemsPortal\\Web_GemsPortal\\Web_GemsPortal\\Views\\Shared\\_LayoutHome.cshtml",
+              "RelativeToolTip": "Web_GemsPortal\\Views\\Shared\\_LayoutHome.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-12T02:17:36.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

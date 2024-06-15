@@ -1,0 +1,67 @@
+﻿@{
+    var bannerLocation2 = ViewBag.bannerLocation2 as List<VM_BannerList>;
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+}
+<div class="snowflakes div_snowflakes_solution" aria-hidden="true">
+    <div class="snowflake text-primary">❅</div>
+    <div class="snowflake text-primary">❆</div>
+    <div class="snowflake text-primary">❅</div>
+    <div class="snowflake text-primary">❆</div>
+    <div class="snowflake text-primary">❅</div>
+    <div class="snowflake text-primary">❆</div>
+    <div class="snowflake text-primary">❅</div>
+    <div class="snowflake text-primary">❆</div>
+    <div class="snowflake text-primary">❅</div>
+    <div class="snowflake text-primary">❆</div>
+    <div class="snowflake text-primary">❅</div>
+    <div class="snowflake text-primary">❆</div>
+</div>
+<div class="d-flex align-items-center justify-content-center div_info_solution">
+    <img src="/img/water.png" class="avatar h-15" alt="@supplierInfo.name">
+    <h3 class="fs-40 text-center mt-5 mb-0">
+        GIẢI PHÁP TỪ <span style="color:var(--theme-color-second)">GEMS</span>
+    </h3>
+    <img src="/img/water.png" class="avatar h-15" alt="@supplierInfo.name">
+</div>
+
+<section class="wrapper bg-dark mt-0 px-0 slider_banner">
+    <div class="swiper-container swiper-hero dots-over" data-margin="0" data-autoplay="true" data-autoplaytime="10000" data-nav="true" data-dots="true" data-items="1">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                @if (bannerLocation2 != null && bannerLocation2.Any())
+                {
+                    foreach (var item in bannerLocation2)
+                    {
+                        <div class="swiper-slide bg-overlay bg-overlay-400 bg-dark bg-image" data-image-src="@item.imageUrl" onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';">
+                            <div class="container h-100">
+                                <div class="row justify-content-center h-100">
+                                    <div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0 col-xl-8 col-xxl-8 justify-content-center align-self-center">
+                                        <h2 class="display-1 fs-56 mb-4 text-white animate__animated animate__slideInDown animate__delay-1s">@item.title</h2>
+                                        <p class="lead fs-23 lh-sm mb-7 text-white animate__animated animate__slideInRight animate__delay-2s">@item.descShort</p>
+                                        @if (!string.IsNullOrEmpty(item.url))
+                                        {
+                                            <div class="animate__animated animate__slideInUp animate__delay-3s"><a href="@item.url" target="@item.url" rel="noreferrer" class="btn btn-lg btn-outline-white rounded-pill">Tìm hiểu ngay</a></div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide bg-overlay bg-overlay-400 bg-dark bg-image" data-image-src="https://img.freepik.com/free-vector/abstract-smooth-liquid-banner-presentation-backdrop_1017-42992.jpg?w=1380&t=st=1690863628~exp=1690864228~hmac=bd5bc6d1b0754b636dbcc46381c2e5a46f77efef0881b11e6ac5ba97a78bafe2">
+                        <div class="container h-100">
+                            <div class="row justify-content-center h-100">
+                                <div class="col-md-10 offset-md-1 col-lg-7 offset-lg-0 col-xl-6 col-xxl-5 text-center justify-content-center align-self-center align-items-start">
+                                    <h2 class="display-1 fs-56 mb-4 text-white animate__animated animate__slideInDown animate__delay-1s">@supplierInfo.name</h2>
+                                    <p class="lead fs-23 lh-sm mb-7 text-white animate__animated animate__slideInRight animate__delay-2s"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

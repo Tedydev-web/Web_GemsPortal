@@ -1,0 +1,109 @@
+﻿@using Web_GemsPortal.EditModels.Order
+@model EM_OrderImage
+<div class="modal fade bd-example-modal-lg theme-modal" id="modal_edit_order_image" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <b class="text-uppercase">Viết đánh đánh về đơn hàng</b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top:-8px;padding-bottom:0;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-2" style="overflow-x:hidden;">
+
+                <form id="form_data" action="/Order/P_EditOrderImage" method="post" asp-antiforgery="true">
+                    <input type="hidden" asp-for="OrderId" />
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="ImageId" />
+
+                    <div class="row">
+                        <div class="col-12">
+
+                            <div class="font-weight-bold text-uppercase text-center bg-light p-1 row bg-white mx-0 mb-1 border rounded">
+                                <span class="pt-1 pb-1"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ảnh mô tả</span>
+                            </div>
+                            <div>
+
+                                <!--Image upload-->
+                                <div class="col-12 col-sm-12 col-md-12" style="display:none;" id="div_upload_image">
+                                    <div class="col-12 filter-item">
+                                        <div class="gal-box mb-0">
+                                            <input type="file" asp-for="ImageFile" data-plugins="dropify" accept="image/jpeg, image/png" data-allowed-file-extensions="png jpg jpeg" data-height="150" data-max-file-size="5M" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="javascript:void(0)" class="text-info" onclick="ShowHidePanel('#div_view_image','#div_upload_image')">
+                                            <i class="fa fa-arrow-left"></i> Quay lại
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!--Image view-->
+                                <div class="col-12 col-sm-12 col-md-12" id="div_view_image">
+                                    <div class="col-12 filter-item text-center">
+                                        <div class="gal-box mb-0">
+                                            <a href="javascript:void(0)">
+                                                @if (string.IsNullOrEmpty(Model.imageObj?.relativeUrl))
+                                                {
+                                                    <img src="/assets/images/error/avatar.png" class="img-fluid" id="img_avatar_image" alt="Ảnh đại diện" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="@Model.imageObj?.relativeUrl" class="img-fluid" alt="Ảnh đại diện" id="img_avatar_image" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                                                }
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="javascript:void(0)" style="color: lightseagreen;margin-right:10px;" onclick="ShowHidePanel('#div_upload_image','#div_view_image')">
+                                            <i class="fa fa-pencil"></i> Thay đổi
+                                        </a>
+                                        <a href="javascript:void(0)" class="text-danger" onclick="RemoveImageInFormEditOrderImage()">
+                                            <i class="fa fa-trash"></i> Xóa
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="fw-bold">Chất lượng sản phẩm</label>
+                            <div id="full-stars-example-two">
+                                <div class="rating-group">
+                                    <label aria-label="1 star" data-rate="1" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-1" value="1" type="radio" checked="@(Model.Star == 1)">
+                                    <label aria-label="2 stars" data-rate="2" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-2" value="2" type="radio" checked="@(Model.Star == 2)">
+                                    <label aria-label="3 stars" data-rate="3" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-3" value="3" type="radio" checked="@(Model.Star == 3)">
+                                    <label aria-label="4 stars" data-rate="4" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-4" value="4" type="radio" checked="@(Model.Star == 4)">
+                                    <label aria-label="5 stars" data-rate="5" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                    <input asp-for="Star" class="rating__input" id="rating3-5" value="5" type="radio" checked="@(Model.Star == 5)">
+                                </div>
+                                <p class="desc mb-0" id="divStartDescrip" style="font-family: sans-serif; font-size:0.9rem">
+                                    <img src="/img/rate_face/5.png" />
+                                    <span></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="fw-bold">Mô tả</label>
+                            <textarea asp-for="Remark" class="form-control mb-0" placeholder="Hãy viết đánh giá của bạn về sản phẩm này..." maxlength="150" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-solid ladda-button" dir="ltr" data-style="expand-left" id="btn_submit_form">Gửi</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>

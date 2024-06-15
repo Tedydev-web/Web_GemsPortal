@@ -1,0 +1,40 @@
+﻿@{var listBanner = ViewBag.BannerBottom as IEnumerable<Web_GemsPortal.ViewModels.Banner.VM_BannerList>; }
+
+@if (listBanner != null && listBanner.Any())
+{
+    <section class="p-0">
+        <div class="home-slider div_banner_bottom_slide">
+            @foreach (var item in listBanner)
+            {
+                <div class="home height-apply p-bottom" style="min-height:50vh;">
+                    <img src="@item.imageUrl" alt="@item.title" class="bg-img blur-up lazyload" />
+                    <div class="container-lg">
+                        <div class="row">
+                            <div class="col">
+                                <div class="slider-contain" style="height: 100%; position: fixed;">
+                                    @if (!string.IsNullOrEmpty(item.title) || !string.IsNullOrEmpty(item.descShort))
+                                    {
+                                        <div class="p-2 rounded">
+                                            <h1 class="animated m-0" data-animation-in="fadeInUp" data-delay-in="0.3"
+                                                style="color:@item.titleColor">
+                                                @item.title
+                                            </h1>
+                                            <h4 class="animated m-0" data-animation-in="fadeInUp"
+                                                style="color:@item.descShortColor">
+                                                @item.descShort
+                                            </h4>
+                                            @if (!string.IsNullOrEmpty(item.url))
+                                            {
+                                                <a target="_blank" href="@item.url" class="btn btn-solid animated" data-animation-in="fadeInUp" data-delay-in="0.5">Xem</a>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}

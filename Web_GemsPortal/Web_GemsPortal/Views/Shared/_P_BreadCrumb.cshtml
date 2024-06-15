@@ -1,0 +1,72 @@
+﻿@model Web_GemsPortal.ViewModels.VM_BreadCrumb
+
+@if (Model != null)
+{
+    @* <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                @if (!Model.isHiddenTitle)
+                {
+                    <div class="col">
+                        <div class="page-title">
+                            <h2 class="sp-line-1"> title="@Model.currentName"@Model.currentName</h2>
+                        </div>
+                    </div>
+                }
+                <div class="col">
+                    <nav>
+                        <ol class="breadcrumb mx-auto d-flex">
+                            <li class="breadcrumb-item sp-line-1"><a href="/">Trang chủ</a></li>
+                            @if (!string.IsNullOrEmpty(Model.lv1Name))
+                            {
+                                <li class="breadcrumb-item sp-line-1" title="@Model.lv1Name"><a href="@Model.lv1Url">@(Model.lv1Name.Length > 50 ? Model.lv1Name.Substring(0, 50) + "..." : Model.lv1Name)</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.lv2Name))
+                            {
+                                <li class="breadcrumb-item sp-line-1" title="@Model.lv2Name"><a href="@Model.lv2Url">@(Model.lv2Name.Length > 50 ? Model.lv2Name.Substring(0, 50) + "..." : Model.lv2Name)</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.lv3Name))
+                            {
+                                <li class="breadcrumb-item sp-line-1" title="@Model.lv3Name"><a href="@Model.lv3Url">@(Model.lv3Name.Length > 50 ? Model.lv3Name.Substring(0, 50) + "..." : Model.lv3Name)</a></li>
+                            }
+                            <li class="breadcrumb-item sp-line-1 active" aria-current="page" title="@Model.currentName">@Model.currentName</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <ol class="breadcrumb breadcrumb-arrow mb-0 mt-0 pt-0">
+        <li><a href="/"><i class="fa fa-fw fa-home"></i></a></li>
+        @if (!string.IsNullOrEmpty(Model.lv1Name))
+        {
+            <li class=""><a href="@Model.lv1Url">@(Model.lv1Name.Length > 50 ? Model.lv1Name.Substring(0, 50) + "..." : Model.lv1Name)</a></li>
+        }
+        @if (!string.IsNullOrEmpty(Model.lv2Name))
+        {
+            <li class=""><a href="@Model.lv2Url">@(Model.lv2Name.Length > 50 ? Model.lv2Name.Substring(0, 50) + "..." : Model.lv2Name)</a></li>
+        }
+        @if (!string.IsNullOrEmpty(Model.lv3Name))
+        {
+            <li class=""><a href="@Model.lv3Url">@(Model.lv3Name.Length > 50 ? Model.lv3Name.Substring(0, 50) + "..." : Model.lv3Name)</a></li>
+        }
+
+        <li class="active"><span>@(Model.currentName.Length > 50 ? Model.currentName.Substring(0, 50) + "..." : Model.currentName)</span></li>
+    </ol>
+}
+else
+{
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="ti-home"></i></a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}

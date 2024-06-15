@@ -1,0 +1,402 @@
+﻿@{
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+    {
+        currentName = "Khuyến mãi",
+    };
+    System.Globalization.CultureInfo cul = System.Globalization.CultureInfo.GetCultureInfo("en-US");
+    var voucherAdmin = ViewBag.VoucherAdmin as List<M_Promotion>;
+    var couponAdmin = ViewBag.CouponAdmin as List<M_Promotion>;
+    var promotionCodeColection = ViewBag.PromotionCodeColection as List<string>;
+}
+@section MetaHead{
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles{
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts{
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script>
+        const PROMOTION_CODE_COLECTION = JSON.parse('@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(promotionCodeColection))');
+    </script>
+    <script src="~/controllers/promotion.js" asp-append-version="true"></script>
+}
+
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- Top Slider start-->
+<partial name="P_BannerTop" />
+<!-- Top slider end -->
+<!-- voucher section -->
+@if (voucherAdmin != null && voucherAdmin.Count() > 0)
+{
+    <section class="section-b-space ratio_square">
+        <div class="title4">
+            <h2 class="title-inner4"><img src="/img/icon/voucher.png" class="icon_voucher" alt="voucher" /> <span class="color-default">GEMS GROUP</span> Voucher</h2>
+            <div class="line mb-4"><span></span></div>
+        </div>
+        <div class="container container-voucher-1">
+            <div class="voucher_aft promotion_slick" style="display: flex; justify-content: space-evenly;">
+                @for (int i = 0; i < voucherAdmin.Count(); i++)
+                {
+                    <div class="card-parent">
+                        <div class="card-voucher card-green-blue @(voucherAdmin[i].limitNumber > 0 && voucherAdmin[i].limitNumber == voucherAdmin[i].usedNumber ? "disabled" : "")">
+                            @if (voucherAdmin[i].promotionSupplierObj.Count() > 0 || voucherAdmin[i].promotionCategoryObj.Count() > 0 || voucherAdmin[i].promotionProductObj.Count() > 0)
+                            {
+                                <a href="javascript:void(0)" class="icon-view-condition-promotion"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                                <div class="card card-condition-promotion">
+                                    <div class="card-body scrollbar style-1">
+                                        @if (voucherAdmin[i].promotionSupplierObj != null && voucherAdmin[i].promotionSupplierObj.Count() > 0)
+                                        {
+                                            <h5 class="sp-line-1 mb-0">Khi mua hàng</h5>
+                                            <ul class="ul-list-promotion">
+                                                @foreach (var item in voucherAdmin[i].promotionSupplierObj)
+                                                {
+                                                    <li><p class="mb-0"><a href="/npp/@item.supplierObj?.memberUrlIdentity">@item.supplierObj?.name</a></p></li>
+                                                }
+                                            </ul>
+                                        }
+                                        @if (voucherAdmin[i].promotionCategoryObj != null && voucherAdmin[i].promotionCategoryObj.Count() > 0)
+                                        {
+                                            <h5 class="sp-line-1 mb-0">Danh mục áp dụng</h5>
+                                            <ul class="ul-list-promotion">
+                                                @foreach (var item in voucherAdmin[i].promotionCategoryObj)
+                                                {
+                                                    <li><p class="mb-0">@item.categoryObj?.name</p></li>
+                                                }
+                                            </ul>
+                                        }
+                                        @if (voucherAdmin[i].promotionProductObj != null && voucherAdmin[i].promotionProductObj.Count() > 0)
+                                        {
+                                            <h5 class="sp-line-1 mb-0">Sản phẩm áp dụng</h5>
+                                            <ul class="ul-list-promotion">
+                                                @foreach (var item in voucherAdmin[i].promotionProductObj)
+                                                {
+                                                    <li><p class="mb-0"><a href="/san-pham/@item.productObj?.nameSlug-@item.productId">@item.productObj?.name</a></p></li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            <div class="main-voucher">
+                                <img class="icon-expired" src="/img/icon/forbidden.png" alt="Expired" />
+                                <div class="co-img">
+                                    @if (!string.IsNullOrEmpty(voucherAdmin[i].supplierObj?.imageObj?.mediumUrl))
+                                    {
+                                        <img src="@voucherAdmin[i].supplierObj?.imageObj?.mediumUrl" alt="Logo" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/img/icon/promotion.png" alt="Promotion" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                                    }
+                                </div>
+                                <div class="vertical"></div>
+                                <div class="content-voucher">
+                                    <h2 class="sp-line-1">@voucherAdmin[i].name</h2>
+                                    @if (voucherAdmin[i].promotionConditionApplyObj != null && voucherAdmin[i].promotionConditionApplyObj.Count() > 0)
+                                    {
+                                        <ul class="ul-list-promotion scrollbar style-1">
+                                            @foreach (var item in voucherAdmin[i].promotionConditionApplyObj)
+                                            {
+                                                <li>
+                                                    <p class="mb-0">
+                                                        <b>@item.voucherAmount?.ToString("#,###", cul.NumberFormat)<sup>đ</sup></b>
+                                                        @if (@item.orderPriceThreshold > 0)
+                                                        {
+                                                            <span>Đơn hàng từ @item.orderPriceThreshold?.ToString("#,###", cul.NumberFormat)<sup>đ</sup></span>
+                                                        }
+                                                    </p>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                    <h6 class="mb-0 sp-line-1">
+                                        <i class="ti-calendar mr-1"></i>
+                                        @if (voucherAdmin[i].startDate.Year == voucherAdmin[i].endDate.Year)
+                                        {
+                                            if (voucherAdmin[i].startDate.Month == voucherAdmin[i].endDate.Month)
+                                            {
+                                                <span>@voucherAdmin[i].startDate.Day-@voucherAdmin[i].endDate.Day thg @voucherAdmin[i].startDate.Month, @voucherAdmin[i].startDate.Year</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@voucherAdmin[i].startDate.Day/@voucherAdmin[i].startDate.Month - @voucherAdmin[i].endDate.Day/@voucherAdmin[i].endDate.Month, @voucherAdmin[i].startDate.Year</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>@voucherAdmin[i].startDate.Day/@voucherAdmin[i].startDate.Month/@voucherAdmin[i].startDate.Year - @voucherAdmin[i].endDate.Day/@voucherAdmin[i].endDate.Month/@voucherAdmin[i].endDate.Year</span>
+                                        }
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="copy-button">
+                                <input type="text" readonly value="@voucherAdmin[i].promotionCode" />
+                                @if (promotionCodeColection.Contains(voucherAdmin[i].promotionCode))
+                                {
+                                    <button disabled data-style="zoom-in" class="copybtn">ĐÃ THU THẬP</button>
+                                }
+                                else
+                                {
+                                    <button onclick="SavePromotionCode(this, '@voucherAdmin[i].promotionCode')" data-style="zoom-in" class="copybtn">THU THẬP</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                @*<div class="card-parent">
+                        <div class="card-voucher card-green-blue">
+                            <a href="javascript:void(0)" class="icon-view-condition-promotion"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                            <div class="card card-condition-promotion">
+                                <div class="card-body scrollbar style-1">
+                                    <h5 class="sp-line-1 mb-0">Thành viên áp dụng</h5>
+                                    <ul class="ul-list-promotion">
+                                        <li><p class="mb-0">H2A</p></li>
+                                        <li><p class="mb-0">H2A</p></li>
+                                    </ul>
+                                    <h5 class="sp-line-1 mb-0">Danh mục áp dụng</h5>
+                                    <ul class="ul-list-promotion">
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    </ul>
+                                    <h5 class="sp-line-1 mb-0">Sản phẩm áp dụng</h5>
+                                    <ul class="ul-list-promotion">
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="main-voucher">
+                                <img class="icon-expired" src="/img/icon/forbidden.png" alt="Expired" />
+                                <div class="co-img">
+                                    <img src="https://i.pinimg.com/originals/c7/84/67/c78467db9ff497393cb548a48f02d451.png" alt="Logo" />
+                                </div>
+                                <div class="vertical"></div>
+                                <div class="content-voucher">
+                                    <h2 class="sp-line-1">Voucher Đầu xuân 2022</h2>
+                                    <ul class="ul-list-promotion scrollbar style-1">
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                        <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    </ul>
+                                    <h6 class="mb-0 sp-line-1"><i class="ti-calendar mr-1"></i>26-30 thg 11, 2022</h6>
+                                </div>
+                            </div>
+                            <div class="copy-button">
+                                <input type="text" readonly value="GOFREE" />
+                                <button onclick="SavePromotionCode()" class="copybtn">THU THẬP</button>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </section>
+}
+<!-- coupon section -->
+@if (couponAdmin != null && couponAdmin.Count() > 0)
+{
+    <section class="section-b-space ratio_square">
+        <div class="title4">
+            <h2 class="title-inner4"><img src="/img/icon/coupon.png" class="icon_voucher" alt="coupon" /> <span class="color-default">GEMS GROUP</span> Coupon</h2>
+            <div class="line mb-4"><span></span></div>
+        </div>
+        <div class="container container-voucher-2">
+            <div class="coupon_aft promotion_slick" style="display: flex; justify-content: space-evenly;">
+                @for (int i = 0; i < couponAdmin.Count(); i++)
+                {
+                    <div class="card-parent">
+                        <div class="card-voucher card-green-blue @(couponAdmin[i].limitNumber > 0 && couponAdmin[i].limitNumber == couponAdmin[i].usedNumber ? "disabled" : "")">
+                            @if (couponAdmin[i].promotionSupplierObj.Count() > 0 || couponAdmin[i].promotionCategoryObj.Count() > 0 || couponAdmin[i].promotionProductObj.Count() > 0)
+                            {
+                                <a href="javascript:void(0)" class="icon-view-condition-promotion"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                                <div class="card card-condition-promotion">
+                                    <div class="card-body scrollbar style-1">
+                                        @if (couponAdmin[i].promotionSupplierObj != null && couponAdmin[i].promotionSupplierObj.Count() > 0)
+                                        {
+                                            <h5 class="sp-line-1 mb-0">Khi mua hàng</h5>
+                                            <ul class="ul-list-promotion">
+                                                @foreach (var item in couponAdmin[i].promotionSupplierObj)
+                                                {
+                                                    <li><p class="mb-0"><a href="/npp/@item.supplierObj?.memberUrlIdentity">@item.supplierObj?.name</a></p></li>
+                                                }
+                                            </ul>
+                                        }
+                                        @if (couponAdmin[i].promotionCategoryObj != null && couponAdmin[i].promotionCategoryObj.Count() > 0)
+                                        {
+                                            <h5 class="sp-line-1 mb-0">Danh mục áp dụng</h5>
+                                            <ul class="ul-list-promotion">
+                                                @foreach (var item in couponAdmin[i].promotionCategoryObj)
+                                                {
+                                                    <li><p class="mb-0">@item.categoryObj?.name</p></li>
+                                                }
+                                            </ul>
+                                        }
+                                        @if (couponAdmin[i].promotionProductObj != null && couponAdmin[i].promotionProductObj.Count() > 0)
+                                        {
+                                            <h5 class="sp-line-1 mb-0">Sản phẩm áp dụng</h5>
+                                            <ul class="ul-list-promotion">
+                                                @foreach (var item in couponAdmin[i].promotionProductObj)
+                                                {
+                                                    <li><p class="mb-0"><a href="/san-pham/@item.productObj?.nameSlug-@item.productId">@item.productObj?.name</a></p></li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            <div class="main-voucher">
+                                <img class="icon-expired" src="/img/icon/forbidden.png" alt="Expired" />
+                                <div class="co-img">
+                                    @if (!string.IsNullOrEmpty(couponAdmin[i].supplierObj?.imageObj?.mediumUrl))
+                                    {
+                                        <img src="@couponAdmin[i].supplierObj?.imageObj?.mediumUrl" alt="Logo" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/img/icon/promotion.png" alt="Promotion" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                                    }
+                                </div>
+                                <div class="vertical"></div>
+                                <div class="content-voucher">
+                                    <h2 class="sp-line-1">@couponAdmin[i].name</h2>
+                                    @if (couponAdmin[i].promotionConditionApplyObj != null && couponAdmin[i].promotionConditionApplyObj.Count() > 0)
+                                    {
+                                        <ul class="ul-list-promotion scrollbar style-1">
+                                            @foreach (var item in couponAdmin[i].promotionConditionApplyObj)
+                                            {
+                                                <li>
+                                                    <p class="mb-0">
+                                                        <b>@item.couponPercent%</b>
+                                                        @if (@item.orderPriceThreshold > 0)
+                                                        {
+                                                            <span>Đơn hàng từ @item.orderPriceThreshold?.ToString("#,###", cul.NumberFormat)<sup>đ</sup></span>
+                                                        }
+                                                    </p>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                    <h6 class="mb-0 sp-line-1">
+                                        <i class="ti-calendar mr-1"></i>
+                                        @if (couponAdmin[i].startDate.Year == couponAdmin[i].endDate.Year)
+                                        {
+                                            if (couponAdmin[i].startDate.Month == couponAdmin[i].endDate.Month)
+                                            {
+                                                <span>@couponAdmin[i].startDate.Day-@couponAdmin[i].endDate.Day thg @couponAdmin[i].startDate.Month, @couponAdmin[i].startDate.Year</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@couponAdmin[i].startDate.Day/@couponAdmin[i].startDate.Month - @couponAdmin[i].endDate.Day/@couponAdmin[i].endDate.Month, @couponAdmin[i].startDate.Year</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>@couponAdmin[i].startDate.Day/@couponAdmin[i].startDate.Month/@couponAdmin[i].startDate.Year - @couponAdmin[i].endDate.Day/@couponAdmin[i].endDate.Month/@couponAdmin[i].endDate.Year</span>
+                                        }
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="copy-button">
+                                <input type="text" readonly value="@couponAdmin[i].promotionCode" />
+                                @if (promotionCodeColection.Contains(couponAdmin[i].promotionCode))
+                                {
+                                    <button disabled data-style="zoom-in" class="copybtn">ĐÃ THU THẬP</button>
+                                }
+                                else
+                                {
+                                    <button onclick="SavePromotionCode(this, '@couponAdmin[i].promotionCode')" data-style="zoom-in" class="copybtn">THU THẬP</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+<!-- Mid Slider start-->
+<partial name="P_BannerMid" />
+<!-- Mid slider end -->
+<!-- Voucher member start -->
+<section class="blog ratio2_3 slick-default-margin p-0">
+    <div class="py-4 container-voucher-1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title2">
+                    <h2 class="title-inner2 mb-4"><img src="/img/icon/voucher.png" class="icon_voucher" alt="voucher" /> Voucher <span style="color: #9daaff;">SHOP</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row voucher-member" style="display: flex;" id="div_voucher_member">
+            @*<div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+                    <div class="card-voucher card-purple-blue">
+                        <a href="javascript:void(0)" class="icon-view-condition-promotion"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                        <div class="card card-condition-promotion">
+                            <div class="card-body scrollbar style-1">
+                                <h5 class="sp-line-1 mb-0">Thành viên áp dụng</h5>
+                                <ul class="ul-list-promotion">
+                                    <li><p class="mb-0">H2A</p></li>
+                                    <li><p class="mb-0">H2A</p></li>
+                                </ul>
+                                <h5 class="sp-line-1 mb-0">Danh mục áp dụng</h5>
+                                <ul class="ul-list-promotion">
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                </ul>
+                                <h5 class="sp-line-1 mb-0">Sản phẩm áp dụng</h5>
+                                <ul class="ul-list-promotion">
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main-voucher">
+                            <img class="icon-expired" src="/img/icon/forbidden.png" alt="Expired" />
+                            <div class="co-img">
+                                <img src="https://i.pinimg.com/originals/c7/84/67/c78467db9ff497393cb548a48f02d451.png" alt="Logo" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+                            </div>
+                            <div class="vertical"></div>
+                            <div class="content-voucher">
+                                <h2 class="sp-line-1">Voucher Đầu xuân 2022</h2>
+                                <ul class="ul-list-promotion scrollbar style-1">
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                    <li><p class="mb-0"><b>10%</b> Đơn hàng từ 1,000,000<sup>đ</sup></p></li>
+                                </ul>
+                                <h6 class="mb-0 sp-line-1"><i class="ti-calendar mr-1"></i>26-30 thg 11, 2022</h6>
+                            </div>
+                        </div>
+                        <div class="copy-button">
+                            <input type="text" readonly value="GOFREE" />
+                            <button onclick="SavePromotionCode()" class="copybtn">THU THẬP</button>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+        <div class="w-100 text-center">
+            <button onclick="LoadListVoucherMember()" id="btn_voucher_member_load_more" class="btn-effect offset" data-style="zoom-in" dir="ltr">XEM THÊM</button>
+        </div>
+    </div>
+</section>
+<!-- Voucher member end-->
+<!-- Coupon member start -->
+<section class="blog ratio2_3 slick-default-margin p-0">
+    <div class="py-4 container-voucher-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title2">
+                    <h2 class="title-inner2 mb-4"><img src="/img/icon/coupon.png" class="icon_voucher" alt="coupon" /> Coupon <span style="color: #9daaff;">SHOP</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row voucher-member" style="display: flex;" id="div_coupon_member">
+        </div>
+        <div class="w-100 text-center">
+            <button onclick="LoadListCouponMember()" id="btn_coupon_member_load_more" class="btn-effect offset" data-style="zoom-in" dir="ltr">XEM THÊM</button>
+        </div>
+    </div>
+</section>
+<!-- Voucher member end-->

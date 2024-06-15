@@ -1,0 +1,156 @@
+﻿@model M_Supplier;
+@{
+    var category = ViewBag.Category as List<M_Category>;
+    var menuNewsCategory = ViewBag.NewsCategory as List<M_NewsCategory>;
+    var newsCategory = menuNewsCategory?.Where(x => x.typeId == EN_NewsCategoryTypeId.News).ToList();
+    var introduceCategory = menuNewsCategory?.Where(x => x.typeId == EN_NewsCategoryTypeId.Introduce).ToList();
+    var qualityCategory = menuNewsCategory?.Where(x => x.typeId == EN_NewsCategoryTypeId.quantity).ToList();
+}
+    <div class="bg-theme text-white fw-bold fs-15 mb-0 d-none d-md-block  position-relative">
+            <div class="particles-js" id="particles_div_header"></div>
+          <div class="container py-0 d-md-flex flex-md-row">
+            <div class="d-flex flex-row align-items-center" data-cues="bounceInDown" data-delay="500">
+                <div class="icon text-white fs-22 mt-1 me-2"> <i class="uil uil-home-alt"></i></div>
+                <address class="mb-0 text-uppercase">@Model.name</address>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.hotlineNumber) || !string.IsNullOrEmpty(Model.telephoneNumber))
+            {
+                <div class="d-flex flex-row align-items-center me-6 ms-auto" data-cues="bounceInDown" data-delay="500">
+                    <div class="icon text-white fs-22 mt-1 me-2"> <i class="uil uil-phone-volume"></i></div>
+                    <p class="mb-0">
+                        <a href="tel:@(Model.hotlineNumber ?? Model.hotlineNumber)" class="link-white hover">@(Model.hotlineNumber ?? Model.hotlineNumber)</a
+                    </p>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.email))
+            {
+                <div class="d-flex flex-row align-items-center" data-cues="bounceInDown" data-delay="500">
+                    <div class="icon text-white fs-22 mt-1 me-2"> <i class="uil uil-envelope"></i></div>
+                    <p class="mb-0"><a href="mailto:@Model.email" class="link-white hover">@Model.email</a></p>
+                </div>
+            }
+        </div>
+    </div>
+
+<nav class="navbar navbar-expand-lg center-nav transparent navbar-light pt-0">
+
+    <div class="container flex-lg-row flex-nowrap align-items-center">
+        <div class="navbar-brand w-100"  data-cues="slideInDown" data-delay="500">
+            <a href="/">
+                <img class="logo-dark" height="48" src="@Model.imageObj?.relativeUrl" srcset="@Model.imageObj?.relativeUrl" alt="@Model.name" />
+                <img class="logo-light" height="48" src="@Model.imageObj?.relativeUrl" srcset="@Model.imageObj?.relativeUrl" alt="@Model.name" />
+            </a>
+        </div>
+        <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+            <div class="offcanvas-header d-lg-none">
+                <h3 class="text-white fs-30 mb-0">@Model.name</h3>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+           <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+                <ul class="navbar-nav menu_header" data-cues="bounceIn" data-delay="1500">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/">Trang chủ</a>
+                    </li>
+                
+                        <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="/gioi-thieu" data-bs-toggle="dropdown">Câu chuyện về GEMS</a>
+                             <ul class="dropdown-menu">
+                                     @if(introduceCategory != null)
+                    {
+                                 @foreach (var item in introduceCategory)
+                                 {
+                                     <li class="nav-item"><a class="dropdown-item" href="/gioi-thieu?c=@item.id">@item.name</a></li>
+                                 }
+                                 
+                    }
+                          @if(qualityCategory != null)
+                    {
+                                 @foreach (var item in qualityCategory)
+                                 {
+                                     <li class="nav-item"><a class="dropdown-item" href="/chung-nhan?c=@item.id">@item.name</a></li>
+                                 }
+                                 
+                    }
+                             </ul>
+                          </li> 
+                        
+
+                     <li class="nav-item">
+                      <a class="nav-link" href="/san-pham">Linh kiện và sản phẩm</a>
+                    </li>
+                    @if(newsCategory != null)
+                    {
+                      <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="/tin-tuc" data-bs-toggle="dropdown">Tin Tức và cẩm nang</a>
+                                 <ul class="dropdown-menu">
+                                     @foreach (var item in newsCategory)
+                                     {
+                                         <li class="nav-item"><a class="dropdown-item" href="/tin-tuc?c=@item.id">@item.name</a></li>
+                                     }
+                                 </ul>
+                             </li> 
+                  }
+                    <li class="nav-item">
+                      <a class="nav-link" href="/lien-he">Liên hệ và Phản hồi</a>
+                    </li>
+                  
+                </ul>
+                <div class="offcanvas-footer d-lg-none">
+                    <div>
+                        @if (!string.IsNullOrEmpty(Model.email))
+                        {
+                            <p class="mb-1"><a rel="noreferrer" href="mailto:@Model.email" title="@Model.email"><i class="uil uil-envelope"></i>&nbsp; @Model.email</a></p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.telephoneNumber))
+                        {
+                            <p class="mb-1"><a href="tel:@Model.telephoneNumber" title="@Model.telephoneNumber"><i class="uil uil-phone"></i>&nbsp; Điện thoại: @Model.telephoneNumber</a></p>
+                        }
+                        <nav class="nav social social-white mt-4">
+                            @if (!string.IsNullOrEmpty(Model.facebook))
+                            {
+                                <a href="@Model.facebook" title="Facebook" target="_blank" rel="noreferrer"><i class="uil uil-facebook-f"></i></a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.youtube))
+                            {
+                                <a href="@Model.youtube" title="Youtube" target="_blank" rel="noreferrer"><i class="uil uil-youtube"></i></a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.zalo))
+                            {
+                                <a href="@Model.zalo" title="Zalo" target="_blank" rel="noreferrer"><i class="fa uil-comment"></i></a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.instagram))
+                            {
+                                <a href="@Model.instagram" title="Instagram" target="_blank" rel="noreferrer"><i class="uil uil-instagram"></i></a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.twitter))
+                            {
+                                <a href="@Model.twitter" title="Twitter" target="_blank" rel="noreferrer"><i class="uil uil-twitter"></i></a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.tiktokUrl))
+                            {
+                                <a href="@Model.tiktokUrl" title="Tiktok" target="_blank" rel="noreferrer"><i class="uil uil-music-note"></i></a>
+                            }
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-other w-100 d-flex ms-auto">
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <li class="nav-item dropdown language-select text-uppercase">
+                    <div id="google_translate_element"></div>
+                    <div class="nav-link dropdown-item dropdown-toggle translate_current_lang" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img_flag_lang" height="20" width="30" src="/images/icon_language/vi.png" alt="VI" /></div>
+                    <ul class="dropdown-menu translate_select">
+                        <li class="nav-item"><div class="dropdown-item language_item notranslate" data-id="vi"><img class="img_flag_lang me-3" height="20" width="30" src="/img/icon_language/vi.png" alt="VI" />VI</div></li>
+                        <li class="nav-item"><div class="dropdown-item language_item notranslate" data-id="en"><img class="img_flag_lang me-3" height="20" width="30" src="/img/icon_language/en.png" alt="EN" />EN</div></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><div class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-info"><i class="uil uil-info-circle"></i></div></li>
+                @* <li class="nav-item"><div class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-search"><i class="uil uil-search"></i></div></li> *@
+                <li class="nav-item d-lg-none">
+                    <button type="button" class="hamburger offcanvas-nav-btn" aria-label="Show menu"><span></span></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

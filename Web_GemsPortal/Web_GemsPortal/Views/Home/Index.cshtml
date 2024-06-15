@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/sanbox/home.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@section Scripts {
+    <script src="~/lib/particles/particles.min.js"></script>
+    <script src="~/controllers/sanbox/home.js" asp-append-version="true"></script>
+}
+
+<partial name="P_BannerLocation1" />
+<partial name="P_WaterAndLive" />
+<partial name="P_CurrentSocial" />
+<partial name="P_BannerLocation2" />
+<partial name="P_Mission" />
+<partial name="P_Quatity" />
+<partial name="P_BannerLocation3" />
+<partial name="P_CustomerComment" />

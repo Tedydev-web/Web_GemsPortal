@@ -1,0 +1,184 @@
+﻿@{
+    var listBanner = ViewBag.BannerBottom as IEnumerable<Web_GemsPortal.ViewModels.Banner.VM_BannerList>;
+    var menuInfo = ViewBag.Menu as Web_GemsPortal.ViewModels.VM_Menu;
+}
+<section id="product_by_option_dev" class="addtocart_count ratio_square bg-title wo-bg">
+    <div class="collection-wrapper">
+        <div class="container container_product_option_home">
+            <div class="row row-display">
+                <!-------------Col-3---------------->
+                <div class="col-xl-3 d-none d-md-block collection-filter mt-4">
+                    <!----- Nav ------->
+                    <div @*id="sidebar-height"*@ class="sidenav marketplace-sidebar svg-icon-menu theme-card wrapper_nav_home">
+                        <h5 class="title-border mb-0"><i class="fa fa-filter text-warning" aria-hidden="true"></i> Danh mục sản phẩm</h5>
+                        <nav>
+                            <div>
+                                <div class="sidebar-back text-start d-xl-none d-block">
+                                    <i class="fa fa-angle-left pe-2"
+                                       aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <ul class="ul_menu_product_category bg-white sm pixelstrap sm-vertical pt-0" style="background: #f6f6f6; box-shadow: none !important; overflow-y: auto; max-height: 594px; ">
+                                @if (menuInfo != null && menuInfo.Categorys.Count() > 0)
+                                {
+                                    @foreach (var item in menuInfo.Categorys)
+                                    {
+                                        <li>
+                                            <a href="/san-pham?c1=@item.Id">
+                                                <img src="@(item.ImageUrl ?? "/assets/images/icon/404-error.png")" onerror="this.onerror=null;this.src='/assets/images/icon/404-error.png';"
+                                                     class="img-fluid me-2" alt="" />
+                                                @item.Name
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Banner Product -->
+                    <div class="collection-sidebar-banner mt-5 banner_mid_option_wrapper theme-card">
+                        @if (listBanner != null && listBanner.Any())
+                        {
+                            <section class="py-0 ratio2_1">
+                                <div class="banner-goggles ratio2_1 banner_mid">
+                                    <div class="container px-2">
+                                        <div class="row partition3 d-flex justify-content-center responsive_product_by_option">
+                                            @foreach (var item in listBanner)
+                                            {
+                                                <div class="col-md-3 pb-2 banner_mid_width_option">
+                                                    <a href="@item.url">
+                                                        <div class="collection-banner p-right">
+                                                            <div class="img-part">
+                                                                <img src="@item.imageUrl" class="img-fluid bg-img lazyload" alt="@item.title"
+                                                                     onerror="this.onerror=null;this.src='/assets/images/error/home_bannermiddle.png';">
+                                                            </div>
+                                                            @if (!string.IsNullOrEmpty(item.title))
+                                                            {
+                                                                <div class="contain-banner banner-3">
+                                                                    <div>
+                                                                        <h2 class="sp-line-1" style="color:@item.titleColor;">@item.title</h2>
+                                                                        <h5 class="sp-line-1" style="color:@item.descShortColor;">@item.descShort</h5>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        }
+                    </div>
+                </div>
+
+                <div class="collection-content col-xl-9 p-0-xl product_by_option_col9">
+                    <section class="addtocart_count ratio_square bg-title wo-bg" style="">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="theme-tab">
+                                        <div class="bg-title-part title-basic">
+                                            <h2 class="title"><img src="/img/gift.png" alt="gift" /> <a class="text-dark" href="/san-pham">Sản phẩm mới</a></h2>
+                                        </div>
+                                        <div>
+                                            <div class="swiper swiper_new_product" data-aos="zoom-in-down" data-aos-duration="600">
+                                                <div class="swiper-wrapper" id="div_new_product">
+                                                </div>
+                                                @* <div class="swiper-pagination"></div> *@
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-button-next"></div>
+                                                @*    <div class="swiper-scrollbar"></div> *@
+                                            </div>
+                                        </div>
+                                        <div class="bg-title-part title-basic mt-4 product_hot_zone">
+                                            <h2 class="title"><img src="/img/gift.png" alt="gift" /> <a class="text-dark" style="color:#de0909 !important" href="/san-pham">Sản phẩm nổi bật</a></h2>
+                                        </div>
+                                        <div class="product_hot_zone">
+                                            <div class="swiper swiper_product_hot" data-aos="zoom-in-down" data-aos-duration="800">
+                                                <div class="swiper-wrapper" id="div_ishot_product">
+                                                </div>
+                                                <div class="swiper-button-prev"></div>
+                                                <div class="swiper-button-next"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                @*<div class="collection-content col-xl-9 p-0-xl product_by_option_col9">
+                <section class="addtocart_count ratio_square bg-title wo-bg" style="">
+                <div class="container">
+                <div class="row">
+                <div class="col">
+                <div class="theme-tab">
+                <div class="bg-title-part title-basic">
+                <h2 class="title"><img src="/img/gift.png" alt="gift" /> <a class="text-dark" href="/san-pham">Sản phẩm mới</a></h2>
+                </div>
+                <div>
+                <div class="game-product product-m no-arrow" id="div_new_product">
+
+                </div>
+                </div>
+                <div class="bg-title-part title-basic mt-4 product_hot_zone">
+                <h2 class="title"><img src="/img/gift.png" alt="gift" /> <a class="text-dark" href="/san-pham">Sản phẩm nổi bật</a></h2>
+                </div>
+                <div class="product_hot_zone">
+                <div class="game-product product-m no-arrow" id="div_ishot_product">
+
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </section>
+                </div>*@
+
+            </div>
+            <div class="row row_display">
+
+                <div class="collection-content col-xl-12 p-0-xl product_by_option_col12">
+                    <section class="addtocart_count ratio_square bg-title wo-bg" style="">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="theme-tab">
+                                        <div class="bg-title-part title-basic">
+                                            <h2 class="title vibrate"><i class="ti-bolt text-danger"></i> <a class="text-dark" href="/san-pham">Hôm nay có gì</a></h2>
+                                            <ul class="tabs tab-title">
+                                                <li class="current">
+                                                    <a href="tab-4" id="tab-featured">Phổ biến</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="tab-5" id="tab-selling">Bán chạy</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-content-cls">
+                                            <div id="tab-4" class="tab-content active default">
+                                                <div class="six-product no-slider row" id="div_popular_product" data-aos="zoom-in" data-aos-duration="800">
+                                                </div>
+                                                <div class="row text-center p-2 mt-2"><a href="/san-pham?type=1">Xem thêm</a></div>
+                                            </div>
+                                            <div id="tab-5" class="tab-content">
+                                                <div class="six-product no-slider row" id="div_selling_product">
+                                                </div>
+                                                <div class="row text-center p-2"><a href="/san-pham?type=2">Xem thêm</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

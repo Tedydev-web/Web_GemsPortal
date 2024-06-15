@@ -1,0 +1,63 @@
+﻿@model Web_GemsPortal.Models.EM_OrderComment
+
+<form id="form_data_add_order_comment" asp-antiforgery="true">
+    <input type="hidden" asp-for="orderId" />
+
+    <div class="modal fade" id="modal_add_order_comment" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="padding:50px 0;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <b class="text-uppercase">Thêm phản hồi đơn hàng</b>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size:1.5rem;font-weight:700;line-height:1;margin-top:-8px;padding-bottom:0;"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0" style="overflow-x:hidden;">
+                    <div class="dashboard-section section-b-space" style="padding-bottom:0px;">
+                        <div class="faq-content tab-content">
+                            <div class="tab-pane fade show active">
+                                <div class="row">
+                                    <div class="col-12 px-4">
+                                        <label class="font-weight-bold">Gửi cho:</label>
+                                        <div class="pretty p-icon p-curve p-jelly">
+                                            <input type="radio" asp-for="managementType" value="@EN_OrderCommentManagementType.Member" checked>
+                                            <div class="state p-success">
+                                                <i class="icon fa fa-check"></i>
+                                                <label>Shop</label>
+                                            </div>
+                                        </div>
+                                        <div class="pretty p-icon p-curve p-jelly">
+                                            <input type="radio" asp-for="managementType" value="@EN_OrderCommentManagementType.Admin">
+                                            <div class="state p-success">
+                                                <i class="icon fa fa-check"></i>
+                                                <label>GEMS GROUP</label>
+                                            </div>
+                                        </div>
+                                        <div class="pretty p-icon p-curve p-jelly">
+                                            <input type="radio" asp-for="managementType" value="@EN_OrderCommentManagementType.All">
+                                            <div class="state p-success">
+                                                <i class="icon fa fa-check"></i>
+                                                <label>GEMS GROUP & Shop</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 px-4">
+                                        <label class="font-weight-bold" asp-for="comment">Nội dung: <span class="text-danger">(*)</span></label>
+                                        <textarea asp-for="comment" rows="3" class="form-control" placeholder="Nhập nội dung" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-solid ladda-button" dir="ltr" data-style="expand-left">Gửi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

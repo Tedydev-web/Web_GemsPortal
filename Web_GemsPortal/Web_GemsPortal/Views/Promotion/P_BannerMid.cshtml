@@ -1,0 +1,19 @@
+﻿@{var listBanner = ViewBag.BannerMid as IEnumerable<Web_GemsPortal.ViewModels.Banner.VM_BannerList>; }
+
+@if (listBanner != null && listBanner.Any())
+{
+    <section class="p-0 container">
+        <div class="banner_mid home-slider">
+            @foreach (var item in listBanner)
+            {
+                <div>
+                    <a href="@item.url">
+                        <div class="home text-start p-left promotion_slider">
+                            <img src="@item.imageUrl" alt="@item.title" class="bg-img blur-up lazyload img_news">
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+}

@@ -1,0 +1,215 @@
+﻿@model Web_GemsPortal.ViewModels.VM_AccountInfo
+
+<!--<header class="header-2 loader_top_bar">
+
+    <!-- Banner -->
+    <!--<div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="header-contact">
+                        <ul>
+                            <li class="name_shop text-white">Công Ty TNHH MTV Cuộc Sống An Toàn Việt Nam</li>
+                            <li class="text-white">
+                                <i class="fa fa-phone text-white" aria-hidden="true"></i>
+                                <span class="hotline_shop text-white">0903 380 583</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <ul class="header-dropdown">
+                        <li class="mobile-wishlist text-white">
+                            <a href="#"><i class="fa fa text-white" aria-hidden="true"></i></a>
+                        </li>
+                        @if (Model.isAuthenticated)
+                        {
+                            <li class="onhover-dropdown mobile-account">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                @Model.userName
+                                <ul class="onhover-show-div">
+                                    <li><a href="/order/view">Đơn hàng</a></li>
+                                    <li><a href="/account/profile">Hồ sơ</a></li>
+                                    <li>
+                                        <a data-toggle="modal" data-target="#modal_signout"
+                                           href="javascript:void(0)">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="onhover-dropdown mobile-account text-white">
+                                <i class="fa fa-user text-white" aria-hidden="true"></i>
+                                Đăng nhập / Đăng ký
+                                <ul class="onhover-show-div">
+                                    <li><a href="/account/signin" class="text-white">Đăng nhập</a></li>
+                                    <li><a href="/account/register" class="text-white">Đăng ký</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- Search -->
+    <!--<div class="container">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="main-menu border-section border-top-0">-->
+                    <!--Left-->
+                    <!--<div class="menu-left">
+                        <div class="navbar">
+                            <a href="javascript:void(0)" onclick="openNav()">
+                                <i class="fa-solid fa-sort-down sidebar-bar" aria-hidden="true"></i>
+                            </a>
+                            <div id="" class="sidenav">
+                                <a href="javascript:void(0)" class="sidebar-overlay" onclick="closeNav()"></a>
+                                <nav>
+                                    <a href="javascript:void(0)" onclick="closeNav()">
+                                        <div class="sidebar-back text-start">
+                                            <i class="fa fa-angle-left pe-2"
+                                               aria-hidden="true"></i> Back
+                                        </div>
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--Center-->
+                    <!--<div class="brand-logo">
+                        <a href="/">
+                            <img src="@ViewData["ImageLogo"]" class="img-fluid blur-up lazyload img_logo_shop" alt="Logo"
+                                 onerror="this.onerror=null;this.src='/assets/img/LogoHappyGreen.png';" style="max-height:90px;" />
+                        </a>
+                    </div>-->
+
+                    <!--Right-->
+                    <!--<div class="menu-right pull-right">
+                        <div>
+                            <div class="icon-nav">
+                                <ul style="display: flex;">-->
+                                    <!---------------- Menu Middle Right ------------------------>
+                                    <!--<li class="onhover-div mobile-search text-search">
+                                        <div>
+                                            <img src="~/assets/images/icon/search.png" onclick="openSearch()"
+                                                 class="img-fluid blur-up lazyload" alt=""> <i class="ti-search"
+                                                                                               onclick="openSearch()"></i>
+                                        </div>
+                                        <div id="" class="search-overlay">
+                                            <div>
+                                                <span class="closebtn" onclick="closeSearch()"
+                                                      title="Close Overlay">×</span>
+                                                <div class="overlay-content">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <form class="form_search ajax-search the-basics" role="form" action="/Product/Search" method="get">
+                                                                    <div class="typeahead__container form-group">
+                                                                        <div class="typeahead__field">
+                                                                            <div class="typeahead__query">
+                                                                                <input name="keyword" maxlength="50" required
+                                                                                       placeholder="Tìm sản phẩm mong muốn..." class="js-typeahead-product_v2 nav-search nav-search-field typeahead" autocomplete="off"
+                                                                                       aria-expanded="true">
+                                                                            </div>
+                                                                            <div class="typeahead__button">
+                                                                                <button type="button" class="btnShowSpeech border-0 p-0" style="position:relative;right:0;">
+                                                                                    <i class="ti-microphone"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                            <button type="submit" class="btn-search border-0 r-0" style="position:relative;right:0;">
+                                                                                <i class="ti-search"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-div mobile-setting">
+                                        <div>
+                                            <a href="/lien-he">
+                                                <img src="~/assets/images/icon/send2.png"
+                                                     class="img-fluid blur-up lazyload" alt=""><i class="fa-light fa-address-book"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="onhover-div mobile-cart">
+                                        <div>
+                                            <a href="/checkout/cart">
+                                                <img src="~/assets/images/icon/cart-1.png"
+                                                     class="img-fluid blur-up lazyload" alt=""> <i class="ti-shopping-cart"></i>
+                                            </a>
+                                        </div>
+                                        <span class="cart_qty_cls" style="display:block;">0</span>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!--Nav-->
+    <!--<div class="bottom-part">
+        <div class="container">
+            <div class="row ">
+                <div class="col-xl-12">-->
+                    @*  <div class=" category-menu d-none d-xl-block">
+                            <div id="toggle-sidebar" class="toggle-sidebar">
+                                <i class="fa fa-bars sidebar-bar"></i>
+                                <h5 class="mb-0">sản phẩm</h5>
+                            </div>
+                        </div>*@
+                    <!--<div class="main-nav-center">
+                        <nav id="">
+                            <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
+                            <ul id="" class="sm pixelstrap sm-horizontal">
+                                <li>
+                                    <div class="mobile-back text-end">
+                                        <i class="fa fa-angle-right ps-2"
+                                           aria-hidden="true"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/">Trang chủ</a>
+                                </li>
+                                <li>
+                                    <div class="div_li_category_menu_product category_menu_product">
+                                        <a href="/san-pham">Sản phẩm</a>
+                                        <span><i class="fa-solid fa-angle-down"></i></span>
+                                    </div>
+                                    <ul style="background:#f6f6f6;"></ul>
+                                </li>
+                                <li>
+                                    <a href="/gioi-thieu">Giới thiệu</a>
+                                </li>
+                                <li>
+                                    <a href="/tin-tuc">Tin tức</a>
+                                    <ul></ul>
+                                </li>
+                                <li>
+                                    <a href="/lien-he">Liên hệ</a>
+                                </li>-->
+                                @*<li>
+                                        <a href="https://register.koolselling.com/" target="_blank" class="has-submenu">
+                                            Làm chủ website bán hàng
+                                            <div class="lable-nav" style="font-size: 11px;">
+                                                <b class="animation-text-red">Đăng kí ngay</b>
+                                            </div>
+                                        </a>
+                                    </li>*@
+@*                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>-->*@

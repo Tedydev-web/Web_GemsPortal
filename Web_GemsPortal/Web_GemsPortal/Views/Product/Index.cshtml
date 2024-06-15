@@ -1,0 +1,400 @@
+﻿@{
+    var priceList = Web_GemsPortal.ViewModels.VM_PriceList.PriceData;
+    var breadCrumb = ViewBag.BreadCrumb as Web_GemsPortal.ViewModels.VM_BreadCrumb;
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var menuInfo = ViewBag.Menu as Web_GemsPortal.ViewModels.VM_Menu;
+}
+@section MetaHead {
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles {
+    <link href="~/assets/responsive_dev/responsive_v2.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/controllers/product.js" asp-append-version="true"></script>
+    <script>
+        /*--- hover_toggle_nav_product ---*/
+        $(".category-menu_product").hover(function () {
+            $(".sidebar_height_v2").toggleClass("display_is_none");  //Add the active class to the area is hovered
+        })
+    </script>
+
+}
+@*@section LoaderBody{
+        @await Html.PartialAsync("P_Loader")
+    }*@
+<input type="hidden" id="input_category1" value="@ViewBag.category1" />
+<input type="hidden" id="input_category2" value="@ViewBag.category2" />
+<input type="hidden" id="input_type" value="@ViewBag.type" />
+<input type="hidden" id="input_keyword" value="@ViewBag.keyword" />
+<input type="hidden" id="input_size" value="@ViewBag.size" />
+<input type="hidden" id="input_color" value="@ViewBag.color" />
+<input type="hidden" id="input_brand" value="@ViewBag.brand" />
+<input type="hidden" id="input_price" value="@ViewBag.price" />
+<input type="hidden" id="input_record" value="@ViewBag.record" />
+<input type="hidden" id="input_page" value="@ViewBag.page" />
+<input type="hidden" id="input_property_filter_0" value="@ViewBag.propertyFilter0" />
+<input type="hidden" id="input_property_filter_1" value="@ViewBag.propertyFilter1" />
+<input type="hidden" id="input_property_filter_2" value="@ViewBag.propertyFilter2" />
+<input type="hidden" id="input_property_filter_3" value="@ViewBag.propertyFilter3" />
+<input type="hidden" id="input_star" value="@ViewBag.star" />
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start -->
+<section class="section-b-space ratio_asos section_main_page py-0 product_section_main_page">
+    <div class="collection-wrapper py-4">
+        <div class="container">
+            <div class="row">
+                <!--Col3 left-->
+                <div class="col-sm-3 collection-filter" data-aos="fade-down" data-aos-duration="600">
+                    <!-- side-bar colleps block stat -->
+                    <div class="collection-filter-block" hidden>
+                        <!-- brand filter start -->
+                        <div class="collection-mobile-back">
+                            <span class="filter-back">
+                                <i class="fa fa-angle-left"
+                                   aria-hidden="true"></i> Quay lại
+                            </span>
+                        </div>
+                        <!-----------Set Brand-------------->
+                        @*  <div class="collection-collapse-block open">
+                        <h3 class="collapse-block-title">Thương hiệu</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter" id="div_list_brand">
+
+                        </div>
+                        </div>
+                        </div>*@
+
+                        @* @if (menuInfo.Categorys != null)
+                        {
+                        <!-------Set Filter FunctionProduct-------->
+                        <div class="collection-collapse-block border-0 open pb-1">
+                        <h3 class="collapse-block-title"><i class="fa fa-filter text-danger" aria-hidden="true"></i> Loại sản phẩm</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter" id="div_list_category_filter">
+                        <ul class="category-list">
+                        <li><i class="fa fa-caret-right text-danger mx-2" aria-hidden="true"></i> <a class="btn_category btn_category_0" value="0" onclick="ChangeCategory(this)" href="javascript:void(0)">Tất cả</a></li>
+                        @foreach (var item in menuInfo.Categorys)
+                        {
+                        <li><i class="fa fa-caret-right text-danger mx-2" aria-hidden="true"></i> <a class="btn_category btn_category_@(item.Id)" value="@item.Id" onclick="ChangeCategory(this)" href="javascript:void(0)">@item.Name</a></li>
+                        }
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        } *@
+
+                        @* <div class="collection-collapse-block border-0 open">
+                        <h3 class="collapse-block-title"><i class="fa fa-filter text-danger" aria-hidden="true"></i> Nhóm công dụng</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter" id="div_list_property_filter_0">
+
+                        </div>
+                        </div>
+                        </div> *@
+
+                        <!-------Set Filter HowToUseProduct-------->
+                        @*  <div class="collection-collapse-block border-0 open">
+                        <h3 class="collapse-block-title"><i class="fa fa-cutlery text-danger" aria-hidden="true"></i> Cách dùng</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter" id="div_list_property_filter_1">
+
+                        </div>
+                        </div>
+                        </div> *@
+
+                        <!-------Set Filter TypeProduct-------->
+                        @*<div class="collection-collapse-block border-0 open">
+                        <h3 class="collapse-block-title"><i class="fa fa-lemon-o text-danger" aria-hidden="true"></i> Dạng</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter" id="div_list_property_filter_2">
+
+                        </div>
+                        </div>
+                        </div> *@
+
+                        <!-------Set Filter GroupTree-------->
+                        @* <div class="collection-collapse-block border-0 open">
+                        <h3 class="collapse-block-title"><i class="fa fa-user text-dange" aria-hidden="true"></i> Đối tượng sử dụng</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter" id="div_list_property_filter_3">
+
+                        </div>
+                        </div>
+                        </div> *@
+
+                        <!-- -----Set Color  ------ -->
+                        <!--<div class="collection-collapse-block border-0 open">
+                            <h3 class="collapse-block-title">Màu sắc</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter" id="div_list_color">
+
+                                </div>
+                            </div>
+                        </div>-->
+                        <!-- ---------- Set Fillter Size  ---------- -->
+                        <!--<div class="collection-collapse-block border-0 open">
+                            <h3 class="collapse-block-title">Kích thước</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter" id="div_list_size">
+
+                                </div>
+                            </div>
+                        </div>-->
+                        <!-- ---------- Set Fillter Price   ---------- -->
+                        <div class="collection-collapse-block border-0 open" hidden>
+                            <h3 class="collapse-block-title"><i class="fa fa-filter text-danger" aria-hidden="true"></i> Giá</h3>
+                            <div class="collection-collapse-block-content">
+                                <div class="collection-brand-filter" id="div_list_price">
+                                    @if (priceList != null && priceList.Any())
+                                    {
+                                        foreach (var item in priceList)
+                                        {
+                                            <div class="form-check collection-filter-checkbox">
+                                                <input type="checkbox" class="form-check-input input_checkbox_price_search" id="input_price_@item.id" value="@item.id">
+                                                <label class="form-check-label" for="input_price_@item.id" style="font-size:15px">@item.name</label>
+                                            </div>
+                                        }
+                                    } @*<div class="form-check collection-filter-checkbox">
+                                    <input type="checkbox" class="form-check-input price-checkbox-filter" id="input_price_1" value="1">
+                                    <label class="form-check-label" for="input_price_1" style="font-size:15px">Dưới 500.000đ</label>
+                                    </div>
+                                    <div class="form-check collection-filter-checkbox">
+                                    <input type="checkbox" class="form-check-input price-checkbox-filter" id="input_price_2" value="2">
+                                    <label class="form-check-label" for="input_price_2" style="font-size:15px">500.000đ đến 1.000.000đ</label>
+                                    </div>
+                                    <div class="form-check collection-filter-checkbox">
+                                    <input type="checkbox" class="form-check-input price-checkbox-filter" id="input_price_3" value="3">
+                                    <label class="form-check-label" for="input_price_3" style="font-size:15px">1.000.000đ đến 2.000.000đ</label>
+                                    </div>
+                                    <div class="form-check collection-filter-checkbox">
+                                    <input type="checkbox" class="form-check-input price-checkbox-filter" id="input_price_4" value="4">
+                                    <label class="form-check-label" for="input_price_4" style="font-size:15px">Trên 2.000.000đ</label>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        @*     <div class="collection-collapse-block border-0 open">
+                        <h3 class="collapse-block-title"><i class="fa fa-star text-danger" aria-hidden="true"></i> Sao</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="collection-brand-filter">
+                        <div class="form-check collection-filter-checkbox">
+                        <input type="checkbox" class="form-check-input input_checkbox_star_search" id="input_star_5" value="5" onchange="OnchangeStar()">
+                        <label class="form-check-label" for="input_star_5" style="font-size:15px">
+                        <span class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        </span>
+                        </label>
+                        </div>
+                        <div class="form-check collection-filter-checkbox">
+                        <input type="checkbox" class="form-check-input input_checkbox_star_search" id="input_star_4" value="4" onchange="OnchangeStar()">
+                        <label class="form-check-label" for="input_star_4" style="font-size:15px">
+                        <span class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star"></i>
+                        </span>
+                        </label>
+                        </div>
+                        <div class="form-check collection-filter-checkbox">
+                        <input type="checkbox" class="form-check-input input_checkbox_star_search" id="input_star_3" value="3" onchange="OnchangeStar()">
+                        <label class="form-check-label" for="input_star_3" style="font-size:15px">
+                        <span class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        </span>
+                        </label>
+                        </div>
+                        @*<div class="form-check collection-filter-checkbox">
+                        <input type="checkbox" class="form-check-input input_checkbox_star_search" id="input_star_2" value="2">
+                        <label class="form-check-label" for="input_star_2" style="font-size:15px">
+                        <span class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        </span>
+                        </label>
+                        </div>
+                        <div class="form-check collection-filter-checkbox">
+                        <input type="checkbox" class="form-check-input input_checkbox_star_search" id="input_star_1" value="1">
+                        <label class="form-check-label" for="input_star_1" style="font-size:15px">
+                        <span class="rating">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        </span>
+                        </label>
+                        </div>*@
+                        @*</div>
+                        </div>
+                        </div> *@
+
+                        <!-- Set Prire -->
+                        @*<div class="collection-collapse-block border-0 open">
+                        <h3 class="collapse-block-title">Giá</h3>
+                        <div class="collection-collapse-block-content">
+                        <div class="wrapper mt-3"> GIÁ
+                        <div class="range-slider">
+                        <input type="text" class="js-range-slider" value="" />
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+                    </div>
+                    <!-- New Product -->
+                    <div class="theme-card theme_card_product">
+                        <h5 class="title-border">Sản phẩm mới</h5>
+                        <div class="offer-slider slide-1 div_list_new_product" @* id="div_list_new_product"*@>
+                        </div>
+                    </div
+                    @*  <div class="collection-sidebar-banner" id="div_list_qc_left">
+                    </div> *@
+                    <!-- side-bar banner end here -->
+                </div>
+                <!--Col9 left-->
+                <div class="collection-content col list_product pb-5" data-aos="zoom-in-up" data-aos-duration="600">
+                    <div class="page-main-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @*<div class="top-banner-wrapper">
+                                <a href="#">
+                                <img src="~/assets/images/mega-menu/2.jpg"
+                                class="img-fluid blur-up lazyload" alt="">
+                                </a>
+                                <div class="top-banner-content small-section">
+                                <h4>BIGGEST DEALS ON TOP BRANDS</h4>
+                                <p>
+                                The trick to choosing the best wear for yourself is to keep in mind your
+                                body type, individual style, occasion and also the time of day or
+                                weather.
+                                In addition to eye-catching products from top brands, we also offer an
+                                easy 30-day return and exchange policy, free and fast shipping across
+                                all pin codes, cash or card on delivery option, deals and discounts,
+                                among other perks. So, sign up now and shop for westarn wear to your
+                                heart’s content on Multikart.
+                                </p>
+                                </div>
+                                </div>*@
+                                <div class="collection-product-wrapper">
+                                    <!--Fillter Product-->
+                                    <div class="product-top-filter">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="filter-main-btn">
+                                                    <span class="filter-btn btn btn-theme">
+                                                        <i class="fa fa-filter"
+                                                           aria-hidden="true"></i> BỘ LỌC
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="product-filter-content">
+                                                    <div class="search-count">
+                                                        <h5 class="text-filter h5_count_record_product">...</h5>
+                                                    </div>
+                                                    <!--<div class="collection-view">
+                                                        <ul>
+                                                            <li><i class="fa fa-th grid-layout-view"></i></li>-->
+                                                    @*<li><i class="fa fa-list-ul list-layout-view"></i></li>*@
+                                                    <!--</ul>
+                                                    </div>-->
+                                                    @*<div class="collection-grid-view">
+                                                    <ul>
+                                                    <li>
+                                                    <img src="~/assets/images/icon/2.png" alt=""
+                                                    class="product-2-layout-view">
+                                                    </li>
+                                                    <li>
+                                                    <img src="~/assets/images/icon/3.png" alt=""
+                                                    class="product-3-layout-view">
+                                                    </li>
+                                                    <li>
+                                                    <img src="~/assets/images/icon/4.png" alt=""
+                                                    class="product-4-layout-view">
+                                                    </li>
+                                                    <li>
+                                                    <img src="~/assets/images/icon/6.png" alt=""
+                                                    class="product-6-layout-view">
+                                                    </li>
+                                                    </ul>
+                                                    </div>*@
+                                                    <div class="product-page-per-view">
+                                                        <select onchange="OnchangeRecord()" id="select_record_search">
+                                                            <option value="24">
+                                                                24 sản phẩm / trang
+                                                            </option>
+                                                            <option value="36">
+                                                                36 sản phẩm / trang
+                                                            </option>
+                                                            <option value="48">
+                                                                48 sản phẩm / trang
+                                                            </option>
+                                                            <option value="64">
+                                                                64 sản phẩm / trang
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="product-page-filter" hidden>
+                                                        <select onchange="OnchangeType()" id="select_type_search">
+                                                            <option value="1">Phổ biến</option>
+                                                            <option value="2">Bán chạy</option>
+                                                            <option value="3">Hàng mới</option>
+                                                            <option value="4">Giá thấp</option>
+                                                            <option value="5">Giá cao</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="listProduct-data-not-found">
+                                    </div>
+                                    <!--Single Product-->
+                                    <div class="product-wrapper-grid">
+                                        <div class="row margin-res" id="div_main_data">
+                                        </div>
+                                    </div>
+                                    <!--Pagination Product-->
+                                    <div class="product-pagination">
+                                        <div class="theme-paggination-block">
+                                            <div class="col-xl-3 col-md-3 col-sm-3" style="margin:0 auto">
+                                                <nav aria-label="Page navigation">
+                                                    <ul class="pagination" id="ul_main_pagination">
+                                                    </ul>
+                                                </nav>
+                                                @* <div class="col-xl-6 col-md-6 col-sm-12">
+                                                <div class="product-search-count-bottom search-count">
+                                                <h5 class="h5_count_record_product">...</h5>
+                                                </div>
+                                                </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,53 @@
+﻿@model int
+@{
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    string userName = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Select(c => c.Value).FirstOrDefault();
+    string name = identity.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Name).Select(c => c.Value).FirstOrDefault();
+    string avatar = identity.Claims.Where(c => c.Type == "Avatar").Select(c => c.Value).FirstOrDefault();
+}
+
+<div class="dashboard-sidebar bg-white">
+    <div class="profile-top pt-2">
+        <div class="profile-image">
+            <img src="@avatar" alt="Avatar" class="img-fluid"
+                 onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';" />
+        </div>
+        <div class="profile-detail">
+            <h5>@userName</h5>
+            <h4>@name</h4>
+        </div>
+    </div>
+    <div class="faq-tab">
+        <ul class="nav nav-tabs bg-white div_menu_account">
+            <li class="nav-item">
+                <a class="nav-link bg-white @(Model == 1 ? " active" : "" )"
+                   href="/account/profile">Thông tin tài khoản</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-white @(Model == 2 ? " active" : "" )"
+                   href="/order/view">Đơn hàng của tôi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-white @(Model == 3 ? " active" : "" )"
+                   href="/account/address">Sổ địa chỉ</a>
+            </li>
+           @*  <li class="nav-item">
+                <a class="nav-link bg-white @(Model == 4 ? " active" : "" )"
+                   href="/colection-voucher-coupon">Ví Voucher/Coupon</a>
+            </li> *@
+            @*
+        <li class="nav-item">
+            <a class="nav-link @(Model == 4 ? " active" : "" )"
+               href="#settings">Cài đặt</a>
+        </li>*@
+            @* <li class="nav-item">
+            <a class="nav-link bg-white"
+               href="https://register.koolselling.com/" target="_blank">Bán hàng cùng KoolSelling</a>
+        </li>*@
+            <li class="nav-item">
+                <a class="nav-link bg-white text-danger" data-toggle="modal" data-target="#modal_signout"
+                   href="javascript:void(0)">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>

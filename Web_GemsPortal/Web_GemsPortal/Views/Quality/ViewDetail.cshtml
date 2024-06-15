@@ -1,0 +1,50 @@
+﻿@model Web_GemsPortal.Models.M_News
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var breadCrumb = new Web_GemsPortal.ViewModels.VM_BreadCrumb
+    {
+        currentName = Model.title,
+    };
+}
+@section MetaHead{
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles{
+    <style>
+        .blog-detail img, p, iframe {
+            width: auto !important;
+            max-width: 100% !important;
+        }
+
+        .blog-detail p, h1, h2, h3, h4, span, strong, b, i {
+            word-break: break-word;
+        }
+
+            h1 span {
+                color: #000;
+            }
+    </style>
+}
+
+<!-- breadcrumb start -->
+<partial name="_P_BreadCrumb" model="breadCrumb" />
+<!-- breadcrumb end -->
+<!-- content section start -->
+<section class="blog-detail-page section-b-space ratio2_3 blog-page blog_detail_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 blog-detail">
+                <img src="@(string.IsNullOrEmpty(Model.imageObj?.relativeUrl) ? "/assets/images/error/news.png" : Model.imageObj?.relativeUrl)"
+                     class="img-fluid blur-up lazyload" alt="@Model.title"
+                     onerror="this.onerror=null;this.src='/assets/images/error/news.png';"
+                     style="display:block;margin-left:auto;margin-right:auto;max-width: 100%; width: auto !important; max-height: 500px;">
+                <h3>@Model.title</h3>
+                <ul class="post-social">
+                    <li>@Model.createdAt.ToString("dd-MM-yyyy")</li>
+                </ul>
+                @Html.Raw(Model.detail)
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content section end -->

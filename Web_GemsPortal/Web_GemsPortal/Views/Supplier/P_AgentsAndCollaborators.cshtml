@@ -1,0 +1,205 @@
+﻿﻿
+@* <div class="modal fade bd-example-modal-lg theme-modal" id="model_register_member" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal1">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="offer-content">
+                                    <form class="theme-form" method="post" data-parsley-validate id="form_data" asp-antiforgery="true">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" asp-for="TokenReCAPTCHA" />
+                                        <input id="input_check_toggle_attr_required_for_ward" type="hidden" value="1" />
+
+                                        <div class="form-row row">
+
+                                            <div class="col-md-6 mb-3">
+                                                <label asp-for="FirstName">Họ <span class="text-danger">(*)</span></label>
+                                                <input type="text" class="form-control mb-0" asp-for="FirstName" maxlength="30" placeholder="Nhập họ của bạn" required />
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label asp-for="LastName">Tên <span class="text-danger">(*)</span></label>
+                                                <input type="text" class="form-control mb-0" asp-for="LastName" maxlength="20" placeholder="Nhập tên của bạn" required />
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label asp-for="TelephoneNumber">Điện thoại <span class="text-danger">(*)</span></label>
+                                                <input type="text" asp-for="TelephoneNumber" maxlength="12" class="form-control mb-0" placeholder="Nhập điện thoại" required />
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label asp-for="Email">Email <span class="text-danger">(*)</span></label>
+                                                <input type="email" asp-for="Email" class="form-control mb-0" placeholder="Nhập email" maxlength="50" required pattern=@(@"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$") />
+                                            </div> *@
+
+@*<div class="col-md-12 mb-3">
+                                            <label asp-for="Name">Tên doanh nghiệp <span class="text-danger">(*)</span></label>
+                                            <input type="text" class="form-control mb-0" asp-for="Name" maxlength="100" placeholder="Nhập tên doanh nghiệp của bạn" required />
+                                            </div> *@
+
+@* <div class="col-md-6 mb-3">
+                                            <label asp-for="SupplierModelId">Loại hình doanh nghiệp <span class="text-danger">(*)</span></label>
+                                            <select asp-for="SupplierModelId" asp-items="ViewBag.SupplierModelId" data-none-results-text="Không tìm thấy kết quả phù hợp"
+                                            data-none-selected-text="Vui lòng chọn loại hình" title="Vui lòng chọn loại hình" data-live-search-placeholder="Nhập loại hình cần tìm"
+                                            class="selectpicker form-control show-tick" data-style="border" data-live-search="false" data-size="10">
+                                            </select>
+                                            </div> *@
+
+@*  <div class="col-md-6 mb-3">
+                                            <label asp-for="provinceId">Tỉnh/Thành phố <span class="text-danger">(*)</span></label>
+                                            <select asp-for="provinceId" asp-items="ViewBag.ProvinceId" onchange="OnChangeProvinceFormEvent(this, 'form_data')" data-none-results-text="Không tìm thấy kết quả phù hợp"
+                                            data-none-selected-text="Vui lòng chọn tỉnh/thành phố" title="Vui lòng chọn tỉnh/thành phố" data-live-search-placeholder="Nhập tỉnh/thành phố cần tìm"
+                                            class="selectpicker form-control show-tick" data-style="border" data-live-search="true" data-size="10">
+                                            <option value="0">--Chọn--</option>
+                                            </select>
+                                            <ul class="parsley-errors-list filled" style="display:none;" id="parsley-id-province" aria-hidden="false">
+                                            <li class="parsley-required">Thông tin bắt buộc.</li>
+                                            </ul>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                            <label asp-for="districtId">Quận/Huyện <span class="text-danger">(*)</span></label>
+                                            <div class="position-relative" id="div_zone_district">
+                                            <select asp-for="districtId" onchange="OnChangeDistrictFormEvent(this, 'form_data')" disabled data-none-results-text="Không tìm thấy kết quả phù hợp"
+                                            data-none-selected-text="Vui lòng chọn quận/huyện" title="Vui lòng chọn quận/huyện" data-live-search-placeholder="Nhập quận/huyện cần tìm"
+                                            class="selectpicker form-control show-tick" data-style="border" data-live-search="true" data-size="10">
+                                            <option value="0">--Chọn--</option>
+                                            </select>
+                                            <ul class="parsley-errors-list filled" style="display:none;" id="parsley-id-district" aria-hidden="false">
+                                            <li class="parsley-required">Thông tin bắt buộc.</li>
+                                            </ul>
+                                            </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                            <label asp-for="wardId">Phường/Xã</label>
+                                            <div class="position-relative" id="div_zone_ward">
+                                            <select asp-for="wardId" data-none-results-text="Không tìm thấy kết quả phù hợp" disabled
+                                            data-none-selected-text="Vui lòng chọn phường/xã" title="Vui lòng chọn phường/xã" data-live-search-placeholder="Nhập phường/xã cần tìm"
+                                            class="selectpicker form-control show-tick" data-style="border" data-live-search="true" data-size="10">
+                                            <option value="0">--Chọn--</option>
+                                            </select>
+                                            <ul class="parsley-errors-list filled" style="display:none;" id="parsley-id-ward" aria-hidden="false">
+                                            <li class="parsley-required">Thông tin bắt buộc.</li>
+                                            </ul>
+                                            </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                            <label asp-for="AddressText"> Địa chỉ <span class="text-danger">(*)</span></label>
+                                            <input asp-for="AddressText" class="form-control" placeholder="Nhập địa chỉ" maxlength="150" required />
+                                            </div> *@
+
+@*  <div class="col-md-6 mb-3" hidden>
+                                            <label asp-for="ImageFile">Ảnh chân dung</label>
+                                            <input type="file" asp-for="ImageFile" data-plugins="dropify"
+                                            accept="image/jpeg, image/png" data-allowed-file-extensions="png jpg jpeg"
+                                            data-height="150" data-max-file-size="5M" />
+                                            </div>
+
+                                            <div class="col-md-6 mb-3" hidden>
+                                            <label asp-for="ListImageFile">Chứng nhận OCOP <span class="text-danger">(*)</span></label>
+                                            <div>
+                                            <div class="dropzone" id="multipleUploadImageAdd">
+                                            <div class="fallback">
+                                            <input type="file" asp-for="ListImageFile"
+                                            accept="image/jpeg, image/png" data-height="100" multiple />
+                                            </div>
+                                            <div class="dz-message needsclick m-0">
+                                            <i class="h1 text-muted ti-cloud-up"></i>
+                                            <h5>Kéo thả hoặc chọn vào để tải ảnh.</h5>
+                                            <span class="text-muted font-13">
+                                            (Dung lượng ảnh tối đa <strong>
+                                            <span id="maxFileSizeConst"></span>MB
+                                            </strong>.
+                                            Tải lên tối đa <strong id="imageListMaxFiles">4</strong> hình. <br />
+                                            Hình ảnh có định dạng là <strong>.png</strong> hoặc
+                                            <strong>.jpg</strong>)
+                                            </span>
+                                            </div>
+                                            </div>
+                                            <div class="dropzone-previews mt-3" id="file-previews-add"></div>
+                                            <div class="d-none" id="uploadPreviewTemplateAdd">
+                                            <div class="card mt-1 mb-0 shadow-none border">
+                                            <div class="p-2">
+                                            <div class="row align-items-center">
+                                            <div class="col-auto">
+                                            <img data-dz-thumbnail src="#"
+                                            class="avatar-sm rounded bg-light" alt="">
+                                            </div>
+                                            <div class="col pl-0">
+                                            <a href="javascript:void(0);"
+                                            class="text-muted font-weight-bold" data-dz-name></a>
+                                            <p class="mb-0" data-dz-size></p>
+                                            </div>
+                                            <div class="col-auto">
+                                            <a href="" class="btn btn-link btn-lg text-muted" style="text-decoration:none;"
+                                            data-dz-remove>
+                                            <i class="ti-close text-danger"></i>
+                                            </a>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div> *@
+
+@* <div class="col-md-12 mb-3">
+                                            <label asp-for="Description">Về bản thân <span class="text-danger">(*)</span></label>
+                                            <textarea asp-for="Description" class="form-control mb-0" placeholder="Đôi lời về bản thân, kinh nghiệm, mục tiêu, mong muốn..." maxlength="250" rows="6" required></textarea>
+                                            </div> *@
+
+@* <p>
+                                            Bằng cách ấn vào nút “Gửi”, tôi đồng ý với
+                                            <a href="/pdf/policy/ĐIỀU KHOẢN SỬ DỤNG.pdf" target="_blank">Điều Khoản Sử Dụng</a>,
+                                            <a href="/pdf/policy/CHÍNH SÁCH BẢO MẬT.pdf" target="_blank"> Chính Sách Bảo Mật</a> và
+                                            <a href="/pdf/policy/QUY CHẾ HOẠT ĐỘNG.pdf" target="_blank"> Quy Chế Hoạt Động</a>
+                                            của <span class="contactName-shop">Website</span>
+                                            </p> *@
+
+@* <div>
+                                                <strong class="text-success"><i class="fa fa-question-circle" aria-hidden="true"></i> HƯỚNG DẪN ĐĂNG KÝ TRẢI NGHIỆM <br /></strong>
+                                                <p class="mb-2 mt-2"><i class="fa fa-caret-right text-danger" aria-hidden="true"></i><strong> BƯỚC 1: </strong> Nhập thông tin vào biểu mẫu ở phía trên và nhấn nút <span class="text-light fw-bold bg-success rounded-1 p-1"> <i class="fa fa-paper-plane" aria-hidden="true"></i> Gửi</span></p>
+                                                <p class="mb-2"><i class="fa fa-caret-right text-danger" aria-hidden="true"></i><strong> BƯỚC 2: </strong> Sau khi thao tác "Gửi", hệ thống TMDT247 sẽ khởi tạo tài khoản của bạn, thông tin đăng nhập hệ thống sẽ được gửi về email trong thời gian 24h !</p>
+                                                <p class="mb-2"><i class="fa fa-caret-right text-danger" aria-hidden="true"></i><strong> BƯỚC 3: </strong> Sau khi nhận được sự phản hồi về EMAIL và SMS, tiếp theo đó quý khách truy cập hệ thống theo thông tin trong GMAIL và trải nghiệm sử dụng</p>
+                                                <hr />
+                                                <strong class="text-danger"><i class="fa fa-info-circle" aria-hidden="true"></i> LỢI ÍCH KHI THAM GIA SÀN TMDT247<br /></strong>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 1: </strong> Giao dịch online nhanh chóng và an toàn</p>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 2: </strong> Sở hữu Website riêng và liên kết đến sàn TMDT247</p>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 3: </strong> Tối ưu hóa chi phí hoạt động và xây dựng nền tảng thương mại điện tử</p>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 4: </strong> Kết nối giao thương, mở rộng thị trường tiếp cận người tiêu đùng và nhà đầu tư</p>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 5: </strong> Cơ hội quảng bá Doanh nghiệp/Cửa hàng thông qua trang mạng xã hội chung của sàn TMDT247</p>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 6: </strong> Quản lý Đơn hàng và Sản phẩm dễ dàng từ trực tiếp Trang quản trị SHOP-PRO hoặc Trang quản trị TMDT247</p>
+                                                <p class="mb-2 mt-2"><i class="fa fa-hand-o-right text-danger" aria-hidden="true"></i><strong> Lợi ích 7: </strong> Và còn rất nhiều tính năng tiện nghi khác giúp bạn kinh doanh online hiệu quả hơn</p>
+
+                                                <hr />
+                                                <p class="mb-1"><i class="fa fa-info-circle text-info" aria-hidden="true"></i> <i style="line-height: normal;">Đây là tài khoản để trải nghiệm giải pháp TMDT247 <a target="_blank" href="https://shop-plus.tmdt247.vn">(WEBSITE SHOP-PRO)</a>, sau khi trải nghiệm quý khách có thể liên hệ trực tiếp đến chúng tôi bằng chức năng chúng tôi đã tích hợp trong trang quản trị SHOP-PRO để được sự hỗ trợ liên kết bán hàng trực tiếp trên sàn TMDT247 nhé.</i> </p>
+
+                                                <div class="col-md-12 text-right">
+                                                    <button class="btn btn-solid ladda-button" dir="ltr"
+                                                            data-style="expand-right" id="btn-submitForm" type="submit">
+                                                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Gửi
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@

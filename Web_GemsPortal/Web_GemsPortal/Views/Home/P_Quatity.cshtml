@@ -1,0 +1,53 @@
+﻿@{
+    List<string> listColor = new List<string> { "#ffbc4e", "#f99a00", "#8f67ff", "#679aff", "#67d9ff", "#67ffde", "#ff6767", "#adff67", "#ffe552", "#8f67ff" };
+    var listQuality = ViewBag.ListQuantity as List<M_News>;
+    int key = 0;
+}
+@if (listQuality != null && listQuality.Any())
+{
+    <section class="wrapper bg-light section_quantity mt-0" style="background-image: url(&quot;/assets-sanbox/img/map.png&quot;);">
+        <div class="pb-5">
+            <div class="row div_title_section_quantity mb-2">
+                <div class="col-lg-12">
+                    <h2 class="fs-30 text-uppercase text-center my-2"><i class="uil uil-star text-danger"></i>GEMS GROUP VÀ CÁC CHỨNG NHẬN ĐẢM BẢO VỀ CHẤT LƯỢNG<i class="uil uil-star text-danger"></i></h2>
+                    <h4 class="display-7 text-center text-primary">
+                        QUY TRÌNH ĐĂNG KÝ CHỨNG NHẬN VÀ KIỂM THỬ NGHIÊM NGẶT, ĐẢM BẢO CHẤT LƯỢNG TỐT NHẤT DÀNH CHO KHÁCH HÀNG<br />
+                        CHÚNG TÔI CAM KẾT MANG LẠI CHO BẠN SỰ TỰ TIN VÀ NIỀM TIN TƯỞNG TUYỆT ĐỐI VÀO CHẤT LƯỢNG CỦA SẢN PHẨM
+                    </h4>
+                </div>
+                <!-- /column -->
+            </div>
+            <!-- /.row -->
+            <div class="position-relative py-6 pb-2 overflow-hidden">
+                <div class="shape rounded-circle bg-soft-yellow rellax w-16 h-16" data-rellax-speed="1" style="bottom: 0.5rem; right: -1.7rem; transform: translate3d(0px, 18px, 0px);"></div>
+                <div class="shape rounded-circle bg-line red rellax w-16 h-16" data-rellax-speed="1" style="top: 0.5rem; left: -1.7rem; transform: translate3d(0px, -3px, 0px);"></div>
+                <div class="swiper-container dots-closer mb-6 swiper-container-1" data-margin="10" data-dots="false" data-items-xxl="5" data-items-xl="4" data-items-lg="3" data-items-md="3" data-items-xs="2" data-nav="true">
+                    <div class="swiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                        <div class="swiper-wrapper" id="swiper-wrapper-b6e871a4155d5cad" aria-live="off" style="cursor: grab; transform: translate3d(0px, 0px, 0px);">
+                            @foreach (var item in listQuality)
+                            {
+                                key++;
+                                <div class="swiper-slide my-2">
+                                    <div class="project" style="box-shadow: @listColor[key] 8.4px 8.4px 1.2px;">
+                                        <figure class="rounded spotlight"><img src="@(!string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? item.imageObj?.relativeUrl : "/assets/images/error/home_bannertop.png")" srcset="@(!string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? item.imageObj?.relativeUrl : "/assets/images/error/home_bannertop.png") 2x" alt="@item.title" onerror="this.onerror=null;this.src='/assets/images/error/home_bannertop.png';" /><a class="item-link" href="@(!string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? item.imageObj?.relativeUrl : "/assets/images/error/home_bannertop.png")" data-glightbox data-gallery="projects-group"><i class="uil uil-focus-add"></i></a></figure>
+                                        <div class="project-details d-flex justify-content-center flex-column">
+                                            <div class="post-header py-2">
+                                                <a href="/chung-nhan/@(item.titleSlug)-@(item.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.title" class="mb-0 px-2 sp-line-1"> @item.title</a>@* <span class="fs-15 text-uppercase mb-3 fw-bolder text-dark underline-3 style-2 mb-1 yellow"></span> *@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <div class="swiper-controls"><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div></div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="/gioi-thieu" class="btn btn-lg btn-primary rounded-pill">Xem thêm</a>
+            </div>
+        </div>
+    </section>
+}

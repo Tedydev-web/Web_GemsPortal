@@ -1,0 +1,20 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<Web_GemsPortal.Services.ReCAPTCHASettings> GoogleReCAPTCHA
+<style>
+    .grecaptcha-badge{
+        bottom: 62px !important;
+    }
+</style>
+<script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.ReCAPTCHA_Site_Key"></script>
+<script>
+    var reCATPCHA_Site_Key = "@GoogleReCAPTCHA.Value.ReCAPTCHA_Site_Key";
+    @*InitOrResetReCAPTCHA();
+    function InitOrResetReCAPTCHA() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.ReCAPTCHA_Site_Key', { action: 'submit' }).then(function (token) {
+                // Add your logic to submit to your backend server here.
+                document.getElementById("TokenReCAPTCHA").value = token;
+            });
+        });
+    }*@
+</script>

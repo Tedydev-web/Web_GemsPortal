@@ -1,0 +1,215 @@
+﻿@using System.Text.Json
+@model Web_GemsPortal.ViewModels.Product.VM_ProductDetail
+@{
+    int countImageList = 0;
+}﻿
+
+<div class="modal fade bd-example-modal-xl theme-modal" id="modal_detai_product" tabindex="-1" role="dialog" aria-hidden="true">
+    <input id="input_product_id" type="hidden" value="@Model.Id"/>
+    <input id="input_list_price" type="hidden" value="@JsonSerializer.Serialize(Model.ProductPriceObjs)" />
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal1">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg p-2">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="offer-content">
+
+                                    <section class="detail_product_wrapper pt-4">
+                                        <div class="collection-wrapper detail_product">
+                                            <div class="container">
+                                                <div class="row div_content_detail">
+                                                    <div class="col-md-5 col-lg-6 ">
+                                                        <div class="product-slick div_image_product_slick">
+                                                            @foreach (var item in Model.ImageListObj)
+                                                            {
+                                                                <div>
+                                                                    <img src="@(string.IsNullOrEmpty(item.RelativeUrl) ? "/assets/images/error/product_1x1_medium.png" : item.RelativeUrl)" data-zoom-image="@(string.IsNullOrEmpty(item.RelativeUrl) ? "/assets/images/error/product_1x1_medium.png" : item.RelativeUrl)" alt="@Model.Name" class="img-fluid blur-up lazyload mb-0 image_zoom_cls-@countImageList"
+                                                                         onerror="this.onerror=null;this.src='/assets/images/error/product_1x1_medium.png';" />
+                                                                </div>
+                                                                countImageList++;
+                                                            }
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 p-0">
+                                                                <div class="slider-nav div_slider_nav">
+                                                                    @foreach (var item in Model.ImageListObj)
+                                                                    {
+                                                                        <div>
+                                                                            <img src="@(string.IsNullOrEmpty(item.SmallUrl) ? "/assets/images/error/product_1x1_medium.png" : item.SmallUrl)" alt="@Model.Name" class="img-fluid blur-up lazyload mb-0" style="max-height:650px;"
+                                                                                 onerror="this.onerror=null;this.src='/assets/images/error/product_1x1_medium.png';">
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 col-lg-6 rtl-text">
+                                                        <div class="product-right">
+                                                            @if (Model.TradeMarkId != null && Model.TradeMarkId != 0)
+                                                            {
+                                                                <div class="label-section mb-0">
+                                                                    <span class="label-text pl-0">Thương hiệu: </span>
+                                                                    <span class="color-default"><a href="/san-pham?brand=@Model.TradeMarkId">@Model.TradeMarkName</a></span>
+                                                                </div>
+                                                            }
+                                                            <h2 class="mb-3 text-left text-uppercase"><i class="fa fa-tags text-warning" aria-hidden="true"></i> @Model.Name</h2>
+                                                            @if (Model.Star > 0)
+                                                            {
+                                                                <div class="rating-section">
+                                                                    <div class="rating">
+                                                                        @for (int i = 1; i <= 5; i++)
+                                                                        {
+                                                                            <i class="fa fa-star @(Model.Star >= i ? "text-warning" : "")"></i>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            }
+
+                                                            <h3 id="product_price"></h3>
+                                                            <div class="addeffect-section product-description" id="div_view_price_addtocart_panel">
+
+                                                                <div class="row px-1 my-4 mb-2" id="div_type_product_list">
+                                                                </div>
+
+                                                                <h4 class="product-title" id="quantityTitle"><i class="fa fa-caret-right text-danger" aria-hidden="true"></i> SỐ LƯỢNG:</h4>
+                                                          
+                                                                <div class="buttons_added my-2" id="quantityInput">
+                                                                    <input class="minus is-form" type="button" value="-">
+                                                                    <input id="input_quantity" aria-label="quantity" class="input-qty" max="9999" min="1" type="number" value="1">
+                                                                    <input class="plus is-form" type="button" value="+">
+                                                                </div>
+
+                                                                <div class="product-buttons my-2">
+                                                                    @if (Model.ProductPriceObjs == null || Model.ProductPriceObjs.Count() == 0)
+                                                                    {
+                                                                        <span class="btn btn-solid hover-solid btn-animation m-0 mb-1">
+                                                                            <i class="fa fa-commenting-o me-1"
+                                                                               aria-hidden="true"></i> Đang cập nhật
+                                                                        </span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="product-buttons my-2">
+                                                                            <a href="javascript:void(0)" onclick="HanldeClickAddToCart(this)"
+                                                                               class="btn btn-solid hover-solid btn-animation m-0 ladda-button mb-1" dir="ltr" data-style="zoom-out">
+                                                                                <i class="fa fa-shopping-cart m-2"
+                                                                                   aria-hidden="true"></i> thêm vào giỏ hàng
+                                                                            </a>
+                                                                            <a href="/checkout/cart" id="btn_checkout" style="display:none;"
+                                                                               class="btn btn-solid hover-solid btn-animation m-0 mb-1">
+                                                                                <i class="fa fa-credit-card-alt m-2"
+                                                                                   aria-hidden="true"></i> mua ngay
+                                                                            </a>
+                                                                        </div>
+
+                                                                    }
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="border-product">
+                                                                <h4 class="product-title text-dark fs-6 fw-bolder"><i class="fa fa-caret-right text-danger" aria-hidden="true"></i> THÔNG TIN SẢN PHẨM</h4>
+                                                                <span class="fs-7">@Model.SummaryInfo</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-product p-0 my-4">
+                                            <div class="container">
+                                                <div class="row div_content_detail">
+                                                    <div class="col-sm-12 col-lg-12">
+                                                        <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab"
+                                                                   href="#top-home" role="tab" aria-selected="true">
+                                                                    <i class="icofont icofont-ui-home"></i>Mô tả sản phẩm
+                                                                </a>
+                                                                <div class="material-border"></div>
+                                                            </li>
+                                                            @*<li class="nav-item">
+                                                            <a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-rating" role="tab" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>Đánh giá</a>
+                                                            <div class="material-border"></div>
+                                                            </li>*@
+                                                        </ul>
+                                                        <div class="tab-content nav-material" id="top-tabContent">
+                                                            <div class="tab-pane fade show active" id="top-home" role="tabpanel"
+                                                                 aria-labelledby="top-home-tab">
+                                                                <div class="product-tab-discription">
+                                                                    <div class="part">
+                                                                        @Html.Raw(Model.Detail)
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="top-rating" role="tabpanel"
+                                                                 aria-labelledby="top-rating">
+                                                                <section class="section-b-space blog-detail-page review-page py-0">
+                                                                    <div class="container">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <ul class="comment-section">
+                                                                                    <li>
+                                                                                        <div class="media">
+                                                                                            <img src="/assets/images/avtar.jpg" alt="Generic placeholder image">
+                                                                                            <div class="media-body">
+                                                                                                <h6>
+                                                                                                    Nguyen Van A
+                                                                                                    <span class="rating">
+                                                                                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                                                                    </span>
+                                                                                                    <span>17:00 13-04-2022</span>
+                                                                                                </h6>
+                                                                                                <p>
+                                                                                                    Noi dung danh gia
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <div class="media">
+                                                                                            <img src="/assets/images/avtar.jpg" alt="Generic placeholder image">
+                                                                                            <div class="media-body">
+                                                                                                <h6>
+                                                                                                    Nguyen Van A
+                                                                                                    <span class="rating">
+                                                                                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                                                                    </span>
+                                                                                                    <span>17:00 13-04-2022</span>
+                                                                                                </h6>
+                                                                                                <p>
+                                                                                                    Noi dung danh gia
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </section>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </section>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

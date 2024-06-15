@@ -1,0 +1,203 @@
+﻿@model Web_GemsPortal.ViewModels.Member.VM_MemberDetail
+@{
+    var identity = (System.Security.Claims.ClaimsIdentity)Context.Request.HttpContext.User.Identity;
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+@section MetaHead{
+    <meta name="robots" content="noodp,noydir,index,follow" />
+}
+@section Styles{
+    <link href="~/lib/parsleyjs/parsley.css" rel="stylesheet" />
+    <link href="~/lib/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/simplelightbox-master/dist/simple-lightbox.min.css" rel="stylesheet" />
+    <link href="~/lib/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/member-profile.css" rel="stylesheet" />
+    <link href="~/lib/microtip-master/microtip.min.css" rel="stylesheet" />
+    <link href="~/css/rating_start.css" rel="stylesheet" />
+    <link href="~/lib/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts{
+    <partial name="_P_ReCAPTCHAVertify" />
+    <script src="~/lib/ladda/spin.min.js"></script>
+    <script src="~/lib/ladda/ladda.min.js"></script>
+    <script src="~/lib/parsleyjs/parsley.min.js"></script>
+    <script src="~/lib/parsleyjs/i18n/vn.js"></script>
+    <script src="~/lib/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="~/lib/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/lib/simplelightbox-master/dist/simple-lightbox.jquery.min.js"></script>
+    <script src="~/assets/js/jquery.elevatezoom.js"></script>
+    <script>
+        var shopName = "@Model.ShopName";
+        var shopAvatar = "@(!string.IsNullOrEmpty(Model.Avatar) ? Model.Avatar : "/assets/images/error/avatar.png")";
+        var shopIdentity = "@Model.Identity";
+        const shopId = '@Html.Raw(ViewBag.SupplierId)';
+        const supplierId = '@Model.Id';
+        var recordsProduct = @ViewBag.RecordsProduct;
+        let _isLogin = '@identity.IsAuthenticated';
+    </script>
+    <script src="~/controllers/member_detail.js" asp-append-version="true"></script>
+}
+
+<div class="vendor-cover">
+    <div class="div_img_banner_member_detail">
+        <img style="aspect-ratio: 16 / 5; height: unset" src="@(Model.Banner ?? "/img/bg-member.png")" alt="Ảnh bìa" class="bg-img lazyload blur-up" onerror="this.onerror=null;this.src='/assets/images/error/home_bannerbottm.png';">
+    </div>
+</div>
+
+<section class="vendor-profile pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="profile-left">
+                    <div class="profile-image position-relative">
+                        <div>
+                            <img src="@(Model.Avatar ?? "/assets/images/error/avatar.png")" alt="Ảnh đại diện" class="img-fluid" onerror="this.onerror=null;this.src='/assets/images/error/avatar.png';">
+                            <h3>@Model.ShopName</h3>
+                        </div>
+                    </div>
+                    <div class="profile-detail">
+                        <div>
+                            <p>
+                                @Model.Description
+                            </p>
+                            <p>
+                                @Model.Address
+                            </p>
+                        </div>
+                    </div>
+                    <div class="vendor-contact">
+                        <div>
+                            <a href="javascript:void(0)" onclick="$('#modal_feedback').modal('show')" class="btn btn-outline btn-sm mb-1">Gửi phản ánh</a>
+                            @if (Model.imageListObj != null && Model.imageListObj?.Count() > 0)
+                            {
+                                <div>
+                                    <i class="color-default fa fa-certificate mr-1 mt-3"></i>Chứng chỉ - Chứng nhận:
+                                    <div class="slick_certificate">
+                                        @foreach (var item in Model.imageListObj)
+                                        {
+                                            <div><a href="@(item.relativeUrl ?? "/assets/images/error/news.png")" class="image-popup"><img src="@item.smallUrl" class="img-fluid certificate mt-1" style="" alt="@item.name" onerror="this.onerror=null;this.src='/assets/images/error/news.png';"></a></div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+<section class="tab-product pt-0 mt-4 mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <ul class="nav nav-tabs nav-material justify-content-center" id="top-tab" role="tablist" hidden>
+                    <li class="nav-item">
+                        <a class="nav-link" id="posts-tab-tab" data-bs-toggle="tab"
+                           href="#posts-tab" role="tab" aria-selected="true">
+                            <i class="icofont icofont-ui-home"></i>Bài viết
+                        </a>
+                        <div class="material-border"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-top-tab" data-bs-toggle="tab"
+                           href="#product-tab" role="tab" aria-selected="false">
+                            <i class="icofont icofont-man-in-glasses"></i>Sản phẩm
+                        </a>
+                        <div class="material-border"></div>
+                    </li>
+                </ul>
+                <div class="tab-content nav-material" id="top-tabContent">
+                    <div class="tab-pane fade" id="posts-tab" role="tabpanel" aria-labelledby="posts-tab-tab">
+                        <div class="row" id="div_post_list">
+
+                        </div>
+                        <div class="loader_skeleton loader_post_item show">
+                            <div class="collection-product-wrapper">
+                                <div class="product-wrapper-grid">
+                                    <div class="row">
+                                        <div class="col-12 col-grid-box">
+                                            <div class="product-box card card-body mt-0 mb-4">
+                                                <div class="product-detail mt-0 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-auto">
+                                                            <h4 class="avatar"></h4>
+                                                        </div>
+                                                        <div class="col-auto p-1">
+                                                            <h4 class="m-0"></h4>
+                                                            <h5></h5>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="w-100"></h5>
+                                                    <h5 class="w-50"></h5>
+                                                    <p></p>
+                                                </div>
+                                                <div class="row px-2">
+                                                    <div class="col-md-6 px-1">
+                                                        <div class="img-wrapper"></div>
+                                                    </div>
+                                                    <div class="col-md-6 px-1 d-none d-md-block">
+                                                        <div class="img-wrapper"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show active" id="product-tab" role="tabpanel" aria-labelledby="profile-top-tab">
+                        @* <span class="count_record_product"></span> *@
+                        <div class="collection-product-wrapper list_product">
+                            <div class="product-wrapper-grid">
+                                <div class="row" id="div_product_list">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-pagination border-0">
+                            <div class="theme-paggination-block">
+                                <div class="col-xl-3 col-md-3 col-sm-3" style="margin:0 auto">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination border-0" id="pagination_product">
+                                        </ul>
+                                    </nav>
+                                    @* <div class="col-xl-6 col-md-6 col-sm-12">
+                                            <div class="product-search-count-bottom search-count">
+                                                <h5 class="h5_count_record_product">...</h5>
+                                            </div>
+                                        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal feedback start -->
+<div class="modal fade" id="modal_feedback" tabindex="-1" role="dialog" aria-labelledby="modal_feedback" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="padding:50px 0;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100">
+                    <b class="text-uppercase">Phản ánh về thành viên</b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" style="font-size: 1.5rem; font-weight: 700; line-height: 1; margin-top: -10px; margin-right: -4px;"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body register-page pt-0">
+                <partial name="P_Feedback" model="new Web_GemsPortal.EditModels.Contact.EM_Contact { SupplierId = ViewBag.SupplierId }" />
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="_P_SendFeedbackSuccess" />
+<div id="div_view_product">
+
+</div>
